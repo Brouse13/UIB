@@ -6,7 +6,7 @@ import javax.swing.*;
  * Class in charge of the creation of the {@link JSplitPane} that will
  * be on the interactive interfaces.
  */
-public class SplitObject {
+public class SplitObject implements Component {
     /*---------- PRIVATE ----------*/
     private final JSplitPane panel;
 
@@ -23,11 +23,10 @@ public class SplitObject {
     }
 
     /**
-     * Get the associated swing component ({@link JComponent}) that will
-     * represent all the stored data.
-     *
-     * @return the swing JMenuBar
+     * {@inheritDoc}
+     * @return the swing associated JSplitPanel
      */
+    @Override
     public JComponent getComponent() {
         return panel;
     }

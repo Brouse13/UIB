@@ -6,7 +6,7 @@ import javax.swing.*;
  * Class in charge of the creation of the {@link JToolBar} that will
  * be on the interactive interfaces.
  */
-public class ToolBarObject {
+public class ToolBarObject implements Component {
     /*---------- PRIVATE ----------*/
     private final JToolBar toolBar;
 
@@ -27,11 +27,10 @@ public class ToolBarObject {
     }
 
     /**
-     * Get the associated swing component ({@link JToolBar}) that will
-     * represent all the stored data.
-     *
-     * @return the swing JToolBar
+     * {@inheritDoc}
+     * @return the swing associated JToolBar
      */
+    @Override
     public JComponent getComponent() {
         return toolBar;
     }

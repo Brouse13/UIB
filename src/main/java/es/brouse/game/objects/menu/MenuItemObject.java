@@ -1,5 +1,7 @@
 package es.brouse.game.objects.menu;
 
+import es.brouse.game.objects.Component;
+
 import javax.swing.*;
 import java.awt.event.ItemListener;
 
@@ -7,7 +9,7 @@ import java.awt.event.ItemListener;
  * Class in charge of the creation of the {@link JMenuItem} that will
  * be on the interactive interfaces.
  */
-public class MenuItemObject {
+public class MenuItemObject implements Component {
     /*---------- PRIVATE ----------*/
     private final String name;
     private final ItemListener listener;
@@ -22,11 +24,10 @@ public class MenuItemObject {
     }
 
     /**
-     * Get the associated swing component ({@link JMenuItem}) that will
-     * represent all the stored data.
-     *
-     * @return the swing JMenuItem
+     * {@inheritDoc}
+     * @return the swing associated JMenuItem
      */
+    @Override
     public JComponent getComponent() {
         JMenuItem item = new JMenuItem(name);
         item.addItemListener(listener);

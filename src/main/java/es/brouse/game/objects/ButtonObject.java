@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  * Class in charge of the creation of the {@link JButton} that will
  * be on the interactive interfaces.
  */
-public class ButtonObject {
+public class ButtonObject implements Component {
     /*---------- PRIVATE ----------*/
     private final JButton button;
 
@@ -71,12 +71,12 @@ public class ButtonObject {
         button.setBorderPainted(false);
         return this;
     }
+
     /**
-     * Get the associated swing component ({@link JButton}) that will
-     * represent all the stored data.
-     *
-     * @return the swing JMenuBar
+     * {@inheritDoc}
+     * @return the swing associated JButton
      */
+    @Override
     public JComponent getComponent() {
         return button;
     }
