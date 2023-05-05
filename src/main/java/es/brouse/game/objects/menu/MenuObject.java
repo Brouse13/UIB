@@ -1,4 +1,4 @@
-package es.brouse.game.menu;
+package es.brouse.game.objects.menu;
 
 import javax.swing.*;
 import java.util.Arrays;
