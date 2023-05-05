@@ -66,12 +66,13 @@ public class HeaderPanel extends Panel {
             URL resource = getClass().getResource(name);
             if (resource == null) throw new NullPointerException();
 
-            //Create the button
-            return new ButtonObject(null, new ImageIcon(ImageIO.read(resource)), listener);
+            //Create the button in fullImage mode
+            return new ButtonObject(null, new ImageIcon(ImageIO.read(resource)), listener)
+                    .fullImage();
         } catch (IOException | NullPointerException e) {
             //Default button and error handler
             Game.logger.log(Level.WARNING, "Unable to load resource");
-            return new ButtonObject("X");
+            return new ButtonObject("X").fullImage();
         }
     }
 }
