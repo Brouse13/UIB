@@ -60,6 +60,18 @@ public class ButtonObject {
     }
 
     /**
+     * Set the render moder to FullImage. This render has the
+     * ability to get the best image quality by adjusting the
+     * size and other options.
+     *
+     * @return the builder instance
+     */
+    public ButtonObject fullImage() {
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setBorderPainted(false);
+        return this;
+    }
+    /**
      * Get the associated swing component ({@link JButton}) that will
      * represent all the stored data.
      *
