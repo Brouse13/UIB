@@ -1,6 +1,7 @@
 package es.brouse.game.panels;
 
 import es.brouse.game.listeners.GameListeners;
+import es.brouse.game.objects.SplitObject;
 import es.brouse.game.objects.menu.MenuHeaderObject;
 import es.brouse.game.objects.menu.MenuItemObject;
 import es.brouse.game.objects.menu.MenuObject;
@@ -22,6 +23,7 @@ public class GamePanel extends Panel {
     @Override
     public void initComponents(final JPanel panel) {
         panel.add(mainMenu().getComponent(), NORTH);
+        panel.add(new SplitObject(SplitObject.HORIZONTAL_SPLIT).getComponent());
         panel.add(new SidebarPanel().getComponent(), WEST);
     }
 
