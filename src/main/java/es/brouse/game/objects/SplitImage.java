@@ -24,10 +24,20 @@ public class SplitImage {
         this.index = index;
     }
 
+    /**
+     * Image Getter
+     *
+     * @return the BufferedImage
+     */
     public BufferedImage getImage() {
         return image;
     }
 
+    /**
+     * Index Getter
+     *
+     * @return the image index
+     */
     public int getIndex() {
         return index;
     }
