@@ -8,31 +8,31 @@ import java.awt.event.ActionListener;
  * Class in charge of the creation of the {@link JButton} that will
  * be on the interactive interfaces.
  */
-public class ButtonBuilder {
+public class ButtonObject {
     /*---------- PRIVATE ----------*/
     private final JButton button;
 
     /**
-     * Main class constructor able to create new {@link ButtonBuilder}
+     * Main class constructor able to create new {@link ButtonObject}
      * instance only with its name
      */
-    public ButtonBuilder(String name) {
+    public ButtonObject(String name) {
         this.button = new JButton(name);
     }
 
     /**
-     * Main class constructor able to create new {@link ButtonBuilder}
+     * Main class constructor able to create new {@link ButtonObject}
      * instance with its name and an icon.
      */
-    public ButtonBuilder(String name, Icon icon) {
+    public ButtonObject(String name, Icon icon) {
         this.button = new JButton(name, icon);
     }
 
     /**
-     * Main class constructor able to create new {@link ButtonBuilder}
+     * Main class constructor able to create new {@link ButtonObject}
      * instance with its name, icon and a listener
      */
-    public ButtonBuilder(String name, Icon icon, ActionListener listener) {
+    public ButtonObject(String name, Icon icon, ActionListener listener) {
         this.button = new JButton(name, icon);
         this.button.addActionListener(listener);
     }
@@ -43,7 +43,7 @@ public class ButtonBuilder {
      * @param color color to set
      * @return the builder instance
      */
-    public ButtonBuilder setBackgroundColor(Color color) {
+    public ButtonObject setBackgroundColor(Color color) {
         button.setBackground(color);
         return this;
     }
@@ -54,7 +54,7 @@ public class ButtonBuilder {
      * @param size size to set
      * @return the builder instance
      */
-    public ButtonBuilder setSize(Dimension size) {
+    public ButtonObject setSize(Dimension size) {
         button.setSize(size);
         return this;
     }
