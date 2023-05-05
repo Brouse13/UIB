@@ -3,7 +3,7 @@ package es.brouse.game.objects.menu;
 import es.brouse.game.objects.Component;
 
 import javax.swing.*;
-import java.awt.event.ItemListener;
+import java.awt.event.ActionListener;
 
 /**
  * Class in charge of the creation of the {@link JMenuItem} that will
@@ -12,13 +12,13 @@ import java.awt.event.ItemListener;
 public class MenuItemObject implements Component {
     /*---------- PRIVATE ----------*/
     private final String name;
-    private final ItemListener listener;
+    private final ActionListener listener;
 
     /**
      * Main class constructor able to create new {@link MenuItemObject}
      * instance.
      */
-    public MenuItemObject(String name, ItemListener listener) {
+    public MenuItemObject(String name, ActionListener listener) {
         this.name = name;
         this.listener = listener;
     }
@@ -30,7 +30,7 @@ public class MenuItemObject implements Component {
     @Override
     public JComponent getComponent() {
         JMenuItem item = new JMenuItem(name);
-        item.addItemListener(listener);
+        item.addActionListener(listener);
         return item;
     }
 }

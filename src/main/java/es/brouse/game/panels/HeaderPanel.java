@@ -1,7 +1,7 @@
 package es.brouse.game.panels;
 
 import es.brouse.game.Game;
-import es.brouse.game.listeners.GameListeners;
+import es.brouse.game.listeners.HeaderListeners;
 import es.brouse.game.listeners.ToolTipListeners;
 import es.brouse.game.objects.ButtonObject;
 import es.brouse.game.objects.SplitObject;
@@ -47,7 +47,7 @@ public class HeaderPanel extends Panel {
     }
 
     private MenuObject mainMenu() {
-        final GameListeners listeners = new GameListeners();
+        final HeaderListeners listeners = new HeaderListeners();
         MenuHeaderObject header = new MenuHeaderObject("Menu");
 
         header.addItems(

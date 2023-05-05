@@ -1,25 +1,25 @@
 package es.brouse.game.listeners;
 
-import java.awt.event.ItemListener;
+import java.awt.event.ActionListener;
 
-public final class GameListeners {
-    public ItemListener newGame() {
+public final class HeaderListeners {
+    public ActionListener newGame() {
         return event -> System.out.println("New Game Started");
     }
 
-    public ItemListener generalScore() {
+    public ActionListener generalScore() {
         return event -> System.out.println("General Score: %d");
     }
 
-    public ItemListener score() {
+    public ActionListener score() {
         return event -> System.out.println("Score: %d");
     }
 
-    public ItemListener changeDir() {
+    public ActionListener changeDir() {
         return event -> System.out.println("Directory changed");
     }
 
-    public ItemListener exit() {
+    public ActionListener exit() {
         return event -> System.exit(0);
     }
 }
