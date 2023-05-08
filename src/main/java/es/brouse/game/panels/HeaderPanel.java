@@ -1,8 +1,7 @@
 package es.brouse.game.panels;
 
 import es.brouse.game.Game;
-import es.brouse.game.listeners.HeaderListeners;
-import es.brouse.game.listeners.ToolTipListeners;
+import es.brouse.game.listeners.GameListeners;
 import es.brouse.game.objects.ButtonObject;
 import es.brouse.game.objects.SplitObject;
 import es.brouse.game.objects.ToolBarObject;
@@ -23,6 +22,7 @@ import java.util.logging.Level;
 import static java.awt.BorderLayout.*;
 
 public class HeaderPanel extends Panel {
+    private static final GameListeners listeners = new GameListeners();
 
     @Override
     public void setUp(JPanel panel) {
@@ -31,8 +31,6 @@ public class HeaderPanel extends Panel {
 
     @Override
     public void initComponents(JPanel panel) {
-        final ToolTipListeners listeners = new ToolTipListeners();
-
         panel.add(mainMenu().getComponent(), NORTH);
 
         ToolBarObject toolBar = new ToolBarObject(ToolBarObject.HORIZONTAL);
@@ -47,7 +45,7 @@ public class HeaderPanel extends Panel {
     }
 
     private MenuObject mainMenu() {
-        final HeaderListeners listeners = new HeaderListeners();
+        final GameListeners listeners = new GameListeners();
         MenuHeaderObject header = new MenuHeaderObject("Menu");
 
         header.addItems(

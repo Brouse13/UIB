@@ -2,7 +2,7 @@ package es.brouse.game.listeners;
 
 import java.awt.event.ActionListener;
 
-public class SideBarListeners {
+public final class GameListeners {
     public ActionListener newGame() {
         return event -> System.out.println("New Game Started");
     }
@@ -13,6 +13,10 @@ public class SideBarListeners {
 
     public ActionListener score() {
         return event -> System.out.println("Score: %d");
+    }
+
+    public ActionListener changeDir() {
+        return event -> System.out.println("Directory changed");
     }
 
     public ActionListener exit() {
