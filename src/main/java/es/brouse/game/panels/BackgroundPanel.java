@@ -1,7 +1,7 @@
 package es.brouse.game.panels;
 
 import es.brouse.game.Game;
-import es.brouse.game.listeners.ImageObject;
+import es.brouse.game.objects.ImageObject;
 import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;

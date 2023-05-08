@@ -1,6 +1,4 @@
-package es.brouse.game.listeners;
-
-import es.brouse.game.objects.Component;
+package es.brouse.game.objects;
 
 import javax.swing.*;
 import java.awt.*;
