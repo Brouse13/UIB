@@ -37,7 +37,7 @@ public class HeaderPanel extends Panel {
         toolBar.add(getButton("/assets/gui/game/newGame.jpg", listeners.newGame()).getComponent());
         toolBar.add(getButton("/assets/gui/game/selectedHistory.jpg", listeners.score()).getComponent());
         toolBar.add(getButton("/assets/gui/game/history.jpg", listeners.score()).getComponent());
-        toolBar.add(getButton("/assets/gui/game/changeDir.jpg", listeners.changeDir()).getComponent());
+        toolBar.add(getButton("/assets/gui/game/changeDir.jpg", listeners.changeDir(this)).getComponent());
         toolBar.add(getButton("/assets/gui/game/exit.jpg", listeners.exit()).getComponent());
 
         panel.add(toolBar.getComponent(), CENTER);
@@ -52,7 +52,7 @@ public class HeaderPanel extends Panel {
                 new MenuItemObject("Nueva Partida", listeners.newGame()),
                 new MenuItemObject("Clasificatoria General", listeners.generalScore()),
                 new MenuItemObject("Historial", listeners.score()),
-                new MenuItemObject("Cambiar directorio", listeners.changeDir()),
+                new MenuItemObject("Cambiar directorio", listeners.changeDir(this)),
                 new MenuItemObject("Salir", listeners.exit()));
 
         return new MenuObject(new HashSet<>(List.of(header)));
