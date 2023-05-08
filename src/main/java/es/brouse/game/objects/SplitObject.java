@@ -16,10 +16,18 @@ public class SplitObject implements Component {
 
     /**
      * Main class constructor able to create new {@link SplitObject}
-     * instance only with its name
+     * instance only with its orientation.
      */
     public SplitObject(int orientation) {
         panel = new JSplitPane(orientation);
+    }
+
+    /**
+     * Main class constructor able to create new {@link SplitObject}
+     * instance with the orientation and the elements.
+     */
+    public SplitObject(int orientation, JComponent left, JComponent right) {
+        panel = new JSplitPane(orientation, left, right);
     }
 
     /**
