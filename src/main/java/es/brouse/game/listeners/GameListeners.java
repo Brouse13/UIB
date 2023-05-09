@@ -2,14 +2,20 @@ package es.brouse.game.listeners;
 
 import es.brouse.game.GameSettings;
 import es.brouse.game.panels.Panel;
+import es.brouse.game.screen.StartGameScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 public final class GameListeners {
+    private final StartGameScreen startGame = new StartGameScreen();
+
     public ActionListener newGame() {
-        return event -> System.out.println("New Game Started");
+        return event -> {
+            startGame.start();
+            System.out.println("New Game Started");
+        };
     }
 
     public ActionListener generalScore() {
