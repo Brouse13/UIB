@@ -1,4 +1,6 @@
-package es.brouse.game.objects;
+package es.brouse.game.objects.builders;
+
+import es.brouse.game.objects.Component;
 
 import javax.swing.*;
 
@@ -6,7 +8,7 @@ import javax.swing.*;
  * Class in charge of the creation of the {@link JToolBar} that will
  * be on the interactive interfaces.
  */
-public class ToolBarObject implements Component {
+public class ToolBarBuilder implements Component {
     /*---------- PRIVATE ----------*/
     private final JToolBar toolBar;
 
@@ -15,10 +17,10 @@ public class ToolBarObject implements Component {
     public static final int VERTICAL   = 1;
 
     /**
-     * Main class constructor able to create new {@link SplitObject}
+     * Main class constructor able to create new {@link SplitPanelBuilder}
      * instance with its orientation
      */
-    public ToolBarObject(int orientation) {
+    public ToolBarBuilder(int orientation) {
         this.toolBar = new JToolBar(orientation);
     }
 

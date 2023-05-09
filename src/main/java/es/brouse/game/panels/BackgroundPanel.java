@@ -1,7 +1,7 @@
 package es.brouse.game.panels;
 
 import es.brouse.game.Game;
-import es.brouse.game.objects.ImageObject;
+import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
@@ -22,7 +22,7 @@ public class BackgroundPanel extends Panel {
     @Override
     public void initComponents(final JPanel panel) {
         try {
-            panel.add(new ImageObject(utils.loadImage("/assets/gui/background.jpg"))
+            panel.add(new ImageBuilder(utils.loadImage("/assets/gui/background.jpg"))
                     .setDimensions(new Dimension(150, 150)).getComponent());
         }catch (IOException e) {
             Game.logger.log(Level.WARNING, "Unable to load background image");

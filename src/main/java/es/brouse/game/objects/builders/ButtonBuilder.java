@@ -1,4 +1,6 @@
-package es.brouse.game.objects;
+package es.brouse.game.objects.builders;
+
+import es.brouse.game.objects.Component;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,31 +10,31 @@ import java.awt.event.ActionListener;
  * Class in charge of the creation of the {@link JButton} that will
  * be on the interactive interfaces.
  */
-public class ButtonObject implements Component {
+public class ButtonBuilder implements Component {
     /*---------- PRIVATE ----------*/
     private final JButton button;
 
     /**
-     * Main class constructor able to create new {@link ButtonObject}
+     * Main class constructor able to create new {@link ButtonBuilder}
      * instance only with its name
      */
-    public ButtonObject(String name) {
+    public ButtonBuilder(String name) {
         this.button = new JButton(name);
     }
 
     /**
-     * Main class constructor able to create new {@link ButtonObject}
+     * Main class constructor able to create new {@link ButtonBuilder}
      * instance with its name and an icon.
      */
-    public ButtonObject(String name, Icon icon) {
+    public ButtonBuilder(String name, Icon icon) {
         this.button = new JButton(name, icon);
     }
 
     /**
-     * Main class constructor able to create new {@link ButtonObject}
+     * Main class constructor able to create new {@link ButtonBuilder}
      * instance with its name, icon and a listener
      */
-    public ButtonObject(String name, Icon icon, ActionListener listener) {
+    public ButtonBuilder(String name, Icon icon, ActionListener listener) {
         this.button = new JButton(name, icon);
         this.button.addActionListener(listener);
     }
@@ -43,7 +45,7 @@ public class ButtonObject implements Component {
      * @param color color to set
      * @return the builder instance
      */
-    public ButtonObject setBackgroundColor(Color color) {
+    public ButtonBuilder setBackgroundColor(Color color) {
         button.setBackground(color);
         return this;
     }
@@ -54,7 +56,7 @@ public class ButtonObject implements Component {
      * @param size size to set
      * @return the builder instance
      */
-    public ButtonObject setSize(Dimension size) {
+    public ButtonBuilder setSize(Dimension size) {
         button.setSize(size);
         return this;
     }
@@ -66,7 +68,7 @@ public class ButtonObject implements Component {
      *
      * @return the builder instance
      */
-    public ButtonObject fullImage() {
+    public ButtonBuilder fullImage() {
         button.setMargin(new Insets(0, 0, 0, 0));
         button.setBorderPainted(false);
         return this;

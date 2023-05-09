@@ -2,9 +2,9 @@ package es.brouse.game.panels;
 
 import es.brouse.game.Game;
 import es.brouse.game.listeners.GameListeners;
-import es.brouse.game.objects.ButtonObject;
-import es.brouse.game.objects.SplitObject;
-import es.brouse.game.objects.ToolBarObject;
+import es.brouse.game.objects.builders.ButtonBuilder;
+import es.brouse.game.objects.builders.SplitPanelBuilder;
+import es.brouse.game.objects.builders.ToolBarBuilder;
 import es.brouse.game.objects.menu.MenuHeaderObject;
 import es.brouse.game.objects.menu.MenuItemObject;
 import es.brouse.game.objects.menu.MenuObject;
@@ -33,7 +33,7 @@ public class HeaderPanel extends Panel {
     public void initComponents(JPanel panel) {
         panel.add(mainMenu().getComponent(), NORTH);
 
-        ToolBarObject toolBar = new ToolBarObject(ToolBarObject.HORIZONTAL);
+        ToolBarBuilder toolBar = new ToolBarBuilder(ToolBarBuilder.HORIZONTAL);
         toolBar.add(getButton("/assets/gui/game/newGame.jpg", listeners.newGame()).getComponent());
         toolBar.add(getButton("/assets/gui/game/selectedHistory.jpg", listeners.score()).getComponent());
         toolBar.add(getButton("/assets/gui/game/history.jpg", listeners.score()).getComponent());
@@ -41,7 +41,7 @@ public class HeaderPanel extends Panel {
         toolBar.add(getButton("/assets/gui/game/exit.jpg", listeners.exit()).getComponent());
 
         panel.add(toolBar.getComponent(), CENTER);
-        panel.add(new SplitObject(SplitObject.VERTICAL_SPLIT).getComponent(), SOUTH);
+        panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT).getComponent(), SOUTH);
     }
 
     private MenuObject mainMenu() {
@@ -58,19 +58,19 @@ public class HeaderPanel extends Panel {
         return new MenuObject(new HashSet<>(List.of(header)));
     }
 
-    private ButtonObject getButton(String name, ActionListener listener) {
+    private ButtonBuilder getButton(String name, ActionListener listener) {
         try {
             //Try to load the resource
             URL resource = getClass().getResource(name);
             if (resource == null) throw new NullPointerException();
 
             //Create the button in fullImage mode
-            return new ButtonObject(null, new ImageIcon(ImageIO.read(resource)), listener)
+            return new ButtonBuilder(null, new ImageIcon(ImageIO.read(resource)), listener)
                     .fullImage();
         } catch (IOException | NullPointerException e) {
             //Default button and error handler
             Game.logger.log(Level.WARNING, "Unable to load resource");
-            return new ButtonObject("X").fullImage();
+            return new ButtonBuilder("X").fullImage();
         }
     }
 }

@@ -1,11 +1,11 @@
 package es.brouse.game.panels;
 
-import es.brouse.game.objects.SplitObject;
+import es.brouse.game.objects.builders.SplitPanelBuilder;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static es.brouse.game.objects.SplitObject.HORIZONTAL_SPLIT;
+import static es.brouse.game.objects.builders.SplitPanelBuilder.HORIZONTAL_SPLIT;
 import static java.awt.BorderLayout.*;
 public class GamePanel extends Panel {
 
@@ -20,7 +20,7 @@ public class GamePanel extends Panel {
         panel.add(new HeaderPanel().getComponent(), NORTH);
 
         //Create the middle content
-        SplitObject split = new SplitObject(HORIZONTAL_SPLIT,
+        SplitPanelBuilder split = new SplitPanelBuilder(HORIZONTAL_SPLIT,
                 new SidebarPanel().getComponent(), new BackgroundPanel().getComponent());
         panel.add(split.getComponent(), CENTER);
     }

@@ -1,4 +1,6 @@
-package es.brouse.game.objects;
+package es.brouse.game.objects.builders;
+
+import es.brouse.game.objects.Component;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -8,24 +10,24 @@ import java.awt.*;
  * Class in charge of the creation of the {@link JLabel} that will
  * be on the interactive interfaces.
  */
-public class LabelObject implements Component {
+public class LabelBuilder implements Component {
     /*---------- PRIVATE ----------*/
     private final JLabel label;
 
     /**
-     * Main class constructor able to create new {@link SplitObject}
+     * Main class constructor able to create new {@link SplitPanelBuilder}
      * instance only with its orientation.
      */
-    public LabelObject(String name) {
+    public LabelBuilder(String name) {
         label = new JLabel(name);
     }
 
-    public LabelObject setSize(Dimension size) {
+    public LabelBuilder setSize(Dimension size) {
         label.setSize(size);
         return this;
     }
 
-    public LabelObject setBorder(Border border) {
+    public LabelBuilder setBorder(Border border) {
         label.setBorder(border);
         return this;
     }

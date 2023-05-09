@@ -1,7 +1,7 @@
 package es.brouse.game.panels;
 
 import es.brouse.game.listeners.GameListeners;
-import es.brouse.game.objects.ButtonObject;
+import es.brouse.game.objects.builders.ButtonBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,9 +19,9 @@ public class SidebarPanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        panel.add(new ButtonObject("Nueva Partida", null, listeners.newGame()).getComponent());
-        panel.add(new ButtonObject("Historial General", null, listeners.generalScore()).getComponent());
-        panel.add(new ButtonObject("Historial Selectivo", null, listeners.score()).getComponent());
-        panel.add(new ButtonObject("Salir", null, listeners.exit()).getComponent());
+        panel.add(new ButtonBuilder("Nueva Partida", null, listeners.newGame()).getComponent());
+        panel.add(new ButtonBuilder("Historial General", null, listeners.generalScore()).getComponent());
+        panel.add(new ButtonBuilder("Historial Selectivo", null, listeners.score()).getComponent());
+        panel.add(new ButtonBuilder("Salir", null, listeners.exit()).getComponent());
     }
 }

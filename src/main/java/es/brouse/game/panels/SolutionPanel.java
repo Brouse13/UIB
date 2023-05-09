@@ -1,6 +1,6 @@
 package es.brouse.game.panels;
 
-import es.brouse.game.objects.ImageObject;
+import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.utils.ImageUtils;
 
@@ -27,6 +27,6 @@ public class SolutionPanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        panel.add(new ImageObject(solution).setDimensions(new Dimension(-1, -1)).getComponent());
+        panel.add(new ImageBuilder(solution).setDimensions(new Dimension(-1, -1)).getComponent());
     }
 }

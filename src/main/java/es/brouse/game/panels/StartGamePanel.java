@@ -1,7 +1,7 @@
 package es.brouse.game.panels;
 
-import es.brouse.game.objects.ButtonObject;
-import es.brouse.game.objects.LabelObject;
+import es.brouse.game.objects.builders.ButtonBuilder;
+import es.brouse.game.objects.builders.LabelBuilder;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +19,7 @@ public class StartGamePanel extends Panel {
         String[] names = {"USUARIO", "FILAS", "COLUMNAS"};
 
         for (String name : names) {
-            panel.add(new LabelObject(name)
+            panel.add(new LabelBuilder(name)
                     .setSize(new Dimension(50, 10))
                     .setBorder(new EmptyBorder(5, 5, 5, 5))
                     .getComponent());
@@ -29,7 +29,7 @@ public class StartGamePanel extends Panel {
         //Dummy content
         panel.add(new JLabel());
 
-        JComponent component = new ButtonObject("INICIAR PARTIDA", null, e -> {})
+        JComponent component = new ButtonBuilder("INICIAR PARTIDA", null, e -> {})
                 .getComponent();
         component.setBorder(new EmptyBorder(0, 0, 5, 5));
         panel.add(component);

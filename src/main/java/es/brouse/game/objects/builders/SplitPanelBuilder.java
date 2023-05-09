@@ -1,4 +1,6 @@
-package es.brouse.game.objects;
+package es.brouse.game.objects.builders;
+
+import es.brouse.game.objects.Component;
 
 import javax.swing.*;
 
@@ -6,7 +8,7 @@ import javax.swing.*;
  * Class in charge of the creation of the {@link JSplitPane} that will
  * be on the interactive interfaces.
  */
-public class SplitObject implements Component {
+public class SplitPanelBuilder implements Component {
     /*---------- PRIVATE ----------*/
     private final JSplitPane panel;
 
@@ -15,18 +17,18 @@ public class SplitObject implements Component {
     public static final int HORIZONTAL_SPLIT = 1;
 
     /**
-     * Main class constructor able to create new {@link SplitObject}
+     * Main class constructor able to create new {@link SplitPanelBuilder}
      * instance only with its orientation.
      */
-    public SplitObject(int orientation) {
+    public SplitPanelBuilder(int orientation) {
         panel = new JSplitPane(orientation);
     }
 
     /**
-     * Main class constructor able to create new {@link SplitObject}
+     * Main class constructor able to create new {@link SplitPanelBuilder}
      * instance with the orientation and the elements.
      */
-    public SplitObject(int orientation, JComponent left, JComponent right) {
+    public SplitPanelBuilder(int orientation, JComponent left, JComponent right) {
         panel = new JSplitPane(orientation, left, right);
     }
 
