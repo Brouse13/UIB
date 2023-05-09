@@ -1,6 +1,5 @@
 package es.brouse.game.utils;
 
-import es.brouse.game.Game;
 import es.brouse.game.objects.SplitImage;
 
 import javax.imageio.ImageIO;
