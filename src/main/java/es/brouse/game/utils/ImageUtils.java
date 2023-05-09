@@ -10,19 +10,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
 
 public class ImageUtils {
-    public Set<SplitImage> split(String fileName, int rows, int cols) {
-        //Read the originalImage or log an exception
-        final BufferedImage originalImage;
-        try {
-            originalImage = loadImage(fileName);
-        }catch (IOException e) {
-            Game.logger.log(Level.WARNING, e.getMessage());
-            return new HashSet<>();
-        }
-
+    public Set<SplitImage> split(BufferedImage originalImage, int rows, int cols) {
         //Storage of all the returned subImages
         Set<SplitImage> images = new HashSet<>(rows  * cols);
 
