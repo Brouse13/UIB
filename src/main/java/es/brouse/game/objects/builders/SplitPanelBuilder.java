@@ -33,6 +33,28 @@ public class SplitPanelBuilder implements Component {
     }
 
     /**
+     * Set the left component
+     *
+     * @param component new left component
+     * @return the builder instance
+     */
+    public SplitPanelBuilder setLeft(JComponent component) {
+        panel.setLeftComponent(component);
+        return this;
+    }
+
+    /**
+     * Set the right component
+     *
+     * @param component new right component
+     * @return the builder instance
+     */
+    public SplitPanelBuilder setRight(JComponent component) {
+        panel.setRightComponent(component);
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      * @return the swing associated JSplitPanel
      */
