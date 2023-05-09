@@ -60,6 +60,7 @@ public class SplitPanelBuilder implements Component {
      */
     @Override
     public JComponent getComponent() {
+        panel.setEnabled(false);
         return panel;
     }
 }
