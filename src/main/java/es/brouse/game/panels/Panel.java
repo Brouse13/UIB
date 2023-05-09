@@ -1,6 +1,7 @@
 package es.brouse.game.panels;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Class in charge of the creation of the {@link JPanel} that will
@@ -62,5 +63,10 @@ public abstract class Panel {
     protected void init() {
         setUp(panel);
         initComponents(panel);
+    }
+
+    protected void close() {
+        Window windowAncestor = SwingUtilities.getWindowAncestor(panel);
+        windowAncestor.dispose();
     }
 }
