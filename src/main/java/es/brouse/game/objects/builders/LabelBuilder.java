@@ -15,18 +15,30 @@ public class LabelBuilder implements Component {
     private final JLabel label;
 
     /**
-     * Main class constructor able to create new {@link SplitPanelBuilder}
-     * instance only with its orientation.
+     * Main class constructor able to create new {@link JLabel}
+     * instance.
      */
     public LabelBuilder(String name) {
         label = new JLabel(name);
     }
 
+    /**
+     * Set the size of the label.
+     *
+     * @param size new size
+     * @return the builder instance
+     */
     public LabelBuilder setSize(Dimension size) {
         label.setSize(size);
         return this;
     }
 
+    /**
+     * Set the border to the label.
+     *
+     * @param border new border
+     * @return the builder instance
+     */
     public LabelBuilder setBorder(Border border) {
         label.setBorder(border);
         return this;
@@ -34,7 +46,7 @@ public class LabelBuilder implements Component {
 
     /**
      * {@inheritDoc}
-     * @return the swing associated JSplitPanel
+     * @return the swing associated JLabel
      */
     @Override
     public JComponent getComponent() {
