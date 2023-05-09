@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 public class ImageBuilder implements Component {
     /*---------- PRIVATE ----------*/
     private final JLabel label;
+    private final BufferedImage image;
 
     /**
      * Main class constructor able to create new {@link ImageBuilder}
@@ -19,7 +20,7 @@ public class ImageBuilder implements Component {
      */
     public ImageBuilder(BufferedImage image) {
         this.label = new JLabel();
-        label.setIcon(new ImageIcon(image));
+        this.image = image;
     }
 
     /**
@@ -33,6 +34,11 @@ public class ImageBuilder implements Component {
         return this;
     }
 
+    public ImageBuilder test() {
+        label.setBorder(BorderFactory.createLineBorder(Color.BLUE, 10));
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -40,6 +46,13 @@ public class ImageBuilder implements Component {
      */
     @Override
     public JComponent getComponent() {
+        Image scaledInstance = image.getScaledInstance(
+                label.getWidth(),
+                label.getHeight(),
+                Image.SCALE_SMOOTH);
+
+        label.setIcon(new ImageIcon(scaledInstance));
+
         return label;
     }
 }
