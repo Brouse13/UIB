@@ -9,21 +9,26 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 
+
 public class BackgroundPanel extends Panel {
-    private static final ImageUtils utils = new ImageUtils();
 
     @Override
     public void setUp(final JPanel panel) {
-        panel.setSize(new Dimension(-1, -1));
-        panel.setLayout(new FlowLayout(FlowLayout.LEADING));
-        panel.setVisible(true);
+        panel.setLayout(new BorderLayout());
     }
 
     @Override
     public void initComponents(final JPanel panel) {
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+        Dimension frame = new Dimension(
+                (int) (size.getWidth() - 100),
+                ((int) (size.getHeight() - 100))
+        );
+
         try {
-            panel.add(new ImageBuilder(utils.loadImage("/assets/gui/background.jpg"))
-                    .setDimensions(new Dimension(150, 150)).getComponent());
+            panel.add(new ImageBuilder(new ImageUtils().loadImage("/assets/gui/background.jpg"))
+                    .setDimensions(frame).getComponent());
         }catch (IOException e) {
             Game.logger.log(Level.WARNING, "Unable to load background image");
         }
