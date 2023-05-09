@@ -3,12 +3,15 @@ package es.brouse.game.panels;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextFieldBuilder;
+import es.brouse.game.screen.GameScreen;
+import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class StartGamePanel extends Panel implements ActionListener {
     private TextFieldBuilder[] builders;
@@ -55,5 +58,12 @@ public class StartGamePanel extends Panel implements ActionListener {
         String usernameVal = username.getText();
         int rowsVals = Integer.parseInt(rows.getText());
         int colsVal = Integer.parseInt(cols.getText());
+
+        try {
+            GameScreen.gamePanel.setGamePanel(new GameImagePanel(new ImageUtils().loadImage("/assets/gui/descarga.jpg")).getComponent());
+            close();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

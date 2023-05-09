@@ -1,16 +1,17 @@
 package es.brouse.game.panels;
 
-import es.brouse.game.objects.builders.SplitPanelBuilder;
-
 import javax.swing.*;
 import java.awt.*;
 
-import static es.brouse.game.objects.builders.SplitPanelBuilder.HORIZONTAL_SPLIT;
 import static java.awt.BorderLayout.*;
 public class GamePanel extends Panel {
+    private JSplitPane splitPanel;
+    private JPanel panel;
 
+    private static final BackgroundPanel backgroundImage = new BackgroundPanel();
     @Override
     public void setUp(final JPanel panel) {
+        this.panel = panel;
         panel.setLayout(new BorderLayout());
         panel.setVisible(true);
     }
@@ -20,8 +21,21 @@ public class GamePanel extends Panel {
         panel.add(new HeaderPanel().getComponent(), NORTH);
 
         //Create the middle content
-        SplitPanelBuilder split = new SplitPanelBuilder(HORIZONTAL_SPLIT,
-                new SidebarPanel().getComponent(), new BackgroundPanel().getComponent());
-        panel.add(split.getComponent(), CENTER);
+        splitPanel = new JSplitPane(
+                JSplitPane.HORIZONTAL_SPLIT,
+                new SidebarPanel().getComponent(),
+                backgroundImage.getComponent()
+        );
+
+        panel.add(splitPanel, CENTER);
+    }
+
+    public void setGamePanel(JComponent component) {
+        splitPanel.setRightComponent(component);
+        panel.add(splitPanel, CENTER);
+    }
+
+    public void reset() {
+        splitPanel.setRightComponent(backgroundImage.getComponent());
     }
 }

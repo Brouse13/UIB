@@ -26,9 +26,14 @@ public class GameImagePanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        panel.add(new ImageBuilder(image)
-                .setDimensions(new Dimension(-1, -1))
-                .test().getComponent());
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+        Dimension frame = new Dimension(
+                (int) (size.getWidth() - 100),
+                ((int) (size.getHeight() - 100))
+        );
+
+        panel.add(new ImageBuilder(image).setDimensions(frame).getComponent());
 
         panel.add(new ButtonBuilder("CERRAR").getComponent(), SOUTH);
     }
