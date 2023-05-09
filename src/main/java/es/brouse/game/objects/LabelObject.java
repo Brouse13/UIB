@@ -1,11 +1,11 @@
 package es.brouse.game.objects;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
- * Class in charge of the creation of the {@link JSplitPane} that will
+ * Class in charge of the creation of the {@link JLabel} that will
  * be on the interactive interfaces.
  */
 public class LabelObject implements Component {
@@ -18,11 +18,15 @@ public class LabelObject implements Component {
      */
     public LabelObject(String name) {
         label = new JLabel(name);
-        label.setBorder(new EmptyBorder(5, 5, 5, 5));
     }
 
     public LabelObject setSize(Dimension size) {
         label.setSize(size);
+        return this;
+    }
+
+    public LabelObject setBorder(Border border) {
+        label.setBorder(border);
         return this;
     }
 

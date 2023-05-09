@@ -16,20 +16,21 @@ public class StartGamePanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        final Dimension labels = new Dimension(50, 10);
+        String[] names = {"USUARIO", "FILAS", "COLUMNAS"};
 
-        panel.add(new LabelObject("USUARIO").setSize(labels).getComponent());
-        panel.add(new JTextField());
+        for (String name : names) {
+            panel.add(new LabelObject(name)
+                    .setSize(new Dimension(50, 10))
+                    .setBorder(new EmptyBorder(5, 5, 5, 5))
+                    .getComponent());
+            panel.add(new JTextField());
+        }
 
-        panel.add(new LabelObject("FILAS").setSize(labels).getComponent());
-        panel.add(new JTextField());
-
-        panel.add(new LabelObject("COLUMNAS").setSize(labels).getComponent());
-        panel.add(new JTextField());
-
+        //Dummy content
         panel.add(new JLabel());
-        JComponent component = new ButtonObject("INICIAR PARTIDA", null, e -> {
-        }).getComponent();
+
+        JComponent component = new ButtonObject("INICIAR PARTIDA", null, e -> {})
+                .getComponent();
         component.setBorder(new EmptyBorder(0, 0, 5, 5));
         panel.add(component);
     }
