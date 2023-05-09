@@ -52,4 +52,10 @@ public abstract class Screen {
     public void start() {
         frame.setVisible(true);
     }
+
+    public void refresh() {
+        frame.revalidate();
+        frame.validate();
+        frame.repaint();
+    }
 }
