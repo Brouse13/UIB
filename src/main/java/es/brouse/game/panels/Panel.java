@@ -12,14 +12,24 @@ public abstract class Panel {
 
     /**
      * Main class constructor able to create new {@link Panel}
-     * instance.
+     * instance and if the argument is true, it will init
+     * the components.
+     *
+     * @param init init the components
      */
-    public Panel() {
+    public Panel(boolean init) {
         this.panel = new JPanel();
 
         //Call the setup steps in order
-        setUp(panel);
-        initComponents(panel);
+        if (init) init();
+    }
+
+    /**
+     * Main class constructor able to create new {@link Panel}
+     * instance with the component initialization.
+     */
+    public Panel() {
+        this(true);
     }
 
     /**
@@ -44,5 +54,13 @@ public abstract class Panel {
      */
     public JComponent getComponent() {
         return panel;
+    }
+
+    /**
+     * Method to init all the components
+     */
+    protected void init() {
+        setUp(panel);
+        initComponents(panel);
     }
 }
