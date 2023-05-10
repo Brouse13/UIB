@@ -1,5 +1,6 @@
 package es.brouse.game.panels;
 
+import es.brouse.game.listeners.GameImageListener;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.utils.ImageUtils;
@@ -16,7 +17,6 @@ public class GameImagePanel extends Panel {
     private final BufferedImage originalImage;
     private final List<SplitImage> subImages;
     private final String username;
-    private final ImageBuilder[] images;
 
     public GameImagePanel(BufferedImage image, int rowsVals, int colsVal, String usernameVal) {
         super(false);
@@ -26,7 +26,6 @@ public class GameImagePanel extends Panel {
         this.subImages = shuffleImages(originalImage, rowsVals, colsVal);
 
         this.username = usernameVal;
-        this.images = new ImageBuilder[rowsVals * colsVal];
 
         init();
     }
@@ -38,14 +37,15 @@ public class GameImagePanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        int index = 0;
+        GameImageListener listener = new GameImageListener(subImages);
 
         for (SplitImage subImage : subImages) {
-            ImageBuilder imageBuilder = new ImageBuilder(subImage.getImage());
-            Dimension imageSize = new Dimension(-1, -1);
+            ImageBuilder imageBuilder = new ImageBuilder(subImage.getImage())
+                    .setDimensions(new Dimension(-1, -1))
+                    .setId(String.valueOf(subImage.getIndex()))
+                    .setListener(listener);
 
-            panel.add(imageBuilder.setDimensions(imageSize).getComponent());
-            images[index] = imageBuilder;
+            panel.add(imageBuilder.getComponent());
         }
     }
 
