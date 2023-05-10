@@ -4,6 +4,7 @@ import es.brouse.game.objects.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 /**
  * Class in charge of the creation of the {@link JLabel} that will
@@ -34,8 +35,26 @@ public class ImageBuilder implements Component {
         return this;
     }
 
-    public ImageBuilder test() {
-        label.setBorder(BorderFactory.createLineBorder(Color.BLUE, 10));
+    /**
+     * Add a new listener to the image.
+     *
+     * @param listener new listener
+     * @return the builder instance
+     */
+    public ImageBuilder setListener(MouseAdapter listener) {
+        label.addMouseListener(listener);
+        return this;
+    }
+
+    /**
+     * Set an id to te button, this method will be usefully
+     * on listeners to retrieve unique id.
+     *
+     * @param id unique id
+     * @return the builder instance.
+     */
+    public ImageBuilder setId(String id) {
+        label.setName(id);
         return this;
     }
 
