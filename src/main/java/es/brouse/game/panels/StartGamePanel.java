@@ -4,7 +4,7 @@ import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextFieldBuilder;
 import es.brouse.game.screen.GameScreen;
-import es.brouse.game.utils.ImageUtils;
+import es.brouse.game.utils.ImagePicker;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -60,8 +60,16 @@ public class StartGamePanel extends Panel implements ActionListener {
         int colsVal = Integer.parseInt(cols.getText());
 
         try {
-            GameScreen.gamePanel.setGamePanel(new GameImagePanel(new ImageUtils().loadImage("/assets/gui/descarga.jpg")).getComponent());
+            GameImagePanel panel = new GameImagePanel(new ImagePicker().randomPick(),
+                    rowsVals, colsVal, usernameVal);
+
+            GameScreen.gamePanel.setGamePanel(panel.getComponent());
+
+            //Close and reset the screen
             close();
+            username.setText("");
+            rows.setText("");
+            cols.setText("");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
