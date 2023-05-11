@@ -61,7 +61,7 @@ public class SplitPanelBuilder implements Component {
      * @return the builder instance
      */
     public SplitPanelBuilder setSize(int size) {
-        panel.setDividerSize(size);
+        panel.setDividerLocation(size);
         return this;
     }
 
