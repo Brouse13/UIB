@@ -1,8 +1,10 @@
 package es.brouse.game.panels;
 
+import es.brouse.game.Game;
 import es.brouse.game.listeners.GameImageListener;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.objects.builders.ImageBuilder;
+import es.brouse.game.screen.GameScreen;
 import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
@@ -37,7 +39,7 @@ public class GameImagePanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        GameImageListener listener = new GameImageListener(subImages);
+        GameImageListener listener = new GameImageListener(subImages, actionPerform());
 
         for (SplitImage subImage : subImages) {
             ImageBuilder imageBuilder = new ImageBuilder(subImage.getImage())
@@ -47,6 +49,14 @@ public class GameImagePanel extends Panel {
 
             panel.add(imageBuilder.getComponent());
         }
+    }
+
+    private Runnable actionPerform() {
+        return () -> {
+            GameScreen.gamePanel.reset();
+            Game.gameScreen.refresh();
+            System.out.println("WIN GAME");
+        };
     }
 
     private BufferedImage rescaleImage(BufferedImage image) {

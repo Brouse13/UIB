@@ -2,6 +2,7 @@ package es.brouse.game.listeners;
 
 import es.brouse.game.Game;
 import es.brouse.game.objects.SplitImage;
+import es.brouse.game.utils.GameStats;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,26 +13,34 @@ import java.util.List;
 
 public class GameImageListener extends MouseAdapter {
     private final List<SplitImage> images;
+    private final Runnable gameSolve;
+
     private static JLabel lastClick;
 
     private int moves = 0;
+    private final long startTime = System.currentTimeMillis();
+    private boolean win = false;
+    private final int minOperations;
 
-    public GameImageListener(List<SplitImage> images) {
+    public GameImageListener(List<SplitImage> images, Runnable gameSolved) {
         this.images = images;
+        this.gameSolve = gameSolved;
 
+        //Calculate minOperations
         Integer[] array = images.stream().map(SplitImage::getIndex).toArray(Integer[]::new);
-
         Integer[] sorted = Arrays.stream(array).sorted().toArray(Integer[]::new);
 
-        System.out.println(Arrays.toString(array));
-        System.out.println(Arrays.toString(sorted));
-        System.out.println(minOperations(array, sorted, 0, 0));
+        minOperations = minOperations(array, sorted, 0, 0);
     }
 
     @Override
     public void mouseClicked(MouseEvent event) {
         JLabel label = (JLabel) event.getComponent();
 
+        //If we win, the listener will be canceled
+        if (win) return;
+
+        //If is the first click, we mark the component with a red border
         if (lastClick == null) {
             label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
             lastClick = label;
@@ -39,11 +48,10 @@ public class GameImageListener extends MouseAdapter {
             return;
         }
 
-        //Swipe method
+        //If not, we swipe the components
         int last_id = Integer.parseInt(lastClick.getName());
         int current_id = Integer.parseInt(label.getName());
 
-        System.out.println("SWIPED " + last_id + " - " + current_id);
 
         SplitImage tmp = images.get(last_id);
         Icon icon = lastClick.getIcon();
@@ -53,21 +61,29 @@ public class GameImageListener extends MouseAdapter {
         images.set(current_id, tmp);
         label.setIcon(icon);
 
+        //We refresh the screen
         Game.gameScreen.refresh();
 
-        //Reset the click
+        //Reset variables
         lastClick.setBorder(BorderFactory.createEmptyBorder());
         lastClick = null;
         moves++;
 
 
-        //Check the end of the game
+        //Check the end of the game and end listener
         if (validate()) {
-            System.out.println("Won game in " + moves + " moves");
+            new GameStats(moves, minOperations, startTime);
+            gameSolve.run();
+            win = true;
         }
 
     }
 
+    /**
+     * Check if the elements are in order.
+     *
+     * @return if the gam is solved
+     */
     private boolean validate() {
         for (int i = 0; i < images.size(); i++) {
             if (images.get(i).getIndex() != i) return false;
@@ -75,18 +91,26 @@ public class GameImageListener extends MouseAdapter {
         return true;
     }
 
+    /**
+     * Get the min of movements that the user has to do to solve the given panel
+     *
+     * @param arr1 source array
+     * @param arr2 destination array
+     * @param i start index source
+     * @param j start index destination
+     * @return the min operation to solve the array
+     */
     private int minOperations(Integer[] arr1, Integer[] arr2, int i, int j) {
-
-        // Base Case
+        //Base Case
         if (Arrays.equals(arr1, arr2)) return 0;
 
         if (i >= arr1.length || j >= arr2.length) return 0;
 
-        // If arr[i] < arr[j]
+        //If arr[i] < arr[j]
         if (arr1[i] < arr2[j])
             return 1 + minOperations(arr1, arr2, i + 1, j + 1);
 
-        // Otherwise, excluding the current element
+        //Otherwise, excluding the current element
         return Math.max(
                 minOperations(arr1, arr2, i, j + 1),
                 minOperations(arr1, arr2, i + 1, j)
