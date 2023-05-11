@@ -55,6 +55,17 @@ public class SplitPanelBuilder implements Component {
     }
 
     /**
+     * Set the preferred divider size to the set by params
+     *
+     * @param size new preferred size
+     * @return the builder instance
+     */
+    public SplitPanelBuilder setSize(int size) {
+        panel.setDividerSize(size);
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      * @return the swing associated JSplitPanel
      */
