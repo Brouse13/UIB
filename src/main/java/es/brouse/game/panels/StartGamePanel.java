@@ -49,8 +49,6 @@ public class StartGamePanel extends Panel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(((JButton) e.getSource()).getText());
-
         JTextField username = ((JTextField) builders[0].getComponent());
         JTextField rows = ((JTextField) builders[1].getComponent());
         JTextField cols = ((JTextField) builders[2].getComponent());

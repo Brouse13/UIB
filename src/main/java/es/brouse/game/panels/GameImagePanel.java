@@ -5,6 +5,7 @@ import es.brouse.game.listeners.GameImageListener;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.screen.GameScreen;
+import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class GameImagePanel extends Panel {
     private final Dimension size;
@@ -51,11 +53,20 @@ public class GameImagePanel extends Panel {
         }
     }
 
-    private Runnable actionPerform() {
-        return () -> {
-            GameScreen.gamePanel.reset();
-            Game.gameScreen.refresh();
-            System.out.println("WIN GAME");
+    /**
+     * Get the action performed on a game is ended.
+     *
+     * @return the action performed on a game is won
+     */
+    private Consumer<GameStats> actionPerform() {
+        return stats -> {
+            stats.setUsername(username);
+
+            if (stats.isWin()) {
+                GameScreen.gamePanel.setGamePanel(new SolutionPanel(originalImage).getComponent());
+                Game.gameScreen.refresh();
+                System.out.println("WIN GAME");
+            }
         };
     }
 
@@ -63,7 +74,7 @@ public class GameImagePanel extends Panel {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         int width = (int) (size.getWidth() - 100);
-        int height = (int) (size.getHeight() - 100);
+        int height = (int) (size.getHeight() - 150);
 
         return new ImageUtils().rescaleImage(image, width, height);
     }

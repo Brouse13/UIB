@@ -10,10 +10,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class GameImageListener extends MouseAdapter {
     private final List<SplitImage> images;
-    private final Runnable gameSolve;
+    private final Consumer<GameStats> gameSolve;
 
     private static JLabel lastClick;
 
@@ -22,7 +23,7 @@ public class GameImageListener extends MouseAdapter {
     private boolean win = false;
     private final int minOperations;
 
-    public GameImageListener(List<SplitImage> images, Runnable gameSolved) {
+    public GameImageListener(List<SplitImage> images, Consumer<GameStats> gameSolved) {
         this.images = images;
         this.gameSolve = gameSolved;
 
@@ -44,7 +45,6 @@ public class GameImageListener extends MouseAdapter {
         if (lastClick == null) {
             label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
             lastClick = label;
-            System.out.println(lastClick);
             return;
         }
 
@@ -72,11 +72,9 @@ public class GameImageListener extends MouseAdapter {
 
         //Check the end of the game and end listener
         if (validate()) {
-            new GameStats(moves, minOperations, startTime);
-            gameSolve.run();
+            gameSolve.accept(new GameStats(moves, minOperations, startTime, true));
             win = true;
         }
-
     }
 
     /**
