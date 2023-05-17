@@ -24,6 +24,15 @@ public class ButtonBuilder implements Component {
 
     /**
      * Main class constructor able to create new {@link ButtonBuilder}
+     * instance with its name, icon and a listener
+     */
+    public ButtonBuilder(String name, ActionListener listener) {
+        this.button = new JButton(name);
+        this.button.addActionListener(listener);
+    }
+
+    /**
+     * Main class constructor able to create new {@link ButtonBuilder}
      * instance with its name and an icon.
      */
     public ButtonBuilder(String name, Icon icon) {
