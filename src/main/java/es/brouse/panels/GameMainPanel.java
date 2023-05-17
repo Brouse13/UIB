@@ -21,7 +21,7 @@ public class GameMainPanel extends Panel {
         SplitPanelBuilder split = new SplitPanelBuilder(
                 VERTICAL_SPLIT,
                 gamePanel.getComponent(),
-                new ActionsPanel().getComponent())
+                new ActionsPanel(gamePanel).getComponent())
                 .setSize(size.height - 100);
 
         panel.add(split.getComponent());

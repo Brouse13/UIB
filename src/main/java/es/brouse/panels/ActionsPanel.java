@@ -1,25 +1,22 @@
 package es.brouse.panels;
 
-import es.brouse.MusicalNote;
+import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ActionsPanel extends Panel {
-    private static final Set<MusicalNote> notes = new HashSet<>(List.of(
-            new MusicalNote("DO", e -> {}),
-            new MusicalNote("RE", e -> {}),
-            new MusicalNote("MI", e -> {}),
-            new MusicalNote("FA", e -> {}),
-            new MusicalNote("SOL", e -> {}),
-            new MusicalNote("LA", e -> {}),
-            new MusicalNote("SI", e -> {}),
-            new MusicalNote("FIN", e -> {})
-    ));
+public class ActionsPanel extends Panel implements ActionListener {
+    private final GamePanel gamePanel;
+
+    public ActionsPanel( GamePanel gamePanel) {
+        super(false);
+        this.gamePanel = gamePanel;
+
+        init();
+    }
 
     @Override
     public void setUp(final JPanel panel) {
@@ -28,8 +25,27 @@ public class ActionsPanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        for (MusicalNote note : notes) {
-            panel.add(new ButtonBuilder(note.getName(), note.getListener()).getComponent());
+        for (MusicalNote note : MusicalNote.values()) {
+            panel.add(new ButtonBuilder(note.name(), this)
+                    .setBackgroundColor(note.getColor()).getComponent());
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton button = (JButton) e.getSource();
+
+        System.out.println("ds");
+
+        switch (button.getText()) {
+            case "DO" ->  gamePanel.addNote(MusicalNote.DO);
+            case "RE" ->  gamePanel.addNote(MusicalNote.RE);
+            case "MI" ->  gamePanel.addNote(MusicalNote.MI);
+            case "FA" ->  gamePanel.addNote(MusicalNote.FA);
+            case "SOL" -> gamePanel.addNote(MusicalNote.SOL);
+            case "LA" ->  gamePanel.addNote(MusicalNote.LA);
+            case "SI" ->  gamePanel.addNote(MusicalNote.SI);
+            case "FIN" -> gamePanel.addNote(MusicalNote.FIN);
         }
     }
 }

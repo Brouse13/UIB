@@ -1,7 +1,7 @@
 package es.brouse.panels;
 
 import es.brouse.Main;
-import es.brouse.MusicalNote;
+import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
 
 import javax.swing.*;
@@ -28,11 +28,8 @@ public class GamePanel extends Panel {
 
     @Override
     public void initComponents(final JPanel panel) {
-        System.out.println("ds");
         for (int i = 0; i < 10 * 11; i++) {
-            ButtonBuilder element = new ButtonBuilder("ds", event -> {
-                addNote(null);
-            }).setBackgroundColor(Color.RED);
+            ButtonBuilder element = new ButtonBuilder("");
             elements.add(element.getComponent());
 
             panel.add(element.getComponent());
@@ -40,9 +37,10 @@ public class GamePanel extends Panel {
     }
 
     public void addNote(MusicalNote note) {
+        System.out.println("Played note " + note);
         JComponent musicalNote = elements.get(index++);
 
-        musicalNote.setBackground(Color.BLUE);
+        musicalNote.setBackground(note.getColor());
 
         Main.screen.refresh();
     }
