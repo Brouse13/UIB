@@ -35,8 +35,6 @@ public class ActionsPanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
 
-        System.out.println("ds");
-
         switch (button.getText()) {
             case "DO" ->  gamePanel.addNote(MusicalNote.DO);
             case "RE" ->  gamePanel.addNote(MusicalNote.RE);
@@ -45,7 +43,9 @@ public class ActionsPanel extends Panel implements ActionListener {
             case "SOL" -> gamePanel.addNote(MusicalNote.SOL);
             case "LA" ->  gamePanel.addNote(MusicalNote.LA);
             case "SI" ->  gamePanel.addNote(MusicalNote.SI);
-            case "FIN" -> gamePanel.addNote(MusicalNote.FIN);
+            case "FIN" -> {
+                //Close window
+            }
         }
     }
 }
