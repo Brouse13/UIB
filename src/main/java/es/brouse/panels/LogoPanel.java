@@ -9,27 +9,19 @@ import java.awt.*;
 public class LogoPanel extends Panel {
     @Override
     public void setUp(final JPanel panel) {
-        panel.setLayout(new FlowLayout());
+        panel.setLayout(new BorderLayout());
     }
 
     @Override
     public void initComponents(final JPanel panel) {
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         LabelBuilder labelBuilder = new LabelBuilder("TALLER 2 - PROGRAMACIÓN II - CURSO 2023")
-                .setSize(new Dimension(-1, 30));
-
-
-        JLabel right = new JLabel("TALLER 2 - PROGRAMACIÓN II - CURSO 2023");
-        right.setFont(new Font(right.getFont().getName(), Font.PLAIN, 30));
-        right.setSize(new Dimension((int) size.getWidth(), 200));
-        right.setForeground(Color.WHITE);
-        right.setBackground(Color.BLACK);
-        right.setOpaque(true);
-        String padding = "                                                  ";
-        right.setText(padding + "TALLER 2 - PROGRAMACIÓN II - CURSO 2023" + padding);
+                .setSize(new Dimension(-1, 40))
+                .setBackground(Color.BLACK)
+                .setFont("Arial", Font.PLAIN, 30)
+                .align(JLabel.CENTER);
 
         panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
-                right, null).getComponent());
+                labelBuilder.getComponent(), null).getComponent());
     }
 }

@@ -33,6 +33,18 @@ public class LabelBuilder implements Component {
         return this;
     }
 
+    public LabelBuilder setBackground(Color background) {
+        if (background == Color.BLACK) label.setForeground(Color.WHITE);
+        label.setBackground(background);
+        label.setOpaque(true);
+        return this;
+    }
+
+    public LabelBuilder setFont(String font, int type, int size) {
+        label.setFont(new Font(font, type, size));
+        return this;
+    }
+
     /**
      * Set the textSize to the label
      *
@@ -41,6 +53,11 @@ public class LabelBuilder implements Component {
      */
     public LabelBuilder setTextSize(int size) {
         label.setFont(new Font(label.getFont().getName(), Font.PLAIN, size));
+        return this;
+    }
+
+    public LabelBuilder align(int align) {
+        label.setHorizontalAlignment(align);
         return this;
     }
 
