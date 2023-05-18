@@ -15,12 +15,17 @@ public class FooterPanel extends Panel {
     @Override
     public void initComponents(final JPanel panel) {
         panel.add(new ButtonBuilder("CREAR", event -> {})
-                .setSize(new Dimension(-1, -1)).getComponent());
+                .setSize(new Dimension(-1, -1))
+                .setColor(Color.BLACK).getComponent());
         panel.add(new ButtonBuilder("REPRODUCIR", event -> {})
-                .setSize(new Dimension(-1, -1)).getComponent());
+                .setSize(new Dimension(-1, -1))
+                .setColor(Color.BLACK).getComponent());
         panel.add(new ButtonBuilder("ADIVINAR", event -> {})
-                .setSize(new Dimension(-1, -1)).getComponent());
+                .setSize(new Dimension(-1, -1))
+                .setColor(Color.BLACK).getComponent());
         panel.add(new ButtonBuilder("SALIR", event -> {})
-                .setSize(new Dimension(-1, -1)).getComponent());
+                .setSize(new Dimension(-1, -1))
+                .setColor(Color.BLACK)
+                .getComponent());
     }
 }

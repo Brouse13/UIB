@@ -49,13 +49,15 @@ public class ButtonBuilder implements Component {
     }
 
     /**
-     * Set the background color of the button to the specified by parameters.
+     * Set the button color.
      *
-     * @param color color to set
+     * @param background background color to set
      * @return the builder instance
      */
-    public ButtonBuilder setBackgroundColor(Color color) {
-        button.setBackground(color);
+    public ButtonBuilder setColor(Color background) {
+        if (background == Color.BLACK) button.setForeground(Color.WHITE);
+        button.setBackground(background);
+        button.setOpaque(true);
         return this;
     }
 

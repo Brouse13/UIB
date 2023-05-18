@@ -34,6 +34,17 @@ public class LabelBuilder implements Component {
     }
 
     /**
+     * Set the textSize to the label
+     *
+     * @param size new size
+     * @return the builder instance
+     */
+    public LabelBuilder setTextSize(int size) {
+        label.setFont(new Font(label.getFont().getName(), Font.PLAIN, size));
+        return this;
+    }
+
+    /**
      * Set the border to the label.
      *
      * @param border new border

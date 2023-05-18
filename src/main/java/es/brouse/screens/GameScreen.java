@@ -21,7 +21,6 @@ public class GameScreen extends Screen {
 
     @Override
     public void setUp(final JFrame frame) {
-        frame.setAlwaysOnTop(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setResizable(false);

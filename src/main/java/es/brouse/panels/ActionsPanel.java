@@ -27,7 +27,7 @@ public class ActionsPanel extends Panel implements ActionListener {
     public void initComponents(final JPanel panel) {
         for (MusicalNote note : MusicalNote.values()) {
             panel.add(new ButtonBuilder(note.name(), this)
-                    .setBackgroundColor(note.getColor()).getComponent());
+                    .setColor(note.getColor()).getComponent());
         }
     }
 

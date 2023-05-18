@@ -29,7 +29,7 @@ public class BackgroundPanel extends Panel {
 
         try {
             panel.add(new ImageBuilder(imageUtils.loadImage("background.jpg"))
-                    .setDimensions(new Dimension(size.width, size.height - 100)).getComponent());
+                    .setDimensions(new Dimension(size.width, size.height - 125)).getComponent());
         } catch (IOException e) {
             Main.logger.log(Level.WARNING, "Unable to load URL");
         }
