@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 
-public class GamePanel extends Panel {
+public class NotesPanel extends Panel {
     private final SoundManager soundManager = new SoundManager();
     private final List<JComponent> elements = new ArrayList<>(10 * 11);
     private int index;
 
 
-    public GamePanel() {
+    public NotesPanel() {
         super(false);
 
         init();
