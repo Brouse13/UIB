@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 
 public class GameScreen extends Screen {
+    public static final GameMainPanel mainPanel = new GameMainPanel();
     @Override
     public String getTitle() {
         return "Practica 2 - Programación II";
