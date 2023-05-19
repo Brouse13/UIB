@@ -8,10 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ActionsPanel extends Panel implements ActionListener {
-    private final GamePanel gamePanel;
+public class NotesFooter extends Panel implements ActionListener {
+    private final NotesPanel gamePanel;
 
-    public ActionsPanel( GamePanel gamePanel) {
+    public NotesFooter(NotesPanel gamePanel) {
         super(false);
         this.gamePanel = gamePanel;
 
