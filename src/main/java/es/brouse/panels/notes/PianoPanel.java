@@ -6,10 +6,8 @@ import es.brouse.panels.Panel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class PianoPanel extends JPanel implements Panel, ActionListener {
+public class PianoPanel extends JPanel implements Panel {
     private final NotesPanel gamePanel;
     public PianoPanel(NotesPanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -26,26 +24,9 @@ public class PianoPanel extends JPanel implements Panel, ActionListener {
     @Override
     public void initComponents() {
         for (MusicalNote note : MusicalNote.values()) {
-            ButtonBuilder button = new ButtonBuilder(note.name(), this).setColor(note.getColor());
+            ButtonBuilder button = new ButtonBuilder(note.name(), e -> gamePanel.addNote(note))
+                    .setColor(note.getColor());
             add(button.getComponent());
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
-
-        switch (button.getText()) {
-            case "DO" ->  gamePanel.addNote(MusicalNote.DO);
-            case "RE" ->  gamePanel.addNote(MusicalNote.RE);
-            case "MI" ->  gamePanel.addNote(MusicalNote.MI);
-            case "FA" ->  gamePanel.addNote(MusicalNote.FA);
-            case "SOL" -> gamePanel.addNote(MusicalNote.SOL);
-            case "LA" ->  gamePanel.addNote(MusicalNote.LA);
-            case "SI" ->  gamePanel.addNote(MusicalNote.SI);
-            case "FIN" -> {
-                //Close window
-            }
         }
     }
 }

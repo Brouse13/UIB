@@ -22,14 +22,14 @@ public class NotesController {
 
 
     public void noteClickEvent(final MusicalNote note) {
-        if (note != MusicalNote.FIN || maxNotes != index) {
-            view.playNote(note, index);
-            reproduceNote(note);
-            index++;
+        if (note == MusicalNote.FIN || maxNotes == index) {
+            view.endPiano();
             return;
         }
 
-        view.endPiano();
+        view.playNote(note, index);
+        reproduceNote(note);
+        index++;
     }
 
     private void reproduceNote(MusicalNote note) {
