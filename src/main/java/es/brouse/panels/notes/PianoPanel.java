@@ -1,18 +1,17 @@
-package es.brouse.panels;
+package es.brouse.panels.notes;
 
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
-import es.brouse.panels.notes.NotesPanel;
+import es.brouse.panels.Panel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NotesFooter extends JPanel implements Panel, ActionListener {
+public class PianoPanel extends JPanel implements Panel, ActionListener {
     private final NotesPanel gamePanel;
-
-    public NotesFooter(NotesPanel gamePanel) {
+    public PianoPanel(NotesPanel gamePanel) {
         this.gamePanel = gamePanel;
 
         setUp();
@@ -22,7 +21,6 @@ public class NotesFooter extends JPanel implements Panel, ActionListener {
     @Override
     public void setUp() {
         setLayout(new GridLayout(1, 8));
-        setSize(new Dimension(-1, 50));
     }
 
     @Override

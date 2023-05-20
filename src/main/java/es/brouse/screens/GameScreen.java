@@ -1,37 +1,32 @@
 package es.brouse.screens;
 
-import es.brouse.Main;
 import es.brouse.panels.GameMainPanel;
-import es.brouse.panels.Panel;
 
 import javax.swing.*;
 import java.util.Locale;
-import java.util.logging.Level;
 
-public class GameScreen extends Screen {
+public class GameScreen extends JFrame implements Screen {
     public static final GameMainPanel mainPanel = new GameMainPanel();
-    @Override
-    public String getTitle() {
-        return "Practica 2 - Programación II";
+
+    public GameScreen() {
+        setUp();
     }
 
     @Override
-    public Panel getRootPanel() {
-        return new GameMainPanel();
+    public void setUp() {
+        setTitle("Practica 2 - Programación II");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setContentPane(mainPanel);
+
+        setResizable(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        setLocale(Locale.ROOT);
     }
 
     @Override
-    public void setUp(final JFrame frame) {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setResizable(false);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            Main.logger.log(Level.WARNING, "Couldn't assign system LookAndFeel");
-        }
-        frame.setLocale(Locale.ROOT);
+    public void start() {
+        setVisible(true);
     }
 }

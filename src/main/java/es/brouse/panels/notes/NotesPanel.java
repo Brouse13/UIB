@@ -1,8 +1,10 @@
-package es.brouse.panels;
+package es.brouse.panels.notes;
 
 import es.brouse.Main;
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
+import es.brouse.panels.Panel;
+import es.brouse.screens.Screen;
 import es.brouse.utils.SoundManager;
 
 import javax.sound.sampled.AudioInputStream;
@@ -14,31 +16,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 
-public class NotesPanel extends Panel {
+public class NotesPanel extends JPanel implements Panel {
     private final SoundManager soundManager = new SoundManager();
     private final List<JComponent> elements = new ArrayList<>(10 * 11);
     private int index;
 
-
     public NotesPanel() {
-        super(false);
-
-        init();
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new GridLayout(10,11, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    public void setUp() {
+        setLayout(new GridLayout(10,11, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
+    public void initComponents() {
         for (int i = 0; i < 10 * 11; i++) {
             ButtonBuilder element = new ButtonBuilder("");
             elements.add(element.getComponent());
 
-            panel.add(element.getComponent());
+            add(element.getComponent());
         }
     }
 
@@ -55,6 +55,6 @@ public class NotesPanel extends Panel {
             Main.logger.log(Level.WARNING, "Error loading URL");
         }
 
-        Main.screen.refresh();
+        Screen.refresh(Main.screen);
     }
 }

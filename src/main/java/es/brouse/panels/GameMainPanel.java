@@ -2,35 +2,45 @@ package es.brouse.panels;
 
 import es.brouse.Main;
 import es.brouse.objects.builders.SplitPanelBuilder;
+import es.brouse.panels.logo.ImageLogo;
+import es.brouse.panels.logo.TitleLogo;
+import es.brouse.panels.notes.NotesPanel;
+import es.brouse.panels.notes.PianoPanel;
+import es.brouse.screens.Screen;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static java.awt.BorderLayout.*;
-public class GameMainPanel extends Panel {
+public class GameMainPanel extends JPanel implements Panel {
     private static final SplitPanelBuilder splitPanel = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
-    @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new BorderLayout());
+
+    public GameMainPanel() {
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
-        LogoPanel logoPanel = new LogoPanel();
-        splitPanel.setLeft(logoPanel.getImage().getComponent())
-                .setRight(logoPanel.getLabel().getComponent());
-        panel.add(splitPanel.getComponent(), CENTER);
+    public void setUp() {
+        setLayout(new BorderLayout());
+    }
 
-        panel.add(new FooterPanel().getComponent(), SOUTH);
+    @Override
+    public void initComponents() {
+        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo());
+
+        add(splitPanel.getComponent(), CENTER);
+
+        add(new FooterPanel(), SOUTH);
     }
 
     public void changeToNotes() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         NotesPanel notesPanel = new NotesPanel();
-        splitPanel.setLeft(notesPanel.getComponent())
-                .setRight(new NotesFooter(notesPanel).getComponent())
+        splitPanel.setLeft(notesPanel).setRight(new PianoPanel(notesPanel))
                 .setSize(size.height - 100);
-        Main.screen.refresh();
+
+        Screen.refresh(Main.screen);
     }
 }
