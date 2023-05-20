@@ -19,7 +19,16 @@ public class SoundManager {
         }
     }
 
-    public void playSound(AudioInputStream sound) {
+    public void playFile(String path) {
+        try(AudioInputStream inputStream = loadSound(path)) {
+            if (inputStream != null) playSound(inputStream);
+        }catch (IOException exception) {
+            Main.logger.log(Level.WARNING, "ERROR: Unable to play " + path);
+        }
+
+    }
+
+    private void playSound(AudioInputStream sound) {
         Clip clip;
 
         try {

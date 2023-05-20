@@ -2,6 +2,8 @@ package es.brouse.panels;
 
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.SplitPanelBuilder;
+import es.brouse.panels.guess.GuessButtons;
+import es.brouse.panels.guess.GuessPanel;
 import es.brouse.panels.logo.ImageLogo;
 import es.brouse.panels.logo.TitleLogo;
 import es.brouse.panels.notes.NotesPanel;
@@ -64,7 +66,7 @@ public class GameMainPanel extends JPanel implements Panel {
         Screen.refresh(GameScreen.getInstance());
     }
 
-    public void changeToContinue() {
+    public void changeToReproduce() {
         List<MusicalNote> notes = GameScreen.getInstance().getNotes();
 
         if (notes.isEmpty()) {
@@ -75,6 +77,23 @@ public class GameMainPanel extends JPanel implements Panel {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         NotesReproducer notesReproducer = new NotesReproducer(notes);
         NextNotePanel reproducer = new NextNotePanel(notesReproducer);
+
+        splitPanel.setLeft(notesReproducer).setRight(reproducer).setSize(size.height - 120);
+
+        Screen.refresh(GameScreen.getInstance());
+    }
+
+    public void changeToGuess() {
+        List<MusicalNote> notes = GameScreen.getInstance().getNotes();
+
+        if (notes.isEmpty()) {
+            GameScreen.getInstance().popup("Tienes que crear una melodía primero");
+            return;
+        }
+
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        GuessPanel notesReproducer = new GuessPanel(notes);
+        GuessButtons reproducer = new GuessButtons(notesReproducer);
 
         splitPanel.setLeft(notesReproducer).setRight(reproducer).setSize(size.height - 120);
 

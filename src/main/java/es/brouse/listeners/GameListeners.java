@@ -14,6 +14,10 @@ public class GameListeners {
     }
 
     public ActionListener reproduce() {
-        return e -> GameMainPanel.getInstance().changeToContinue();
+        return e -> GameMainPanel.getInstance().changeToReproduce();
+    }
+
+    public ActionListener guess() {
+        return e -> GameMainPanel.getInstance().changeToGuess();
     }
 }
