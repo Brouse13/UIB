@@ -13,11 +13,18 @@ import java.awt.*;
 
 import static java.awt.BorderLayout.*;
 public class GameMainPanel extends JPanel implements Panel {
-    private static final SplitPanelBuilder splitPanel = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
+    private static final GameMainPanel instance = new GameMainPanel();
+    private final SplitPanelBuilder splitPanel;
 
-    public GameMainPanel() {
+    private GameMainPanel() {
+        splitPanel = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
+
         setUp();
         initComponents();
+    }
+
+    public static GameMainPanel getInstance() {
+        return instance;
     }
 
     @Override
