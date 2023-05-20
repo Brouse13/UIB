@@ -2,7 +2,9 @@ package es.brouse.panels.notes;
 
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
+import es.brouse.panels.GameMainPanel;
 import es.brouse.panels.Panel;
+import es.brouse.screens.GameScreen;
 import es.brouse.utils.SoundManager;
 
 import javax.swing.*;
@@ -52,8 +54,10 @@ public class NotesPanel extends JPanel implements Panel, NotesController.View {
     }
 
     @Override
-    public void endPiano() {
-        System.out.println("END PIANO");
+    public void endPiano(List<MusicalNote> notes) {
+        GameScreen.getInstance().addMelody(notes);
+        GameMainPanel.getInstance().changeToLogo();
+        GameScreen.getInstance().popup("Melodía creada con éxito");
     }
 
     public void addNote(MusicalNote note) {

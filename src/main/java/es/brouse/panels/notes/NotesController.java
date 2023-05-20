@@ -6,12 +6,15 @@ import es.brouse.utils.SoundManager;
 
 import javax.sound.sampled.AudioInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class NotesController {
     private final View view;
     private final int maxNotes;
     private final SoundManager soundManager;
+    List<MusicalNote> notes = new ArrayList<>();
     private int index = 0;
 
     public NotesController(View view, SoundManager soundManager, int maxNotes) {
@@ -23,12 +26,13 @@ public class NotesController {
 
     public void noteClickEvent(final MusicalNote note) {
         if (note == MusicalNote.FIN || maxNotes == index) {
-            view.endPiano();
+            view.endPiano(notes);
             return;
         }
 
         view.playNote(note, index);
         reproduceNote(note);
+        notes.add(note);
         index++;
     }
 
@@ -45,7 +49,7 @@ public class NotesController {
     public interface View {
         void playNote(MusicalNote note, int index);
 
-        void endPiano();
+        void endPiano(List<MusicalNote> notes);
     }
 
 }

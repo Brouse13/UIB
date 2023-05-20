@@ -1,13 +1,15 @@
 package es.brouse.screens;
 
+import es.brouse.objects.MusicalNote;
 import es.brouse.panels.GameMainPanel;
-import es.brouse.panels.PopupPanel;
 
 import javax.swing.*;
+import java.util.List;
 import java.util.Locale;
 
 public class GameScreen extends JFrame implements Screen {
     private static final GameScreen instance = new GameScreen();
+    private List<MusicalNote> notes;
 
     private GameScreen() {
         setUp();
@@ -37,6 +39,10 @@ public class GameScreen extends JFrame implements Screen {
 
     @Override
     public void popup(String message) {
-        JOptionPane.showMessageDialog(this, new PopupPanel(message));
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public void addMelody(List<MusicalNote> notes) {
+        this.notes = notes;
     }
 }

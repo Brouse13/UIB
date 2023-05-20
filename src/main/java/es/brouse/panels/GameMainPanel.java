@@ -50,4 +50,10 @@ public class GameMainPanel extends JPanel implements Panel {
 
         Screen.refresh(GameScreen.getInstance());
     }
+
+    public void changeToLogo() {
+        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo());
+
+        Screen.refresh(GameScreen.getInstance());
+    }
 }
