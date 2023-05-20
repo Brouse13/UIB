@@ -21,13 +21,14 @@ public class NotesFooter extends Panel implements ActionListener {
     @Override
     public void setUp(final JPanel panel) {
         panel.setLayout(new GridLayout(1, 8));
+        panel.setSize(new Dimension(-1, 50));
     }
 
     @Override
     public void initComponents(final JPanel panel) {
         for (MusicalNote note : MusicalNote.values()) {
-            panel.add(new ButtonBuilder(note.name(), this)
-                    .setColor(note.getColor()).getComponent());
+            ButtonBuilder button = new ButtonBuilder(note.name(), this).setColor(note.getColor());
+            panel.add(button.getComponent());
         }
     }
 

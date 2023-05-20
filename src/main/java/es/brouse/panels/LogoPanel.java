@@ -1,27 +1,34 @@
 package es.brouse.panels;
 
+import es.brouse.Main;
+import es.brouse.objects.builders.ImageBuilder;
 import es.brouse.objects.builders.LabelBuilder;
-import es.brouse.objects.builders.SplitPanelBuilder;
+import es.brouse.utils.ImageUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
 
-public class LogoPanel extends Panel {
-    @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new BorderLayout());
-    }
-
-    @Override
-    public void initComponents(final JPanel panel) {
-
-        LabelBuilder labelBuilder = new LabelBuilder("TALLER 2 - PROGRAMACIÓN II - CURSO 2023")
+public class LogoPanel {
+    private final ImageUtils imageUtils = new ImageUtils();
+    public LabelBuilder getLabel() {
+        return new LabelBuilder("TALLER 2 - PROGRAMACIÓN II - CURSO 2023")
                 .setSize(new Dimension(-1, 40))
                 .setBackground(Color.BLACK)
                 .setFont("Arial", Font.PLAIN, 30)
                 .align(JLabel.CENTER);
+    }
 
-        panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
-                labelBuilder.getComponent(), null).getComponent());
+    public ImageBuilder getImage() {
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+        try {
+            return new ImageBuilder(imageUtils.loadImage("background.jpg"))
+                    .setDimensions(new Dimension(size.width, size.height - 125));
+        }catch (IOException exception) {
+            Main.logger.log(Level.WARNING, "Unable to load URL");
+        }
+        return null;
     }
 }
