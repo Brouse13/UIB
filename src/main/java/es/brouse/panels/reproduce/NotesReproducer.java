@@ -3,22 +3,27 @@ package es.brouse.panels.reproduce;
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
 import es.brouse.panels.Panel;
-import es.brouse.screens.GameScreen;
 import es.brouse.utils.SoundManager;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesReproducer extends JPanel implements Panel {
-    private final SoundManager soundManager = new SoundManager();
+public class NotesReproducer extends JPanel implements Panel, ReproducerController.View {
+    private final ReproducerController controller;
     private final int maxSize = 10 * 11;
-    private final List<MusicalNote> notes;
     private final List<JComponent> components = new ArrayList<>(maxSize);
-    private int index = 0;
+
     public NotesReproducer(List<MusicalNote> notes) {
-        this.notes = notes;
+        controller = new ReproducerController(
+                this,
+                new SoundManager(),
+                notes
+        );
+
+        parseComponents(notes);
 
         setUp();
         initComponents();
@@ -32,41 +37,42 @@ public class NotesReproducer extends JPanel implements Panel {
 
     @Override
     public void initComponents() {
-        for (MusicalNote note : notes) {
-            JComponent component = new ButtonBuilder("")
-                    .setColor(note.getColor())
-                    .setBorder(BorderFactory.createEmptyBorder())
-                    .getComponent();
+        //Add all the parsed notes to the panel
+        for (JComponent component : components) add(component);
+    }
 
-            components.add(component);
-            add(component);
-        }
+    @Override
+    public void paintBorder(int index) {
+        Border border = BorderFactory.createLineBorder(Color.WHITE, 3);
+        components.get(index).setBorder(border);
+    }
 
-        for (int i = 0; i < maxSize - notes.size(); i++) {
-            JComponent component = new ButtonBuilder("")
-                    .setColor(Color.BLACK)
-                    .setBorder(BorderFactory.createEmptyBorder())
-                    .getComponent();
-
-            components.add(component);
-            add(component);
-        }
+    @Override
+    public void clearBorder(int index) {
+        JComponent jComponent = components.get(index);
+        jComponent.setBorder(BorderFactory.createEmptyBorder());
     }
 
     public void playNextNote() {
-        if (index == notes.size()) {
-            GameScreen.getInstance().popup("No hay más notas para reproducir");
-            return;
+        controller.playNextNote();
+    }
+
+
+    private void parseComponents(List<MusicalNote> notes) {
+        for (MusicalNote note : notes) {
+            ButtonBuilder component = new ButtonBuilder("")
+                    .setColor(note.getColor())
+                    .setBorder(BorderFactory.createEmptyBorder());
+
+            components.add(component.getComponent());
         }
 
-        if (index != 0) {
-            JComponent jComponent = components.get(index - 1);
-            jComponent.setBorder(BorderFactory.createEmptyBorder());
-        }
+        for (int i = 0; i < maxSize - notes.size(); i++) {
+            ButtonBuilder component = new ButtonBuilder("")
+                    .setColor(Color.BLACK)
+                    .setBorder(BorderFactory.createEmptyBorder());
 
-        MusicalNote note = notes.get(index);
-        soundManager.playNote(note);
-        components.get(index).setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        index++;
+            components.add(component.getComponent());
+        }
     }
 }
