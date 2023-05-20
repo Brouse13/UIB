@@ -3,6 +3,7 @@ package es.brouse.objects.builders;
 import es.brouse.objects.Component;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -58,6 +59,11 @@ public class ButtonBuilder implements Component {
         if (background == Color.BLACK) button.setForeground(Color.WHITE);
         button.setBackground(background);
         button.setOpaque(true);
+        return this;
+    }
+
+    public ButtonBuilder setBorder(Border border) {
+        button.setBorder(border);
         return this;
     }
 

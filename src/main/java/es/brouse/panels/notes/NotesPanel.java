@@ -31,12 +31,15 @@ public class NotesPanel extends JPanel implements Panel {
     public void setUp() {
         setLayout(new GridLayout(10,11, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBackground(Color.BLACK);
     }
 
     @Override
     public void initComponents() {
         for (int i = 0; i < 10 * 11; i++) {
-            ButtonBuilder element = new ButtonBuilder("");
+            ButtonBuilder element = new ButtonBuilder("")
+                    .setColor(Color.BLACK)
+                    .setBorder(BorderFactory.createEmptyBorder());
             elements.add(element.getComponent());
 
             add(element.getComponent());
