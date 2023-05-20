@@ -1,6 +1,7 @@
 package es.brouse.screens;
 
 import es.brouse.panels.GameMainPanel;
+import es.brouse.panels.PopupPanel;
 
 import javax.swing.*;
 import java.util.Locale;
@@ -32,5 +33,10 @@ public class GameScreen extends JFrame implements Screen {
     @Override
     public void start() {
         setVisible(true);
+    }
+
+    @Override
+    public void popup(String message) {
+        JOptionPane.showMessageDialog(this, new PopupPanel(message));
     }
 }

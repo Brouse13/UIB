@@ -18,6 +18,18 @@ public interface Screen {
      */
     void start();
 
+    /**
+     * Display a popup message associated to this panel.
+     *
+     * @param message popup message content
+     */
+    void popup(String message);
+
+    /**
+     * Refresh the given screen
+     *
+     * @param frame frame to refresh
+     */
     static void refresh(JFrame frame) {
         frame.revalidate();
         frame.validate();
