@@ -1,14 +1,10 @@
 package es.brouse.panels.notes;
 
-import es.brouse.Main;
 import es.brouse.objects.MusicalNote;
 import es.brouse.utils.SoundManager;
 
-import javax.sound.sampled.AudioInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public class NotesController {
     private final View view;
@@ -37,13 +33,7 @@ public class NotesController {
     }
 
     private void reproduceNote(MusicalNote note) {
-        String fileName = note.name().toLowerCase() + ".wav";
-
-        try(AudioInputStream audioInputStream = soundManager.loadSound(fileName)) {
-            if (audioInputStream != null) soundManager.playSound(audioInputStream);
-        } catch (IOException e) {
-            Main.logger.log(Level.WARNING, "Error loading URL");
-        }
+        soundManager.playNote(note);
     }
 
     public interface View {
