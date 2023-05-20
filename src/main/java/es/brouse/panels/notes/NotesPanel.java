@@ -4,6 +4,7 @@ import es.brouse.Main;
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
 import es.brouse.panels.Panel;
+import es.brouse.screens.GameScreen;
 import es.brouse.screens.Screen;
 import es.brouse.utils.SoundManager;
 
@@ -55,6 +56,6 @@ public class NotesPanel extends JPanel implements Panel {
             Main.logger.log(Level.WARNING, "Error loading URL");
         }
 
-        Screen.refresh(Main.screen);
+        Screen.refresh(GameScreen.getInstance());
     }
 }

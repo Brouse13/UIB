@@ -1,11 +1,11 @@
 package es.brouse.panels;
 
-import es.brouse.Main;
 import es.brouse.objects.builders.SplitPanelBuilder;
 import es.brouse.panels.logo.ImageLogo;
 import es.brouse.panels.logo.TitleLogo;
 import es.brouse.panels.notes.NotesPanel;
 import es.brouse.panels.notes.PianoPanel;
+import es.brouse.screens.GameScreen;
 import es.brouse.screens.Screen;
 
 import javax.swing.*;
@@ -41,6 +41,6 @@ public class GameMainPanel extends JPanel implements Panel {
         splitPanel.setLeft(notesPanel).setRight(new PianoPanel(notesPanel))
                 .setSize(size.height - 100);
 
-        Screen.refresh(Main.screen);
+        Screen.refresh(GameScreen.getInstance());
     }
 }

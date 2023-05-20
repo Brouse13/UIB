@@ -6,10 +6,16 @@ import javax.swing.*;
 import java.util.Locale;
 
 public class GameScreen extends JFrame implements Screen {
-    public static final GameMainPanel mainPanel = new GameMainPanel();
+    private static final GameScreen instance = new GameScreen();
+    public static GameMainPanel mainPanel;
 
-    public GameScreen() {
+    private GameScreen() {
+        mainPanel = new GameMainPanel();
         setUp();
+    }
+
+    public static GameScreen getInstance() {
+        return instance;
     }
 
     @Override
