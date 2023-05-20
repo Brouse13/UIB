@@ -1,15 +1,19 @@
 package es.brouse.panels;
 
+import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.SplitPanelBuilder;
 import es.brouse.panels.logo.ImageLogo;
 import es.brouse.panels.logo.TitleLogo;
 import es.brouse.panels.notes.NotesPanel;
 import es.brouse.panels.notes.PianoPanel;
+import es.brouse.panels.reproduce.NextNotePanel;
+import es.brouse.panels.reproduce.NotesReproducer;
 import es.brouse.screens.GameScreen;
 import es.brouse.screens.Screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 import static java.awt.BorderLayout.*;
 public class GameMainPanel extends JPanel implements Panel {
@@ -34,7 +38,9 @@ public class GameMainPanel extends JPanel implements Panel {
 
     @Override
     public void initComponents() {
-        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo());
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
 
         add(splitPanel.getComponent(), CENTER);
 
@@ -43,16 +49,34 @@ public class GameMainPanel extends JPanel implements Panel {
 
     public void changeToNotes() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
         NotesPanel notesPanel = new NotesPanel();
-        splitPanel.setLeft(notesPanel).setRight(new PianoPanel(notesPanel))
-                .setSize(size.height - 100);
+
+        splitPanel.setLeft(notesPanel).setRight(new PianoPanel(notesPanel)).setSize(size.height - 120);
 
         Screen.refresh(GameScreen.getInstance());
     }
 
     public void changeToLogo() {
-        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo());
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
+
+        Screen.refresh(GameScreen.getInstance());
+    }
+
+    public void changeToContinue() {
+        List<MusicalNote> notes = GameScreen.getInstance().getNotes();
+
+        if (notes.isEmpty()) {
+            GameScreen.getInstance().popup("Tienes que crear una melodía primero");
+            return;
+        }
+
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        NotesReproducer notesReproducer = new NotesReproducer(notes);
+        NextNotePanel reproducer = new NextNotePanel(notesReproducer);
+
+        splitPanel.setLeft(notesReproducer).setRight(reproducer).setSize(size.height - 120);
 
         Screen.refresh(GameScreen.getInstance());
     }

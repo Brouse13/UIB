@@ -4,12 +4,13 @@ import es.brouse.objects.MusicalNote;
 import es.brouse.panels.GameMainPanel;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class GameScreen extends JFrame implements Screen {
     private static final GameScreen instance = new GameScreen();
-    private List<MusicalNote> notes;
+    private List<MusicalNote> notes = new ArrayList<>();
 
     private GameScreen() {
         setUp();
@@ -44,5 +45,9 @@ public class GameScreen extends JFrame implements Screen {
 
     public void addMelody(List<MusicalNote> notes) {
         this.notes = notes;
+    }
+
+    public List<MusicalNote> getNotes() {
+        return notes;
     }
 }

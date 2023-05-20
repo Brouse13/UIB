@@ -12,4 +12,8 @@ public class GameListeners {
     public ActionListener create() {
         return e -> GameMainPanel.getInstance().changeToNotes();
     }
+
+    public ActionListener reproduce() {
+        return e -> GameMainPanel.getInstance().changeToContinue();
+    }
 }

@@ -24,7 +24,7 @@ public class FooterPanel extends JPanel implements Panel {
         add(new ButtonBuilder("CREAR", listeners.create())
                 .setSize(new Dimension(-1, -1))
                 .setColor(Color.BLACK).getComponent());
-        add(new ButtonBuilder("REPRODUCIR", event -> {})
+        add(new ButtonBuilder("REPRODUCIR", listeners.reproduce())
                 .setSize(new Dimension(-1, -1))
                 .setColor(Color.BLACK).getComponent());
         add(new ButtonBuilder("ADIVINAR", event -> {})
