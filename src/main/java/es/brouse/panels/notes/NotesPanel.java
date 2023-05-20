@@ -1,28 +1,26 @@
 package es.brouse.panels.notes;
 
-import es.brouse.Main;
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
 import es.brouse.panels.Panel;
-import es.brouse.screens.GameScreen;
-import es.brouse.screens.Screen;
 import es.brouse.utils.SoundManager;
 
-import javax.sound.sampled.AudioInputStream;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.logging.Level;
 
-public class NotesPanel extends JPanel implements Panel {
-    private final SoundManager soundManager = new SoundManager();
-    private final List<JComponent> elements = new ArrayList<>(10 * 11);
-    private int index;
+public class NotesPanel extends JPanel implements Panel, NotesController.View {
+    private final List<JComponent> musicalNotes = new ArrayList<>(10 * 11);
+    private final NotesController controller;
 
     public NotesPanel() {
+        controller = new NotesController(
+                this,
+                new SoundManager(),
+                10 * 11
+        );
+
         setUp();
         initComponents();
     }
@@ -31,6 +29,7 @@ public class NotesPanel extends JPanel implements Panel {
     public void setUp() {
         setLayout(new GridLayout(10,11, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
         setBackground(Color.BLACK);
     }
 
@@ -40,25 +39,24 @@ public class NotesPanel extends JPanel implements Panel {
             ButtonBuilder element = new ButtonBuilder("")
                     .setColor(Color.BLACK)
                     .setBorder(BorderFactory.createEmptyBorder());
-            elements.add(element.getComponent());
 
+            musicalNotes.add(element.getComponent());
             add(element.getComponent());
         }
     }
 
+    @Override
+    public void playNote(MusicalNote note, int index) {
+        JComponent jComponent = musicalNotes.get(index);
+        jComponent.setBackground(note.getColor());
+    }
+
+    @Override
+    public void endPiano() {
+        System.out.println("END PIANO");
+    }
+
     public void addNote(MusicalNote note) {
-        JComponent musicalNote = elements.get(index++);
-
-        musicalNote.setBackground(note.getColor());
-
-        String fileName = note.name().toLowerCase(Locale.ROOT);
-        try(AudioInputStream audioInputStream = soundManager.loadSound(fileName + ".wav")) {
-            if (audioInputStream != null)
-                soundManager.playSound(audioInputStream);
-        } catch (IOException e) {
-            Main.logger.log(Level.WARNING, "Error loading URL");
-        }
-
-        Screen.refresh(GameScreen.getInstance());
+        controller.noteClickEvent(note);
     }
 }
