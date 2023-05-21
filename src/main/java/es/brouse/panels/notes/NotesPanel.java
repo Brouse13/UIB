@@ -44,6 +44,7 @@ public class NotesPanel extends JPanel implements Panel, NotesController.View {
         for (int i = 0; i < 10 * 11; i++) {
             ButtonBuilder element = new ButtonBuilder("")
                     .setColor(Color.BLACK)
+                    .cancelInteract()
                     .setBorder(BorderFactory.createEmptyBorder());
 
             musicalNotes.add(element.getComponent());

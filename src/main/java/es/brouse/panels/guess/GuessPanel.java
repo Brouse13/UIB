@@ -44,7 +44,9 @@ public class GuessPanel extends JPanel implements Panel, GuessController.View {
 
     private void parseComponents(List<MusicalNote> notes) {
         for (int i = 0; i < notes.size(); i++) {
-            ButtonBuilder component = new ButtonBuilder("?")
+            ButtonBuilder component = new ButtonBuilder("")
+                    .setColor(Color.BLACK)
+                    .cancelInteract()
                     .setBorder(BorderFactory.createEmptyBorder());
 
             components.add(component.getComponent());

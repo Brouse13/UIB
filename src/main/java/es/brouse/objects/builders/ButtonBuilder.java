@@ -62,8 +62,24 @@ public class ButtonBuilder implements Component {
         return this;
     }
 
+    /**
+     * Set a new border to the current button
+     *
+     * @param border new border
+     * @return the builder instance
+     */
     public ButtonBuilder setBorder(Border border) {
         button.setBorder(border);
+        return this;
+    }
+
+    /**
+     * Cancel the interactions
+     *
+     * @return the builder instance
+     */
+    public ButtonBuilder cancelInteract() {
+        button.setEnabled(false);
         return this;
     }
 
@@ -97,6 +113,8 @@ public class ButtonBuilder implements Component {
      */
     @Override
     public JComponent getComponent() {
+        button.setBorderPainted(false);
+        button.setSelected(false);
         return button;
     }
 }
