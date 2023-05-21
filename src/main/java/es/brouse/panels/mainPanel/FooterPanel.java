@@ -1,15 +1,14 @@
 package es.brouse.panels.mainPanel;
 
-import es.brouse.listeners.GameListeners;
 import es.brouse.objects.builders.ButtonBuilder;
 import es.brouse.panels.Panel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class FooterPanel extends JPanel implements Panel {
-    private final GameListeners listeners = new GameListeners();
+import static es.brouse.panels.mainPanel.GameController.RenderType.*;
 
+public class FooterPanel extends JPanel implements Panel {
     public FooterPanel() {
         setUp();
         initComponents();
@@ -22,19 +21,19 @@ public class FooterPanel extends JPanel implements Panel {
 
     @Override
     public void initComponents() {
-        add(new ButtonBuilder("CREAR", listeners.create())
+        add(new ButtonBuilder("CREAR", e -> GamePanel.getInstance().render(NOTES))
                 .setSize(new Dimension(-1, -1))
                 .setColor(Color.BLACK).getComponent());
 
-        add(new ButtonBuilder("REPRODUCIR", listeners.reproduce())
+        add(new ButtonBuilder("REPRODUCIR", e -> GamePanel.getInstance().render(REPRODUCE))
                 .setSize(new Dimension(-1, -1))
                 .setColor(Color.BLACK).getComponent());
 
-        add(new ButtonBuilder("ADIVINAR", listeners.guess())
+        add(new ButtonBuilder("ADIVINAR", e -> GamePanel.getInstance().render(GUESS))
                 .setSize(new Dimension(-1, -1))
                 .setColor(Color.BLACK).getComponent());
 
-        add(new ButtonBuilder("SALIR", listeners.exitEvent())
+        add(new ButtonBuilder("SALIR", e -> System.exit(0))
                 .setSize(new Dimension(-1, -1))
                 .setColor(Color.BLACK)
                 .getComponent());
