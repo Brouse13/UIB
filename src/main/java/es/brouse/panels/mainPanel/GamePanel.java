@@ -50,10 +50,6 @@ public class GamePanel extends JPanel implements Panel, GameController.View {
         add(new FooterPanel(), SOUTH);
     }
 
-    public void render(GameController.RenderType renderType) {
-        controller.render(renderType);
-    }
-
     @Override
     public void renderIddle() {
         update(new ImageLogo(), new TitleLogo());
@@ -86,6 +82,21 @@ public class GamePanel extends JPanel implements Panel, GameController.View {
         GameScreen.getInstance().popup(message);
     }
 
+    /**
+     * Render the given type of view
+     *
+     * @param renderType render type
+     */
+    public void render(GameController.RenderType renderType) {
+        controller.render(renderType);
+    }
+
+    /**
+     * Update the left and right component of the splitPane
+     *
+     * @param left left component
+     * @param right right component
+     */
     private void update(JComponent left, JComponent right) {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         splitPanel.setLeft(left).setRight(right).setSize(size.height - 120);

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class
+ */
 public class GameScreen extends JFrame implements Screen {
     public static List<MusicalNote> notes = new ArrayList<>();
     private static final GameScreen instance = new GameScreen();

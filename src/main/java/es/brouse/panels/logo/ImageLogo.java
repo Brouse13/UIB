@@ -10,6 +10,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 
+/**
+ * Class used to handle the main background image view
+ */
 public class ImageLogo extends JPanel implements Panel {
     private final ImageUtils imageUtils = new ImageUtils();
     public ImageLogo() {

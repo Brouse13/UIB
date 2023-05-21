@@ -14,10 +14,20 @@ import java.util.List;
 
 import static es.brouse.panels.mainPanel.GameController.RenderType.*;
 
+/**
+ * Class used to handle the view of the guess pannel
+ */
 public class GuessPanel extends JPanel implements Panel, GuessController.View {
+    /*---------- PRIVATE ----------*/
     private final GuessController controller;
     private final List<JComponent> components = new ArrayList<>(10 * 11);
 
+    /**
+     * Main class constructor used to create new {@link GuessPanel}
+     * instances.
+     *
+     * @param notes associates notes to store
+     */
     public GuessPanel(List<MusicalNote> notes) {
         controller = new GuessController(
                 this,
@@ -42,6 +52,12 @@ public class GuessPanel extends JPanel implements Panel, GuessController.View {
         for (JComponent component : components) add(component);
     }
 
+    /**
+     * Parse all the given notes into a {@link List<JComponent>}
+     * to then being able to modify it's content
+     *
+     * @param notes notes
+     */
     private void parseComponents(List<MusicalNote> notes) {
         for (int i = 0; i < notes.size(); i++) {
             ButtonBuilder component = new ButtonBuilder("")
@@ -61,6 +77,11 @@ public class GuessPanel extends JPanel implements Panel, GuessController.View {
         }
     }
 
+    /**
+     * Try to guess the given note
+     *
+     * @param note note to guess
+     */
     public void tryNote(MusicalNote note) {
         controller.tryToGuess(note);
     }
@@ -73,7 +94,7 @@ public class GuessPanel extends JPanel implements Panel, GuessController.View {
     }
 
     @Override
-    public void noteWrong(MusicalNote note, int index) {
+    public void noteWrong(int index) {
         JComponent jComponent = components.get(index);
         jComponent.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
     }

@@ -7,8 +7,19 @@ import es.brouse.panels.Panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to handle the view of all the guess buttons view.
+ */
 public class GuessButtons extends JPanel implements Panel {
+    /*---------- PRIVATE ----------*/
     private final GuessPanel guessPanel;
+
+    /**
+     * Main class constructor used to create new
+     * {@link GuessButtons} instances.
+     *
+     * @param guessPanel associated guess panels
+     */
     public GuessButtons(GuessPanel guessPanel) {
         this.guessPanel = guessPanel;
 

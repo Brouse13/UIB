@@ -19,6 +19,8 @@ public class SplitPanelBuilder implements Component {
     /**
      * Main class constructor able to create new {@link SplitPanelBuilder}
      * instance only with its orientation.
+     *
+     * @param orientation splitPane orientation
      */
     public SplitPanelBuilder(int orientation) {
         panel = new JSplitPane(orientation);
@@ -27,13 +29,17 @@ public class SplitPanelBuilder implements Component {
     /**
      * Main class constructor able to create new {@link SplitPanelBuilder}
      * instance with the orientation and the elements.
+     *
+     * @param orientation splitPane orientation
+     * @param left splitPane left component
+     * @param right splitPane right component
      */
     public SplitPanelBuilder(int orientation, JComponent left, JComponent right) {
         panel = new JSplitPane(orientation, left, right);
     }
 
     /**
-     * Set the left component
+     * Set the splitPane left component.
      *
      * @param component new left component
      * @return the builder instance
@@ -44,7 +50,7 @@ public class SplitPanelBuilder implements Component {
     }
 
     /**
-     * Set the right component
+     * Set the splitPane right component.
      *
      * @param component new right component
      * @return the builder instance
@@ -55,7 +61,7 @@ public class SplitPanelBuilder implements Component {
     }
 
     /**
-     * Set the preferred divider size to the set by params
+     * Set the splitPanel divider location.
      *
      * @param size new preferred size
      * @return the builder instance
@@ -67,6 +73,7 @@ public class SplitPanelBuilder implements Component {
 
     /**
      * {@inheritDoc}
+     *
      * @return the swing associated JSplitPanel
      */
     @Override

@@ -8,6 +8,9 @@ import java.awt.*;
 
 import static es.brouse.panels.mainPanel.GameController.RenderType.*;
 
+/**
+ * Class to handle the view of the footer main panel
+ */
 public class FooterPanel extends JPanel implements Panel {
     public FooterPanel() {
         setUp();

@@ -6,6 +6,9 @@ import es.brouse.panels.Panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to handle the main title view
+ */
 public class TitleLogo extends JPanel implements Panel {
     public TitleLogo() {
         setUp();

@@ -3,7 +3,6 @@ package es.brouse.objects.builders;
 import es.brouse.objects.Component;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -33,6 +32,12 @@ public class LabelBuilder implements Component {
         return this;
     }
 
+    /**
+     * Set the current background to the given color.
+     *
+     * @param background new backgroundColor
+     * @return the builder instance
+     */
     public LabelBuilder setBackground(Color background) {
         if (background == Color.BLACK) label.setForeground(Color.WHITE);
         label.setBackground(background);
@@ -40,40 +45,33 @@ public class LabelBuilder implements Component {
         return this;
     }
 
+    /**
+     * Set the current label font to the given.
+     *
+     * @param font new font name
+     * @param type new font type
+     * @param size new font size
+     * @return the builder instance
+     */
     public LabelBuilder setFont(String font, int type, int size) {
         label.setFont(new Font(font, type, size));
         return this;
     }
 
     /**
-     * Set the textSize to the label
+     * Set the new alignment to the label.
      *
-     * @param size new size
-     * @return the builder instance
+     * @param align new alignment
+     * @return the new builder
      */
-    public LabelBuilder setTextSize(int size) {
-        label.setFont(new Font(label.getFont().getName(), Font.PLAIN, size));
-        return this;
-    }
-
     public LabelBuilder align(int align) {
         label.setHorizontalAlignment(align);
         return this;
     }
 
     /**
-     * Set the border to the label.
-     *
-     * @param border new border
-     * @return the builder instance
-     */
-    public LabelBuilder setBorder(Border border) {
-        label.setBorder(border);
-        return this;
-    }
-
-    /**
      * {@inheritDoc}
+     *
      * @return the swing associated JLabel
      */
     @Override
