@@ -1,7 +1,8 @@
-package es.brouse.panels;
+package es.brouse.panels.mainPanel;
 
 import es.brouse.listeners.GameListeners;
 import es.brouse.objects.builders.ButtonBuilder;
+import es.brouse.panels.Panel;
 
 import javax.swing.*;
 import java.awt.*;

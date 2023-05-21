@@ -2,7 +2,7 @@ package es.brouse.panels.notes;
 
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
-import es.brouse.panels.GameMainPanel;
+import es.brouse.panels.mainPanel.GamePanel;
 import es.brouse.panels.Panel;
 import es.brouse.screens.GameScreen;
 import es.brouse.utils.SoundManager;
@@ -12,11 +12,15 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static es.brouse.panels.mainPanel.GameController.RenderType.IDDLE;
+
 public class NotesPanel extends JPanel implements Panel, NotesController.View {
     private final List<JComponent> musicalNotes = new ArrayList<>(10 * 11);
     private final NotesController controller;
 
     public NotesPanel() {
+        GameScreen.notes.clear();
+
         controller = new NotesController(
                 this,
                 new SoundManager(),
@@ -56,7 +60,7 @@ public class NotesPanel extends JPanel implements Panel, NotesController.View {
     @Override
     public void endPiano(List<MusicalNote> notes) {
         GameScreen.getInstance().addMelody(notes);
-        GameMainPanel.getInstance().changeToLogo();
+        GamePanel.getInstance().render(IDDLE);
         GameScreen.getInstance().popup("Melodía creada con éxito");
     }
 

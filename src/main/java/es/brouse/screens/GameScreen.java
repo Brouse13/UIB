@@ -1,7 +1,7 @@
 package es.brouse.screens;
 
 import es.brouse.objects.MusicalNote;
-import es.brouse.panels.GameMainPanel;
+import es.brouse.panels.mainPanel.GamePanel;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class GameScreen extends JFrame implements Screen {
+    public static List<MusicalNote> notes = new ArrayList<>();
     private static final GameScreen instance = new GameScreen();
-    private List<MusicalNote> notes = new ArrayList<>();
 
     private GameScreen() {
         setUp();
@@ -25,7 +25,7 @@ public class GameScreen extends JFrame implements Screen {
         setTitle("Practica 2 - Programación II");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setContentPane(GameMainPanel.getInstance());
+        setContentPane(GamePanel.getInstance());
 
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -44,10 +44,6 @@ public class GameScreen extends JFrame implements Screen {
     }
 
     public void addMelody(List<MusicalNote> notes) {
-        this.notes = notes;
-    }
-
-    public List<MusicalNote> getNotes() {
-        return notes;
+        GameScreen.notes = notes;
     }
 }

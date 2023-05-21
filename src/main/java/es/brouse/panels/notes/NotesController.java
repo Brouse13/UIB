@@ -1,22 +1,23 @@
 package es.brouse.panels.notes;
 
 import es.brouse.objects.MusicalNote;
+import es.brouse.screens.GameScreen;
 import es.brouse.utils.SoundManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NotesController {
     private final View view;
     private final int maxNotes;
     private final SoundManager soundManager;
-    List<MusicalNote> notes = new ArrayList<>();
+    private final List<MusicalNote> notes;
     private int index = 0;
 
     public NotesController(View view, SoundManager soundManager, int maxNotes) {
         this.view = view;
         this.soundManager = soundManager;
         this.maxNotes = maxNotes;
+        this.notes = GameScreen.notes;
     }
 
 

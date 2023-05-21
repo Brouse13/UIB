@@ -2,7 +2,7 @@ package es.brouse.panels.guess;
 
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.ButtonBuilder;
-import es.brouse.panels.GameMainPanel;
+import es.brouse.panels.mainPanel.GamePanel;
 import es.brouse.panels.Panel;
 import es.brouse.screens.GameScreen;
 import es.brouse.utils.SoundManager;
@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static es.brouse.panels.mainPanel.GameController.RenderType.*;
 
 public class GuessPanel extends JPanel implements Panel, GuessController.View {
     private final GuessController controller;
@@ -77,6 +79,6 @@ public class GuessPanel extends JPanel implements Panel, GuessController.View {
     @Override
     public void winPanel() {
         GameScreen.getInstance().popup("¡Enhorabuena! Has acertado todas las melodía");
-        GameMainPanel.getInstance().changeToLogo();
+        GamePanel.getInstance().render(IDDLE);
     }
 }

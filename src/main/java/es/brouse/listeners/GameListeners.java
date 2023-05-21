@@ -1,8 +1,10 @@
 package es.brouse.listeners;
 
-import es.brouse.panels.GameMainPanel;
+import es.brouse.panels.mainPanel.GamePanel;
 
 import java.awt.event.ActionListener;
+
+import static es.brouse.panels.mainPanel.GameController.RenderType.*;
 
 public class GameListeners {
     public ActionListener exitEvent() {
@@ -10,14 +12,14 @@ public class GameListeners {
     }
 
     public ActionListener create() {
-        return e -> GameMainPanel.getInstance().changeToNotes();
+        return e -> GamePanel.getInstance().render(NOTES);
     }
 
     public ActionListener reproduce() {
-        return e -> GameMainPanel.getInstance().changeToReproduce();
+        return e -> GamePanel.getInstance().render(REPRODUCE);
     }
 
     public ActionListener guess() {
-        return e -> GameMainPanel.getInstance().changeToGuess();
+        return e -> GamePanel.getInstance().render(GUESS);
     }
 }

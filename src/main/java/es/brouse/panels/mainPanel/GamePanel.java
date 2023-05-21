@@ -1,7 +1,8 @@
-package es.brouse.panels;
+package es.brouse.panels.mainPanel;
 
 import es.brouse.objects.MusicalNote;
 import es.brouse.objects.builders.SplitPanelBuilder;
+import es.brouse.panels.Panel;
 import es.brouse.panels.guess.GuessButtons;
 import es.brouse.panels.guess.GuessPanel;
 import es.brouse.panels.logo.ImageLogo;
@@ -18,18 +19,20 @@ import java.awt.*;
 import java.util.List;
 
 import static java.awt.BorderLayout.*;
-public class GameMainPanel extends JPanel implements Panel {
-    private static final GameMainPanel instance = new GameMainPanel();
+public class GamePanel extends JPanel implements Panel, GameController.View {
+    private static final GamePanel instance = new GamePanel();
     private final SplitPanelBuilder splitPanel;
+    private final GameController controller;
 
-    private GameMainPanel() {
-        splitPanel = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
+    private GamePanel() {
+        this.splitPanel = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
+        this.controller = new GameController(this);
 
         setUp();
         initComponents();
     }
 
-    public static GameMainPanel getInstance() {
+    public static GamePanel getInstance() {
         return instance;
     }
 
@@ -49,7 +52,21 @@ public class GameMainPanel extends JPanel implements Panel {
         add(new FooterPanel(), SOUTH);
     }
 
-    public void changeToNotes() {
+    public void render(GameController.RenderType renderType) {
+        controller.render(renderType);
+    }
+
+    @Override
+    public void renderIddle() {
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
+
+        Screen.refresh(GameScreen.getInstance());
+    }
+
+    @Override
+    public void renderNotes() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         NotesPanel notesPanel = new NotesPanel();
 
@@ -58,21 +75,9 @@ public class GameMainPanel extends JPanel implements Panel {
         Screen.refresh(GameScreen.getInstance());
     }
 
-    public void changeToLogo() {
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
-        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
-
-        Screen.refresh(GameScreen.getInstance());
-    }
-
-    public void changeToReproduce() {
-        List<MusicalNote> notes = GameScreen.getInstance().getNotes();
-
-        if (notes.isEmpty()) {
-            GameScreen.getInstance().popup("Tienes que crear una melodía primero");
-            return;
-        }
+    @Override
+    public void renderReproduce() {
+        List<MusicalNote> notes = GameScreen.notes;
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         NotesReproducer notesReproducer = new NotesReproducer(notes);
@@ -83,13 +88,9 @@ public class GameMainPanel extends JPanel implements Panel {
         Screen.refresh(GameScreen.getInstance());
     }
 
-    public void changeToGuess() {
-        List<MusicalNote> notes = GameScreen.getInstance().getNotes();
-
-        if (notes.isEmpty()) {
-            GameScreen.getInstance().popup("Tienes que crear una melodía primero");
-            return;
-        }
+    @Override
+    public void renderGuess() {
+        List<MusicalNote> notes = GameScreen.notes;
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         GuessPanel notesReproducer = new GuessPanel(notes);
@@ -98,5 +99,10 @@ public class GameMainPanel extends JPanel implements Panel {
         splitPanel.setLeft(notesReproducer).setRight(reproducer).setSize(size.height - 120);
 
         Screen.refresh(GameScreen.getInstance());
+    }
+
+    @Override
+    public void errorChange(String message) {
+        GameScreen.getInstance().popup(message);
     }
 }
