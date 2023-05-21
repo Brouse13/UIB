@@ -45,12 +45,12 @@ public class ReproducerController {
         }
 
         //If possible clear last border and call controller
-        if (index != 0) view.clearBorder(index - 1);
+        if (index != 0) view.clearBorder(notes.get(index - 1), index - 1);
 
         //Get the next note, play it and paint it
         MusicalNote note = notes.get(index);
         soundManager.playNote(note);
-        view.paintBorder(index);
+        view.paintBorder(note, index);
 
         index++;
     }
@@ -65,13 +65,13 @@ public class ReproducerController {
          *
          * @param index note index
          */
-        void paintBorder(int index);
+        void paintBorder(MusicalNote note, int index);
 
         /**
          * Clear the border of the given note.
          *
          * @param index note index
          */
-        void clearBorder(int index);
+        void clearBorder(MusicalNote note, int index);
     }
 }

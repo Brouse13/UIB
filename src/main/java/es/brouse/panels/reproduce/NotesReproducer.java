@@ -52,13 +52,14 @@ public class NotesReproducer extends JPanel implements Panel, ReproducerControll
     }
 
     @Override
-    public void paintBorder(int index) {
+    public void paintBorder(MusicalNote note, int index) {
         Border border = BorderFactory.createLineBorder(Color.WHITE, 3);
         components.get(index).setBorder(border);
+        components.get(index).setBackground(note.getColor());
     }
 
     @Override
-    public void clearBorder(int index) {
+    public void clearBorder(MusicalNote note, int index) {
         JComponent jComponent = components.get(index);
         jComponent.setBorder(BorderFactory.createEmptyBorder());
     }
@@ -79,7 +80,7 @@ public class NotesReproducer extends JPanel implements Panel, ReproducerControll
     private void parseComponents(List<MusicalNote> notes) {
         for (MusicalNote note : notes) {
             ButtonBuilder component = new ButtonBuilder("")
-                    .setColor(note.getColor())
+                    .setColor(Color.BLACK)
                     .setBorder(BorderFactory.createEmptyBorder());
 
             components.add(component.getComponent());
