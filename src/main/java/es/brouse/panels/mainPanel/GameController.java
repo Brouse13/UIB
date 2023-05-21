@@ -19,9 +19,11 @@ public class GameController {
     public void render(RenderType renderType) {
         if (renderType == RenderType.IDDLE) {
             view.renderIddle();
+            this.currentType = RenderType.IDDLE;
             return;
         }else if(renderType == RenderType.NOTES) {
             view.renderNotes();
+            this.currentType = RenderType.NOTES;
             return;
         }
 

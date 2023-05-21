@@ -44,11 +44,9 @@ public class GamePanel extends JPanel implements Panel, GameController.View {
     @Override
     public void initComponents() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
         splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
 
         add(splitPanel.getComponent(), CENTER);
-
         add(new FooterPanel(), SOUTH);
     }
 
@@ -58,51 +56,40 @@ public class GamePanel extends JPanel implements Panel, GameController.View {
 
     @Override
     public void renderIddle() {
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
-        splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
-
-        Screen.refresh(GameScreen.getInstance());
+        update(new ImageLogo(), new TitleLogo());
     }
 
     @Override
     public void renderNotes() {
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         NotesPanel notesPanel = new NotesPanel();
-
-        splitPanel.setLeft(notesPanel).setRight(new PianoPanel(notesPanel)).setSize(size.height - 120);
-
-        Screen.refresh(GameScreen.getInstance());
+        update(notesPanel, new PianoPanel(notesPanel));
     }
 
     @Override
     public void renderReproduce() {
         List<MusicalNote> notes = GameScreen.notes;
 
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         NotesReproducer notesReproducer = new NotesReproducer(notes);
-        NextNotePanel reproducer = new NextNotePanel(notesReproducer);
-
-        splitPanel.setLeft(notesReproducer).setRight(reproducer).setSize(size.height - 120);
-
-        Screen.refresh(GameScreen.getInstance());
+        update(notesReproducer, new NextNotePanel(notesReproducer));
     }
 
     @Override
     public void renderGuess() {
         List<MusicalNote> notes = GameScreen.notes;
 
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         GuessPanel notesReproducer = new GuessPanel(notes);
-        GuessButtons reproducer = new GuessButtons(notesReproducer);
-
-        splitPanel.setLeft(notesReproducer).setRight(reproducer).setSize(size.height - 120);
-
-        Screen.refresh(GameScreen.getInstance());
+        update(notesReproducer, new GuessButtons(notesReproducer));
     }
 
     @Override
     public void errorChange(String message) {
         GameScreen.getInstance().popup(message);
+    }
+
+    private void update(JComponent left, JComponent right) {
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        splitPanel.setLeft(left).setRight(right).setSize(size.height - 120);
+
+        Screen.refresh(GameScreen.getInstance());
     }
 }
