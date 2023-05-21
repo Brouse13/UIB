@@ -6,6 +6,7 @@ import es.brouse.screens.GameScreen;
 import java.util.List;
 
 public class GameController {
+    /*---------- PRIVATE ----------*/
     private RenderType currentType = RenderType.IDDLE;
 
     private final View view;

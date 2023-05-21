@@ -9,16 +9,27 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Class
+ * Class able to create new Game Screens
  */
 public class GameScreen extends JFrame implements Screen {
+    /**
+     * Static instance of all the saved images
+     */
     public static List<MusicalNote> notes = new ArrayList<>();
     private static final GameScreen instance = new GameScreen();
 
+    /**
+     * Init the Game screen
+     */
     private GameScreen() {
         setUp();
     }
 
+    /**
+     * Get the class public instance.
+     *
+     * @return the class instance
+     */
     public static GameScreen getInstance() {
         return instance;
     }
@@ -46,6 +57,11 @@ public class GameScreen extends JFrame implements Screen {
         JOptionPane.showMessageDialog(this, message);
     }
 
+    /**
+     * Add a new notes melody to the stored notes.
+     *
+     * @param notes new notes to store
+     */
     public void addMelody(List<MusicalNote> notes) {
         GameScreen.notes = notes;
     }

@@ -9,6 +9,11 @@ import java.net.URL;
 import java.util.logging.Level;
 
 public class SoundManager {
+    /**
+     * Play the given note sound.
+     *
+     * @param note note to play
+     */
     public void playNote(MusicalNote note) {
         String sound = note.name().toLowerCase() + ".wav";
 
@@ -19,6 +24,11 @@ public class SoundManager {
         }
     }
 
+    /**
+     * Play a specific sound fil from the resources.
+     *
+     * @param path path to the sound
+     */
     public void playFile(String path) {
         try(AudioInputStream inputStream = loadSound(path)) {
             if (inputStream != null) playSound(inputStream);
@@ -28,6 +38,11 @@ public class SoundManager {
 
     }
 
+    /**
+     * Play a generic sound into the java application
+     *
+     * @param sound sound to play
+     */
     private void playSound(AudioInputStream sound) {
         Clip clip;
 
@@ -40,6 +55,13 @@ public class SoundManager {
         }
     }
 
+    /**
+     * Load a new {@link AudioInputStream} from the resources' directory.
+     *
+     * @param sound sound path
+     * @return the associated AudioInputStream
+     * @throws IOException if the file wasn't found
+     */
     private AudioInputStream loadSound(String sound) throws IOException {
         try {
             URL resource = getClass().getResource("/assets/sounds/" + sound);

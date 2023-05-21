@@ -20,6 +20,7 @@ import java.util.List;
 
 import static java.awt.BorderLayout.*;
 public class GamePanel extends JPanel implements Panel, GameController.View {
+    /*---------- PRIVATE ----------*/
     private static final GamePanel instance = new GamePanel();
     private final SplitPanelBuilder splitPanel;
     private final GameController controller;

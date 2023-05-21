@@ -6,9 +6,19 @@ import es.brouse.panels.Panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that handles the next note view
+ */
 public class NextNotePanel extends JPanel implements Panel {
+    /*----------- PRIVATE -----------*/
     private final NotesReproducer reproducer;
 
+    /**
+     * Main class constructor able to create new {@link NextNotePanel}
+     * instances.
+     *
+     * @param reproducer associated reproducer
+     */
     public NextNotePanel(NotesReproducer reproducer) {
         this.reproducer =  reproducer;
 

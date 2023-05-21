@@ -14,10 +14,18 @@ import java.util.List;
 
 import static es.brouse.panels.mainPanel.GameController.RenderType.IDDLE;
 
+/**
+ * Class able to manage the notes on the panel
+ */
 public class NotesPanel extends JPanel implements Panel, NotesController.View {
+    /*---------- PRIVATE ----------*/
     private final List<JComponent> musicalNotes = new ArrayList<>(10 * 11);
     private final NotesController controller;
 
+    /**
+     * Main class constructor able to create new {@link NotesPanel}
+     * instances.
+     */
     public NotesPanel() {
         GameScreen.notes.clear();
 
@@ -65,6 +73,11 @@ public class NotesPanel extends JPanel implements Panel, NotesController.View {
         GameScreen.getInstance().popup("Melodía creada con éxito");
     }
 
+    /**
+     * Add a new note to the piano
+     *
+     * @param note note to add
+     */
     public void addNote(MusicalNote note) {
         controller.noteClickEvent(note);
     }

@@ -7,8 +7,18 @@ import es.brouse.panels.Panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class able to manage the piano notes view
+ */
 public class PianoPanel extends JPanel implements Panel {
     private final NotesPanel gamePanel;
+
+    /**
+     * Main class constructor able to create new {@link PianoPanel}
+     * instance.
+     *
+     * @param gamePanel associated gamePanel
+     */
     public PianoPanel(NotesPanel gamePanel) {
         this.gamePanel = gamePanel;
 

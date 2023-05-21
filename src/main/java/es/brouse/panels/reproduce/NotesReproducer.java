@@ -11,11 +11,21 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class able to handle the main reproducer view
+ */
 public class NotesReproducer extends JPanel implements Panel, ReproducerController.View {
+    /*----------- PRIVATE -----------*/
     private final ReproducerController controller;
     private final int maxSize = 10 * 11;
     private final List<JComponent> components = new ArrayList<>(maxSize);
 
+    /**
+     * Main class constructor able to create new {@link NotesReproducer}
+     * instances.
+     *
+     * @param notes notes to reproduce
+     */
     public NotesReproducer(List<MusicalNote> notes) {
         controller = new ReproducerController(
                 this,
@@ -53,11 +63,19 @@ public class NotesReproducer extends JPanel implements Panel, ReproducerControll
         jComponent.setBorder(BorderFactory.createEmptyBorder());
     }
 
+    /**
+     * Play the next note
+     */
     public void playNextNote() {
         controller.playNextNote();
     }
 
-
+    /**
+     * Parse all the given notes into as associated
+     * {@link List<JComponent>} list to then render them.
+     *
+     * @param notes notes to parse
+     */
     private void parseComponents(List<MusicalNote> notes) {
         for (MusicalNote note : notes) {
             ButtonBuilder component = new ButtonBuilder("")

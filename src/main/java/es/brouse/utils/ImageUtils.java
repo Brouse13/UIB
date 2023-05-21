@@ -7,6 +7,14 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ImageUtils {
+    /**
+     * Rescale the given image.
+     *
+     * @param image image to resecale
+     * @param newWidth new image width
+     * @param newLength new image length
+     * @return the rescaled image
+     */
     public BufferedImage rescaleImage(BufferedImage image, int newWidth, int newLength) {
         Image scaled = image.getScaledInstance(newWidth, newLength, Image.SCALE_SMOOTH);
 
@@ -22,6 +30,13 @@ public class ImageUtils {
         return bufferedImage;
     }
 
+    /**
+     * Load a new image from the resources' directory.
+     *
+     * @param path path from the resources
+     * @return the loaded image
+     * @throws IOException if file cannot be loaded
+     */
     public BufferedImage loadImage(String path) throws IOException {
         URL resource = getClass().getResource("/assets/gui/" + path);
         if (resource == null) throw new IOException("Image " + path + " not found");
