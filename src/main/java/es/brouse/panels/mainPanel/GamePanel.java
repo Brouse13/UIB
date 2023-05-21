@@ -47,8 +47,11 @@ public class GamePanel extends JPanel implements Panel, GameController.View {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         splitPanel.setLeft(new ImageLogo()).setRight(new TitleLogo()).setSize(size.height - 120);
 
+        SplitPanelBuilder bottom = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
+                null, new FooterPanel());
+
         add(splitPanel.getComponent(), CENTER);
-        add(new FooterPanel(), SOUTH);
+        add(bottom.getComponent(), SOUTH);
     }
 
     @Override

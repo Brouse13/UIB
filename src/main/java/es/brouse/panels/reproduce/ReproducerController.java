@@ -1,7 +1,10 @@
 package es.brouse.panels.reproduce;
 
 import es.brouse.objects.MusicalNote;
+import es.brouse.panels.mainPanel.GameController;
+import es.brouse.panels.mainPanel.GamePanel;
 import es.brouse.screens.GameScreen;
+import es.brouse.screens.Screen;
 import es.brouse.utils.SoundManager;
 
 import java.util.List;
@@ -37,6 +40,7 @@ public class ReproducerController {
         //No more notes to play
         if (index == notes.size()) {
             GameScreen.getInstance().popup("No hay más notas para reproducir");
+            GamePanel.getInstance().render(GameController.RenderType.IDDLE);
             return;
         }
 
