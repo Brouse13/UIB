@@ -8,10 +8,16 @@ import java.util.Locale;
 import java.util.logging.Level;
 
 public class GameScreen extends JFrame implements Screen {
+    private static final GameScreen instance = new GameScreen();
     private static final String TITLE = "Practica Final - Programación II";
-    public static final GamePanel gamePanel = new GamePanel();
+    public static GamePanel gamePanel;
 
-    public GameScreen() {
+    public static GameScreen getInstance() {
+        return instance;
+    }
+
+    private GameScreen() {
+        gamePanel = new GamePanel();
         setUp();
     }
 

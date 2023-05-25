@@ -1,6 +1,5 @@
 package es.brouse.game.panels;
 
-import es.brouse.game.Game;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.objects.builders.SplitPanelBuilder;
@@ -38,7 +37,7 @@ public class SolutionPanel extends Panel {
 
         ButtonBuilder button = new ButtonBuilder("CERRAR", null, event -> {
             GameScreen.gamePanel.reset();
-            Screen.refresh(Game.gameScreen);
+            Screen.refresh(GameScreen.getInstance());
         }).setSize(new Dimension(-1, 150));
 
         panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
