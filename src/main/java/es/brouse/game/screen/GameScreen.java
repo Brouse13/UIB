@@ -8,23 +8,21 @@ import java.util.Locale;
 import java.util.logging.Level;
 
 public class GameScreen extends JFrame implements Screen {
-    private static final GameScreen instance = new GameScreen();
+    private static GameScreen instance;
     private static final String TITLE = "Practica Final - Programación II";
-    public static GamePanel gamePanel;
-
     public static GameScreen getInstance() {
+        if (instance == null) instance = new GameScreen();
         return instance;
     }
 
     private GameScreen() {
-        gamePanel = new GamePanel();
         setUp();
     }
 
     @Override
     public void setUp() {
         setTitle(TITLE);
-        setContentPane(gamePanel.getComponent());
+        setContentPane(GamePanel.getInstance().getComponent());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setResizable(false);

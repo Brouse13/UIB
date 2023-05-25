@@ -36,7 +36,7 @@ public class SolutionPanel extends Panel {
                 .setDimensions(new Dimension(-1, -1));
 
         ButtonBuilder button = new ButtonBuilder("CERRAR", null, event -> {
-            GameScreen.gamePanel.reset();
+            GamePanel.getInstance().reset();
             Screen.refresh(GameScreen.getInstance());
         }).setSize(new Dimension(-1, 150));
 

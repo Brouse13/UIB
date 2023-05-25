@@ -63,7 +63,7 @@ public class GameImagePanel extends Panel {
             stats.setUsername(username);
 
             if (stats.isWin()) {
-                GameScreen.gamePanel.setGamePanel(new SolutionPanel(originalImage).getComponent());
+                GamePanel.getInstance().setGamePanel(new SolutionPanel(originalImage).getComponent());
                 Screen.refresh(GameScreen.getInstance());
                 System.out.println("WIN GAME");
             }

@@ -5,10 +5,21 @@ import java.awt.*;
 
 import static java.awt.BorderLayout.*;
 public class GamePanel extends Panel {
+    private static GamePanel instance;
     private JSplitPane splitPanel;
     private JPanel panel;
 
     private static final BackgroundPanel backgroundImage = new BackgroundPanel();
+
+    public static GamePanel getInstance() {
+        if (instance == null) instance = new GamePanel();
+        return instance;
+    }
+
+    private GamePanel() {
+        //setUp();
+    }
+
     @Override
     public void setUp(final JPanel panel) {
         this.panel = panel;

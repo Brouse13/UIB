@@ -3,7 +3,6 @@ package es.brouse.game.panels;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextFieldBuilder;
-import es.brouse.game.screen.GameScreen;
 import es.brouse.game.utils.ImagePicker;
 
 import javax.swing.*;
@@ -61,7 +60,7 @@ public class StartGamePanel extends Panel implements ActionListener {
             GameImagePanel panel = new GameImagePanel(new ImagePicker().randomPick(),
                     rowsVals, colsVal, usernameVal);
 
-            GameScreen.gamePanel.setGamePanel(panel.getComponent());
+            GamePanel.getInstance().setGamePanel(panel.getComponent());
 
             //Close and reset the screen
             close();
