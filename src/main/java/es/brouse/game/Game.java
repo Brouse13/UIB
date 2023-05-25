@@ -1,6 +1,5 @@
 package es.brouse.game;
 
-import es.brouse.game.panels.GamePanel;
 import es.brouse.game.screen.GameScreen;
 
 import javax.swing.*;
@@ -10,7 +9,6 @@ public class Game extends JFrame {
     public static final Logger logger = Logger.getLogger(Game.class.getSimpleName());
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(GamePanel.getInstance());
         GameScreen.getInstance().setVisible(true);
     }
 }
