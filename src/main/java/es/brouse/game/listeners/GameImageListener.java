@@ -2,6 +2,7 @@ package es.brouse.game.listeners;
 
 import es.brouse.game.Game;
 import es.brouse.game.objects.SplitImage;
+import es.brouse.game.screen.Screen;
 import es.brouse.game.utils.GameStats;
 
 import javax.swing.*;
@@ -62,7 +63,7 @@ public class GameImageListener extends MouseAdapter {
         label.setIcon(icon);
 
         //We refresh the screen
-        Game.gameScreen.refresh();
+        Screen.refresh(Game.gameScreen);
 
         //Reset variables
         lastClick.setBorder(BorderFactory.createEmptyBorder());

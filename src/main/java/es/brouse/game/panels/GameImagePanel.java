@@ -5,6 +5,7 @@ import es.brouse.game.listeners.GameImageListener;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.screen.GameScreen;
+import es.brouse.game.screen.Screen;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
 
@@ -64,7 +65,7 @@ public class GameImagePanel extends Panel {
 
             if (stats.isWin()) {
                 GameScreen.gamePanel.setGamePanel(new SolutionPanel(originalImage).getComponent());
-                Game.gameScreen.refresh();
+                Screen.refresh(Game.gameScreen);
                 System.out.println("WIN GAME");
             }
         };

@@ -5,6 +5,7 @@ import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.objects.builders.SplitPanelBuilder;
 import es.brouse.game.screen.GameScreen;
+import es.brouse.game.screen.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,7 @@ public class SolutionPanel extends Panel {
 
     public SolutionPanel(BufferedImage solution) {
         super(false);
-        this.solution = solution;;
+        this.solution = solution;
 
         init();
     }
@@ -37,7 +38,7 @@ public class SolutionPanel extends Panel {
 
         ButtonBuilder button = new ButtonBuilder("CERRAR", null, event -> {
             GameScreen.gamePanel.reset();
-            Game.gameScreen.refresh();
+            Screen.refresh(Game.gameScreen);
         }).setSize(new Dimension(-1, 150));
 
         panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
