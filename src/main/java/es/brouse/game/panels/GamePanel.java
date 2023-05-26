@@ -4,11 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 import static java.awt.BorderLayout.*;
-public class GamePanel extends Panel {
+public class GamePanel extends JPanel implements Panel {
     private static GamePanel instance;
     private JSplitPane splitPanel;
-    private JPanel panel;
-
     private static final BackgroundPanel backgroundImage = new BackgroundPanel();
 
     public static GamePanel getInstance() {
@@ -17,36 +15,41 @@ public class GamePanel extends Panel {
     }
 
     private GamePanel() {
-        //setUp();
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void setUp(final JPanel panel) {
-        this.panel = panel;
-        panel.setLayout(new BorderLayout());
-        panel.setVisible(true);
+    public void setUp() {
+        setLayout(new BorderLayout());
+        setVisible(true);
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
-        panel.add(new HeaderPanel().getComponent(), NORTH);
+    public void initComponents() {
+        add(new HeaderPanel(), NORTH);
 
         //Create the middle content
         splitPanel = new JSplitPane(
                 JSplitPane.HORIZONTAL_SPLIT,
-                new SidebarPanel().getComponent(),
-                backgroundImage.getComponent()
+                new SidebarPanel(),
+                backgroundImage
         );
 
-        panel.add(splitPanel, CENTER);
+        add(splitPanel, CENTER);
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 
     public void setGamePanel(JComponent component) {
         splitPanel.setRightComponent(component);
-        panel.add(splitPanel, CENTER);
+        add(splitPanel, CENTER);
     }
 
     public void reset() {
-        splitPanel.setRightComponent(backgroundImage.getComponent());
+        splitPanel.setRightComponent(backgroundImage);
     }
 }

@@ -21,17 +21,22 @@ import java.util.logging.Level;
 
 import static java.awt.BorderLayout.*;
 
-public class HeaderPanel extends Panel {
+public class HeaderPanel extends JPanel implements Panel {
     private static final GameListeners listeners = new GameListeners();
 
-    @Override
-    public void setUp(JPanel panel) {
-        panel.setLayout(new BorderLayout(0,0));
+    public HeaderPanel() {
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void initComponents(JPanel panel) {
-        panel.add(mainMenu().getComponent(), NORTH);
+    public void setUp() {
+        setLayout(new BorderLayout(0,0));
+    }
+
+    @Override
+    public void initComponents() {
+        add(mainMenu().getComponent(), NORTH);
 
         ToolBarBuilder toolBar = new ToolBarBuilder(ToolBarBuilder.HORIZONTAL);
         toolBar.add(getButton("/assets/gui/game/newGame.jpg", listeners.newGame()).getComponent());
@@ -40,8 +45,13 @@ public class HeaderPanel extends Panel {
         toolBar.add(getButton("/assets/gui/game/changeDir.jpg", listeners.changeDir(this)).getComponent());
         toolBar.add(getButton("/assets/gui/game/exit.jpg", listeners.exit()).getComponent());
 
-        panel.add(toolBar.getComponent(), CENTER);
-        panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT).getComponent(), SOUTH);
+        add(toolBar.getComponent(), CENTER);
+        add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT).getComponent(), SOUTH);
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 
     private MenuObject mainMenu() {

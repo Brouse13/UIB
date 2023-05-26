@@ -12,38 +12,49 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class StartGamePanel extends Panel implements ActionListener {
+public class StartGamePanel extends JPanel implements Panel, ActionListener {
     private TextFieldBuilder[] builders;
-    @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new GridLayout(4, 2, 5, 5));
+
+    public StartGamePanel() {
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
+    public void setUp() {
+        setLayout(new GridLayout(4, 2, 5, 5));
+    }
+
+    @Override
+    public void initComponents() {
         String[] names = {"USUARIO", "FILAS", "COLUMNAS"};
         builders = new TextFieldBuilder[3];
 
         int index = 0;
         for (String name : names) {
-            panel.add(new LabelBuilder(name)
+            add(new LabelBuilder(name)
                     .setSize(new Dimension(50, 10))
                     .setBorder(new EmptyBorder(5, 5, 5, 5))
                     .getComponent());
 
             builders[index] = new TextFieldBuilder();
-            panel.add(builders[index].getComponent());
+            add(builders[index].getComponent());
 
             index++;
         }
 
         //Add null content
-        panel.add(new JLabel());
+        add(new JLabel());
 
         JComponent component = new ButtonBuilder("INICIAR PARTIDA", null, this)
                 .getComponent();
         component.setBorder(new EmptyBorder(0, 0, 5, 5));
-        panel.add(component);
+        add(component);
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 
     @Override
@@ -60,10 +71,10 @@ public class StartGamePanel extends Panel implements ActionListener {
             GameImagePanel panel = new GameImagePanel(new ImagePicker().randomPick(),
                     rowsVals, colsVal, usernameVal);
 
-            GamePanel.getInstance().setGamePanel(panel.getComponent());
+            GamePanel.getInstance().setGamePanel(panel);
 
             //Close and reset the screen
-            close();
+            Panel.close(this);
             username.setText("");
             rows.setText("");
             cols.setText("");

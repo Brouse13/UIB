@@ -11,25 +11,25 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static java.awt.BorderLayout.*;
-public class SolutionPanel extends Panel {
+public class SolutionPanel extends JPanel implements Panel {
     private final BufferedImage solution;
 
     public SolutionPanel(BufferedImage solution) {
-        super(false);
         this.solution = solution;
 
-        init();
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new BorderLayout());
-        panel.setVisible(true);
+    public void setUp() {
+        setLayout(new BorderLayout());
+        setVisible(true);
 
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
+    public void initComponents() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         ImageBuilder image = new ImageBuilder(solution)
@@ -40,8 +40,13 @@ public class SolutionPanel extends Panel {
             Screen.refresh(GameScreen.getInstance());
         }).setSize(new Dimension(-1, 150));
 
-        panel.add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
+        add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT,
                 image.getComponent(), button.getComponent())
                 .setSize(size.height - 125).getComponent(), CENTER);
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 }

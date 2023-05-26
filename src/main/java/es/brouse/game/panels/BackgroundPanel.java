@@ -9,16 +9,20 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 
+public class BackgroundPanel extends JPanel implements Panel {
 
-public class BackgroundPanel extends Panel {
-
-    @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new BorderLayout());
+    public BackgroundPanel() {
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
+    public void setUp() {
+        setLayout(new BorderLayout());
+    }
+
+    @Override
+    public void initComponents() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         Dimension frame = new Dimension(
@@ -27,10 +31,15 @@ public class BackgroundPanel extends Panel {
         );
 
         try {
-            panel.add(new ImageBuilder(new ImageUtils().loadImage("/assets/gui/background.jpg"))
+            add(new ImageBuilder(new ImageUtils().loadImage("/assets/gui/background.jpg"))
                     .setDimensions(frame).getComponent());
         }catch (IOException e) {
             Game.logger.log(Level.WARNING, "Unable to load background image");
         }
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 }

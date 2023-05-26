@@ -16,31 +16,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GameImagePanel extends Panel {
+public class GameImagePanel extends JPanel implements Panel {
     private final Dimension size;
     private final BufferedImage originalImage;
     private final List<SplitImage> subImages;
     private final String username;
 
     public GameImagePanel(BufferedImage image, int rowsVals, int colsVal, String usernameVal) {
-        super(false);
-
         this.size = new Dimension(rowsVals, colsVal);
         this.originalImage = rescaleImage(image);
         this.subImages = shuffleImages(originalImage, rowsVals, colsVal);
 
         this.username = usernameVal;
 
-        init();
+        setUp();
+        initComponents();
     }
 
     @Override
-    public void setUp(final JPanel panel) {
-        panel.setLayout(new GridLayout(size.height, size.height, 5, 5));
+    public void setUp() {
+        setLayout(new GridLayout(size.height, size.height, 5, 5));
     }
 
     @Override
-    public void initComponents(final JPanel panel) {
+    public void initComponents() {
         GameImageListener listener = new GameImageListener(subImages, actionPerform());
 
         for (SplitImage subImage : subImages) {
@@ -49,8 +48,13 @@ public class GameImagePanel extends Panel {
                     .setId(String.valueOf(subImage.getIndex()))
                     .setListener(listener);
 
-            panel.add(imageBuilder.getComponent());
+            add(imageBuilder.getComponent());
         }
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 
     /**
@@ -63,7 +67,7 @@ public class GameImagePanel extends Panel {
             stats.setUsername(username);
 
             if (stats.isWin()) {
-                GamePanel.getInstance().setGamePanel(new SolutionPanel(originalImage).getComponent());
+                GamePanel.getInstance().setGamePanel(new SolutionPanel(originalImage));
                 Screen.refresh(GameScreen.getInstance());
                 System.out.println("WIN GAME");
             }
