@@ -17,6 +17,8 @@ public class ButtonBuilder implements Component {
     /**
      * Main class constructor able to create new {@link ButtonBuilder}
      * instance only with its name
+     *
+     * @param name button name
      */
     public ButtonBuilder(String name) {
         this.button = new JButton(name);
@@ -25,6 +27,9 @@ public class ButtonBuilder implements Component {
     /**
      * Main class constructor able to create new {@link ButtonBuilder}
      * instance with its name and an icon.
+     *
+     * @param name button name
+     * @param icon button icon
      */
     public ButtonBuilder(String name, Icon icon) {
         this.button = new JButton(name, icon);
@@ -32,7 +37,11 @@ public class ButtonBuilder implements Component {
 
     /**
      * Main class constructor able to create new {@link ButtonBuilder}
-     * instance with its name, icon and a listener
+     * instance with its name, icon and a listener.
+     *
+     * @param name button name
+     * @param icon button icon
+     * @param listener action triggered
      */
     public ButtonBuilder(String name, Icon icon, ActionListener listener) {
         this.button = new JButton(name, icon);

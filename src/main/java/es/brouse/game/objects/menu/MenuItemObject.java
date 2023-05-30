@@ -17,6 +17,9 @@ public class MenuItemObject implements Component {
     /**
      * Main class constructor able to create new {@link MenuItemObject}
      * instance.
+     *
+     * @param name item name
+     * @param listener action triggered
      */
     public MenuItemObject(String name, ActionListener listener) {
         this.name = name;

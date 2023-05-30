@@ -17,6 +17,8 @@ public class MenuHeaderObject implements Component {
     /**
      * Main class constructor able to create new {@link MenuItemObject}
      * instance.
+     *
+     * @param name header name
      */
     public MenuHeaderObject(String name) {
         this.name = name;

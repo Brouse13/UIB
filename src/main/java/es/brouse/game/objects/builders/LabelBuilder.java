@@ -17,6 +17,8 @@ public class LabelBuilder implements Component {
     /**
      * Main class constructor able to create new {@link JLabel}
      * instance.
+     *
+     * @param name label content
      */
     public LabelBuilder(String name) {
         label = new JLabel(name);

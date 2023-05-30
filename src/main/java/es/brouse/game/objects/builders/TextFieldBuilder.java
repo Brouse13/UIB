@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class TextFieldBuilder implements Component {
     /*---------- PRIVATE ----------*/
-    private JTextField textField;
+    private final JTextField textField;
 
     /**
      * Main class constructor able to create new {@link JTextField}
@@ -22,7 +22,7 @@ public class TextFieldBuilder implements Component {
     }
 
     /**
-     * Set the size of the textField
+     * Set the size of the textField.
      *
      * @param size new size
      * @return the builder instance

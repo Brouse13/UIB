@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
+
 /**
  * Class in charge of the creation of the {@link JLabel} that will
  * display images on the interactive interfaces.
@@ -18,6 +19,8 @@ public class ImageBuilder implements Component {
     /**
      * Main class constructor able to create new {@link ImageBuilder}
      * instance with the image.
+     *
+     * @param image image to render
      */
     public ImageBuilder(BufferedImage image) {
         this.label = new JLabel();
@@ -60,7 +63,6 @@ public class ImageBuilder implements Component {
 
     /**
      * {@inheritDoc}
-     *
      * @return the swing associated image
      */
     @Override

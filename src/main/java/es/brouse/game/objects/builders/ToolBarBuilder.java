@@ -18,12 +18,19 @@ public class ToolBarBuilder implements Component {
 
     /**
      * Main class constructor able to create new {@link SplitPanelBuilder}
-     * instance with its orientation
+     * instance with its orientation.
+     *
+     * @param orientation component orientation
      */
     public ToolBarBuilder(int orientation) {
         this.toolBar = new JToolBar(orientation);
     }
 
+    /**
+     * Add a new set of components to te ToolBar.
+     *
+     * @param component components to add
+     */
     public void add(JComponent component) {
         toolBar.add(component);
     }
