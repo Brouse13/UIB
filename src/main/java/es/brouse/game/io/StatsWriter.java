@@ -52,6 +52,8 @@ public class StatsWriter implements Closeable {
 
                 buffer.writeBoolean(stat.isWin());
 
+                buffer.writeInt(stat.getPoints());
+
                 buffer.writeUTF(stat.getUsername());
             }
 

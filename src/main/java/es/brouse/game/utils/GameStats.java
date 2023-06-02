@@ -1,26 +1,28 @@
 package es.brouse.game.utils;
 
 public class GameStats {
-    public static final int LENGTH = 59;
-    private final int moves, minMoves;
+    public static final int LENGTH = 61;
+    private final int moves, minMoves, points;
     private final long startTime, time;
     private final boolean win;
     private String username = "UNKNOWN";
 
-    public GameStats(int moves, int minMoves, long startTime, boolean win) {
+    public GameStats(int moves, int minMoves, long startTime, boolean win, int points) {
         this.moves = moves;
         this.startTime = startTime;
         this.minMoves = minMoves;
         this.time = System.currentTimeMillis() - startTime;
         this.win = win;
+        this.points = points;
     }
 
-    public GameStats(int moves, int minMoves, long startTime, long time, boolean win, String username) {
+    public GameStats(int moves, int minMoves, long startTime, long time, boolean win, int points, String username) {
         this.moves = moves;
         this.minMoves = minMoves;
         this.startTime = startTime;
         this.time = time;
         this.win = win;
+        this.points = points;
         this.username = normalize(username);
     }
 
@@ -42,6 +44,10 @@ public class GameStats {
 
     public boolean isWin() {
         return win;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public String getUsername() {

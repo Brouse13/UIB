@@ -51,6 +51,7 @@ public class StatsReader implements Closeable {
                     buffer.readLong(),
                     buffer.readLong(),
                     buffer.readBoolean(),
+                    buffer.readInt(),
                     buffer.readUTF()
             );
 
@@ -70,7 +71,7 @@ public class StatsReader implements Closeable {
      *
      * @return the read object
      */
-    public Object read() {
+    public GameStats read() {
         return nextObject;
     }
 
