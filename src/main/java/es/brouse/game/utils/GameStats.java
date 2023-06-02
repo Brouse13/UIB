@@ -59,6 +59,10 @@ public class GameStats {
         return builder.toString();
     }
 
+    public String getRawUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

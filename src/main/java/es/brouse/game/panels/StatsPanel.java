@@ -52,12 +52,13 @@ public class StatsPanel extends JPanel implements Panel {
 
         try(StatsReader reader = new StatsReader("data/stats.dat")) {
             while (reader.next()) {
-                content = true;
                 GameStats read = reader.read();
 
                 //Add to the panel if the stats are displayed global or user matches
-                if (!onlyUser || read.getUsername().equals(name))
+                if (!onlyUser || read.getRawUsername().equalsIgnoreCase(name)) {
                     textArea.addLine(String.format(FORMAT,read.getUsername(), read.getTime(), read.getPoints()));
+                    content = true;
+                }
             }
         }
 
