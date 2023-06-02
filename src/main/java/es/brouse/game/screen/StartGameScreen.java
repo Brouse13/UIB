@@ -24,11 +24,6 @@ public class StartGameScreen extends JFrame implements Screen {
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         setResizable(false);
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            Game.logger.log(Level.WARNING, "Couldn't assign system LookAndFeel");
-        }
         setLocale(Locale.ROOT);
     }
 
