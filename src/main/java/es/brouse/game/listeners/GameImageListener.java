@@ -73,7 +73,7 @@ public class GameImageListener extends MouseAdapter {
 
         //Check the end of the game and end listener
         if (validate()) {
-            gameSolve.accept(new GameStats(moves, minOperations, startTime, true));
+            gameSolve.accept(new GameStats(moves, minOperations, startTime, true, images.size()));
             win = true;
         }
     }
