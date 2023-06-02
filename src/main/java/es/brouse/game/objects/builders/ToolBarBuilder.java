@@ -3,6 +3,7 @@ package es.brouse.game.objects.builders;
 import es.brouse.game.objects.Component;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Class in charge of the creation of the {@link JToolBar} that will
@@ -24,15 +25,23 @@ public class ToolBarBuilder implements Component {
      */
     public ToolBarBuilder(int orientation) {
         this.toolBar = new JToolBar(orientation);
+        toolBar.setFloatable(false);
     }
 
     /**
-     * Add a new set of components to te ToolBar.
+     * Add a new set of components to the ToolBar.
      *
      * @param component components to add
+     * @return the builder instance
      */
-    public void add(JComponent component) {
+    public ToolBarBuilder add(JComponent component) {
         toolBar.add(component);
+        return this;
+    }
+
+    public ToolBarBuilder setBackground(Color color) {
+        toolBar.setBackground(color);
+        return this;
     }
 
     /**

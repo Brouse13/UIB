@@ -33,13 +33,14 @@ public class HeaderPanel extends JPanel implements Panel {
     @Override
     public void setUp() {
         setLayout(new BorderLayout(0,0));
+        setBackground(Color.BLACK);
     }
 
     @Override
     public void initComponents() {
         add(mainMenu().getComponent(), NORTH);
 
-        ToolBarBuilder toolBar = new ToolBarBuilder(ToolBarBuilder.HORIZONTAL);
+        ToolBarBuilder toolBar = new ToolBarBuilder(ToolBarBuilder.HORIZONTAL).setBackground(Color.BLACK);
         toolBar.add(getButton("/assets/gui/game/newGame.jpg", listeners.newGame()).getComponent());
         toolBar.add(getButton("/assets/gui/game/selectedHistory.jpg", listeners.score()).getComponent());
         toolBar.add(getButton("/assets/gui/game/history.jpg", listeners.score()).getComponent());
@@ -77,11 +78,12 @@ public class HeaderPanel extends JPanel implements Panel {
 
             //Create the button in fullImage mode
             return new ButtonBuilder(null, new ImageIcon(ImageIO.read(resource)), listener)
+                    .setBackgroundColor(Color.BLACK)
                     .fullImage();
         } catch (IOException | NullPointerException e) {
             //Default button and error handler
             Game.logger.log(Level.WARNING, "Unable to load resource");
-            return new ButtonBuilder("X").fullImage();
+            return new ButtonBuilder("").fullImage().setBackgroundColor(Color.BLACK);
         }
     }
 }
