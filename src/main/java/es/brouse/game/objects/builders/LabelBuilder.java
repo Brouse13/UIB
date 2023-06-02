@@ -25,13 +25,39 @@ public class LabelBuilder implements Component {
     }
 
     /**
-     * Set the size of the label.
+     * Set the current background to the given color.
      *
-     * @param size new size
+     * @param background new backgroundColor
      * @return the builder instance
      */
-    public LabelBuilder setSize(Dimension size) {
-        label.setSize(size);
+    public LabelBuilder setBackground(Color background) {
+        if (background == Color.BLACK) label.setForeground(Color.WHITE);
+        label.setBackground(background);
+        label.setOpaque(true);
+        return this;
+    }
+
+    /**
+     * Set the current label font to the given.
+     *
+     * @param font new font name
+     * @param type new font type
+     * @param size new font size
+     * @return the builder instance
+     */
+    public LabelBuilder setFont(String font, int type, int size) {
+        label.setFont(new Font(font, type, size));
+        return this;
+    }
+
+    /**
+     * Set the new alignment to the label.
+     *
+     * @param align new alignment
+     * @return the new builder
+     */
+    public LabelBuilder align(int align) {
+        label.setHorizontalAlignment(align);
         return this;
     }
 
