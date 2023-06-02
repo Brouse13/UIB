@@ -55,7 +55,9 @@ public class ButtonBuilder implements Component {
      * @return the builder instance
      */
     public ButtonBuilder setBackgroundColor(Color color) {
+        if (color.equals(Color.BLACK)) button.setForeground(Color.WHITE);
         button.setBackground(color);
+        button.setOpaque(true);
         return this;
     }
 
