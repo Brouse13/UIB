@@ -1,7 +1,8 @@
-package es.brouse.game.panels;
+package es.brouse.game.panels.iddle;
 
 import es.brouse.game.Game;
 import es.brouse.game.objects.builders.ImageBuilder;
+import es.brouse.game.panels.Panel;
 import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;

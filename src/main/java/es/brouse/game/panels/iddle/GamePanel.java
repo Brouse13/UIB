@@ -1,4 +1,6 @@
-package es.brouse.game.panels;
+package es.brouse.game.panels.iddle;
+
+import es.brouse.game.panels.Panel;
 
 import javax.swing.*;
 import java.awt.*;

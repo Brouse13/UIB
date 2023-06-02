@@ -1,4 +1,4 @@
-package es.brouse.game.panels;
+package es.brouse.game.panels.iddle;
 
 import es.brouse.game.Game;
 import es.brouse.game.listeners.GameListeners;
@@ -8,6 +8,7 @@ import es.brouse.game.objects.builders.ToolBarBuilder;
 import es.brouse.game.objects.menu.MenuHeaderObject;
 import es.brouse.game.objects.menu.MenuItemObject;
 import es.brouse.game.objects.menu.MenuObject;
+import es.brouse.game.panels.Panel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

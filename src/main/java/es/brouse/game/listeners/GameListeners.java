@@ -1,9 +1,9 @@
 package es.brouse.game.listeners;
 
 import es.brouse.game.GameSettings;
-import es.brouse.game.panels.GamePanel;
+import es.brouse.game.panels.iddle.GamePanel;
 import es.brouse.game.panels.Panel;
-import es.brouse.game.panels.StatsPanel;
+import es.brouse.game.panels.stats.StatsPanel;
 import es.brouse.game.screen.StartGameScreen;
 
 import javax.swing.*;

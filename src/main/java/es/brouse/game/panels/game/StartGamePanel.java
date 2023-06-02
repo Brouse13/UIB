@@ -1,8 +1,10 @@
-package es.brouse.game.panels;
+package es.brouse.game.panels.game;
 
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextFieldBuilder;
+import es.brouse.game.panels.Panel;
+import es.brouse.game.panels.iddle.GamePanel;
 import es.brouse.game.utils.ImagePicker;
 
 import javax.swing.*;
@@ -12,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class StartGamePanel extends JPanel implements Panel, ActionListener {
+public class StartGamePanel extends JPanel implements es.brouse.game.panels.Panel, ActionListener {
     private TextFieldBuilder[] builders;
 
     public StartGamePanel() {

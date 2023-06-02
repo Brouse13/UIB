@@ -1,8 +1,9 @@
-package es.brouse.game.panels;
+package es.brouse.game.panels.stats;
 
 import es.brouse.game.io.StatsReader;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextAreaBuilder;
+import es.brouse.game.panels.Panel;
 import es.brouse.game.utils.GameStats;
 
 import javax.swing.*;

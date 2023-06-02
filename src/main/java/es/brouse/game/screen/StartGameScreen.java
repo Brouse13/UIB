@@ -1,12 +1,10 @@
 package es.brouse.game.screen;
 
-import es.brouse.game.Game;
-import es.brouse.game.panels.StartGamePanel;
+import es.brouse.game.panels.game.StartGamePanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Locale;
-import java.util.logging.Level;
 
 public class StartGameScreen extends JFrame implements Screen {
     private static final String TITLE = "Iniciar partida";

@@ -1,7 +1,7 @@
 package es.brouse.game.screen;
 
 import es.brouse.game.Game;
-import es.brouse.game.panels.GamePanel;
+import es.brouse.game.panels.iddle.GamePanel;
 
 import javax.swing.*;
 import java.util.Locale;

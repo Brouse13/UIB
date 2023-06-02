@@ -1,8 +1,10 @@
-package es.brouse.game.panels;
+package es.brouse.game.panels.game;
 
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.objects.builders.SplitPanelBuilder;
+import es.brouse.game.panels.Panel;
+import es.brouse.game.panels.iddle.GamePanel;
 import es.brouse.game.screen.GameScreen;
 import es.brouse.game.screen.Screen;
 
