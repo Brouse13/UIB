@@ -16,10 +16,17 @@ import static javax.swing.ScrollPaneConstants.*;
  * can be also used to filter by name.
  */
 public class StatsPanel extends JPanel implements Panel {
+    /*---------- PRIVATE ----------*/
     private static final String FORMAT = "JUGADOR: %s - FECHA: %s - PUNTOS %s";
     private final String name;
     private final boolean onlyUser;
 
+    /**
+     * Main class constructor used to create new {@link StatsPanel}
+     * instances.
+     *
+     * @param name associated username
+     */
     public StatsPanel(String name) {
         this.name = name;
         this.onlyUser = name != null;

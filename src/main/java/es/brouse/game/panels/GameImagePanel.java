@@ -23,6 +23,15 @@ public class GameImagePanel extends JPanel implements Panel {
     private final List<SplitImage> subImages;
     private final String username;
 
+    /**
+     * Main class constructor used to create new {@link GameImagePanel}
+     * instances.
+     *
+     * @param image image to render
+     * @param rowsVals rows of the split
+     * @param colsVal cols of the split
+     * @param usernameVal name of the username
+     */
     public GameImagePanel(BufferedImage image, int rowsVals, int colsVal, String usernameVal) {
         this.size = new Dimension(rowsVals, colsVal);
         this.originalImage = rescaleImage(image);
@@ -77,6 +86,12 @@ public class GameImagePanel extends JPanel implements Panel {
         };
     }
 
+    /**
+     * Rescale the given image.
+     *
+     * @param image image to rescale
+     * @return the rescaled image
+     */
     private BufferedImage rescaleImage(BufferedImage image) {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -86,6 +101,14 @@ public class GameImagePanel extends JPanel implements Panel {
         return new ImageUtils().rescaleImage(image, width, height);
     }
 
+    /**
+     * Shuffle the given images.
+     *
+     * @param image image to shuffle
+     * @param rows rows of the shuffle
+     * @param cols cols of the shuffle
+     * @return the shuffled images
+     */
     private List<SplitImage> shuffleImages(BufferedImage image, int rows, int cols) {
         List<SplitImage> images = new ArrayList<>(new ImageUtils().split(image, rows, cols));
         Collections.shuffle(images);
