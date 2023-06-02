@@ -1,7 +1,9 @@
 package es.brouse.game.listeners;
 
 import es.brouse.game.GameSettings;
+import es.brouse.game.panels.GamePanel;
 import es.brouse.game.panels.Panel;
+import es.brouse.game.panels.StatsPanel;
 import es.brouse.game.screen.StartGameScreen;
 
 import javax.swing.*;
@@ -19,11 +21,15 @@ public final class GameListeners {
     }
 
     public ActionListener generalScore() {
-        return event -> System.out.println("General Score: %d");
+        return event -> GamePanel.getInstance().setGamePanel(new StatsPanel(null));
     }
 
     public ActionListener score() {
-        return event -> System.out.println("Score: %d");
+        return event -> {
+            String message = "Introduce el nombre del usuario:";
+            String input = JOptionPane.showInputDialog(GamePanel.getInstance(), message);
+            GamePanel.getInstance().setGamePanel(new StatsPanel(input));
+        };
     }
 
     public ActionListener changeDir(final Panel panel) {
@@ -50,7 +56,6 @@ public final class GameListeners {
             }
         };
     }
-
     public ActionListener exit() {
         return event -> System.exit(0);
     }

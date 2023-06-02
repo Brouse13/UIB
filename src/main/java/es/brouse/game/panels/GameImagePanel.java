@@ -7,6 +7,7 @@ import es.brouse.game.screen.GameScreen;
 import es.brouse.game.screen.Screen;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
+import es.brouse.game.utils.StatsUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,6 +70,8 @@ public class GameImagePanel extends JPanel implements Panel {
             if (stats.isWin()) {
                 GamePanel.getInstance().setGamePanel(new SolutionPanel(originalImage));
                 Screen.refresh(GameScreen.getInstance());
+
+                new StatsUtils().writeStats(stats);
                 System.out.println("WIN GAME");
             }
         };
