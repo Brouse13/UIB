@@ -25,6 +25,17 @@ public class LabelBuilder implements Component {
     }
 
     /**
+     * Set the new size to the label.
+     *
+     * @param dimension new dimension
+     * @return the builder instance
+     */
+    public LabelBuilder setSize(Dimension dimension) {
+        label.setSize(dimension);
+        return this;
+    }
+
+    /**
      * Set the current background to the given color.
      *
      * @param background new backgroundColor
