@@ -63,9 +63,31 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         JTextField rows = ((JTextField) builders[1].getComponent());
         JTextField cols = ((JTextField) builders[2].getComponent());
 
+        //Check cols error
+        try {
+            Integer.parseInt(cols.getText());
+        }catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(GamePanel.getInstance(), "Número de columnas invalido");
+            return;
+        }
+
+        //Check rows cols
+        try {
+            Integer.parseInt(rows.getText());
+        }catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(GamePanel.getInstance(), "Número de filas inválido");
+            return;
+        }
+
         String usernameVal = username.getText();
         int rowsVals = Integer.parseInt(rows.getText());
         int colsVal = Integer.parseInt(cols.getText());
+
+        //Check if the partitions are squared
+        if (rowsVals != colsVal) {
+            JOptionPane.showMessageDialog(GamePanel.getInstance(), "Las particiones han de ser cuadradas");
+            return;
+        }
 
         try {
             GameImagePanel panel = new GameImagePanel(new ImagePicker().randomPick(),
