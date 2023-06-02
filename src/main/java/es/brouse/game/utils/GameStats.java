@@ -21,7 +21,7 @@ public class GameStats {
         this.startTime = startTime;
         this.time = time;
         this.win = win;
-        this.username = username;
+        this.username = normalize(username);
     }
 
     public int getMoves() {
@@ -45,9 +45,10 @@ public class GameStats {
     }
 
     public String getUsername() {
+        final String delimiter = String.valueOf(((char)0));
         StringBuilder builder = new StringBuilder(username);
 
-        builder.append(" ".repeat(Math.max(0, 32 - builder.length())));
+        builder.append(delimiter.repeat(Math.max(0, 32 - builder.length())));
 
         return builder.toString();
     }
@@ -56,6 +57,9 @@ public class GameStats {
         this.username = username;
     }
 
+    private String normalize(String str) {
+        return str.split(String.valueOf(((char)0)))[0];
+    }
     @Override
     public String toString() {
         return "GameStats{" +
