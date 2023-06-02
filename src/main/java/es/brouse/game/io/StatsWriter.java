@@ -40,8 +40,10 @@ public class StatsWriter implements Closeable {
      * @param stats objects to write
      */
     public void write(GameStats... stats) {
-        for (GameStats stat : stats) {
-            try {
+        try {
+            buffer.seek(buffer.length());
+
+            for (GameStats stat : stats) {
                 buffer.writeInt(stat.getMoves());
                 buffer.writeInt(stat.getMinMoves());
 
@@ -51,10 +53,10 @@ public class StatsWriter implements Closeable {
                 buffer.writeBoolean(stat.isWin());
 
                 buffer.writeUTF(stat.getUsername());
-
-            } catch (IOException e) {
-                logger.log(Level.WARNING, "Object " + stat + " couldn't be written");
             }
+
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Object couldn't be written");
         }
     }
 
