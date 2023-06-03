@@ -19,6 +19,11 @@ public class StartGameScreen extends JFrame implements Screen {
         setSize(new Dimension(500, 200));
         setContentPane(new StartGamePanel().getComponent());
 
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - 500) / 2);
+        int y = (int) ((dimension.getHeight() - 200) / 2);
+        setLocation(x, y);
+
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         setResizable(false);
