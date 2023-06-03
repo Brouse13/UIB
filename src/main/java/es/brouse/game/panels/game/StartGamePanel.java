@@ -4,16 +4,13 @@ import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextFieldBuilder;
 import es.brouse.game.panels.Panel;
-import es.brouse.game.panels.iddle.GamePanel;
-import es.brouse.game.utils.ImagePicker;
+import es.brouse.game.panels.iddle.IdlePanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class StartGamePanel extends JPanel implements Panel, ActionListener {
     private TextFieldBuilder[] builders;
@@ -70,7 +67,7 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         try {
             Integer.parseInt(cols.getText());
         }catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(GamePanel.getInstance(), "Número de columnas invalido");
+            JOptionPane.showMessageDialog(IdlePanel.getInstance(), "Número de columnas invalido");
             return;
         }
 
@@ -78,7 +75,7 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         try {
             Integer.parseInt(rows.getText());
         }catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(GamePanel.getInstance(), "Número de filas inválido");
+            JOptionPane.showMessageDialog(IdlePanel.getInstance(), "Número de filas inválido");
             return;
         }
 
@@ -88,24 +85,22 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
 
         //Check if the partitions are squared
         if (rowsVals != colsVal) {
-            JOptionPane.showMessageDialog(GamePanel.getInstance(), "Las particiones han de ser cuadradas");
+            JOptionPane.showMessageDialog(IdlePanel.getInstance(), "Las particiones han de ser cuadradas");
             return;
         }
 
-        try {
-            final BufferedImage image = new ImagePicker().randomPick();
-            final GameImagePanel gamePanel = new GameImagePanel(image, rowsVals, colsVal, usernameVal);
+        //Render the game instance
+        IdlePanel.getInstance().getController().game(
+                rowsVals,
+                colsVal,
+                usernameVal
+        );
 
-            GamePanel.getInstance().setGamePanel(gamePanel);
-            GamePanel.getInstance().setFooterPanel(new CountDownPanel(gamePanel));
+        //Close and reset the screen
+        Panel.close(this);
+        username.setText("");
+        rows.setText("");
+        cols.setText("");
 
-            //Close and reset the screen
-            Panel.close(this);
-            username.setText("");
-            rows.setText("");
-            cols.setText("");
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
     }
 }

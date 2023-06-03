@@ -1,9 +1,8 @@
 package es.brouse.game.listeners;
 
 import es.brouse.game.GameSettings;
-import es.brouse.game.panels.iddle.GamePanel;
 import es.brouse.game.panels.Panel;
-import es.brouse.game.panels.stats.StatsPanel;
+import es.brouse.game.panels.iddle.IdlePanel;
 import es.brouse.game.screen.StartGameScreen;
 
 import javax.swing.*;
@@ -21,15 +20,11 @@ public final class GameListeners {
     }
 
     public ActionListener generalScore() {
-        return event -> GamePanel.getInstance().setGamePanel(new StatsPanel(null));
+        return event -> IdlePanel.getInstance().getController().renderStats(false);
     }
 
     public ActionListener score() {
-        return event -> {
-            String message = "Introduce el nombre del usuario:";
-            String input = JOptionPane.showInputDialog(GamePanel.getInstance(), message);
-            GamePanel.getInstance().setGamePanel(new StatsPanel(input));
-        };
+        return event -> IdlePanel.getInstance().getController().renderStats(true);
     }
 
     public ActionListener changeDir(final Panel panel) {

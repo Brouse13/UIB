@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
  * on the main game.
  */
 public class SidebarPanel extends JPanel implements Panel {
+    /*---------- PRIVATE ----------*/
     private final GameListeners listeners = new GameListeners();
 
     /**

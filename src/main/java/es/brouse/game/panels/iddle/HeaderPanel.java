@@ -21,6 +21,7 @@ import static java.awt.BorderLayout.*;
  * have a dropdown with some game options.
  */
 public class HeaderPanel extends JPanel implements Panel {
+    /*---------- PRIVATE ----------*/
     private static final GameListeners listeners = new GameListeners();
 
     /**

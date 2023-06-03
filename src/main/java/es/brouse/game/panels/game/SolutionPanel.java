@@ -3,9 +3,7 @@ package es.brouse.game.panels.game;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.panels.Panel;
-import es.brouse.game.panels.iddle.GamePanel;
-import es.brouse.game.screen.GameScreen;
-import es.brouse.game.screen.Screen;
+import es.brouse.game.panels.iddle.IdlePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,22 +12,6 @@ import java.awt.image.BufferedImage;
 
 import static java.awt.BorderLayout.*;
 public class SolutionPanel {
-    private final Solution solution;
-    private final Footer footer;
-
-    public SolutionPanel(BufferedImage solution) {
-        this.solution = new Solution(solution);
-        this.footer = new Footer();
-    }
-
-    public void render() {
-        GamePanel.getInstance().setGamePanel(solution);
-        GamePanel.getInstance().setFooterPanel(footer);
-
-        //Refresh the screen
-        Screen.refresh(GameScreen.getInstance());
-    }
-
     public static class Footer extends JPanel implements Panel {
         public Footer() {
             setUp();
@@ -57,10 +39,7 @@ public class SolutionPanel {
          * @return the perform action
          */
         private ActionListener event() {
-            return event -> {
-                GamePanel.getInstance().reset();
-                Screen.refresh(GameScreen.getInstance());
-            };
+            return event -> IdlePanel.getInstance().getController().idle();
         }
     }
 
