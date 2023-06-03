@@ -4,9 +4,6 @@ import es.brouse.game.listeners.GameImageListener;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.panels.Panel;
-import es.brouse.game.panels.iddle.GamePanel;
-import es.brouse.game.screen.GameScreen;
-import es.brouse.game.screen.Screen;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
 import es.brouse.game.utils.StatsUtils;
@@ -79,9 +76,7 @@ public class GameImagePanel extends JPanel implements Panel {
             stats.setUsername(username);
 
             if (stats.isWin()) {
-                GamePanel.getInstance().setGamePanel(new SolutionPanel(originalImage));
-                Screen.refresh(GameScreen.getInstance());
-
+                new SolutionPanel(originalImage).render();
                 new StatsUtils().writeStats(stats);
             }
         };
