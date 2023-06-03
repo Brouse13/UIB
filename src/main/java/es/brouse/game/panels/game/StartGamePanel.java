@@ -97,7 +97,7 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
             final GameImagePanel gamePanel = new GameImagePanel(image, rowsVals, colsVal, usernameVal);
 
             GamePanel.getInstance().setGamePanel(gamePanel);
-            GamePanel.getInstance().setFooterPanel(new CountDownPanel(gamePanel.endTicker()));
+            GamePanel.getInstance().setFooterPanel(new CountDownPanel(gamePanel));
 
             //Close and reset the screen
             Panel.close(this);

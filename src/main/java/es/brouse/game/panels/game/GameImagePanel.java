@@ -4,6 +4,7 @@ import es.brouse.game.listeners.GameImageListener;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.panels.Panel;
+import es.brouse.game.panels.iddle.GamePanel;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
 import es.brouse.game.utils.StatsUtils;
@@ -90,7 +91,11 @@ public class GameImagePanel extends JPanel implements Panel {
             new StatsUtils().writeStats(stats);
             new SolutionPanel(originalImage).render();
 
-            System.out.println(stats.isWin());
+            String message = stats.isWin() ?
+                    "Enhorabuena, has conseguido solucionar el panel y ahs conseguido " + stats.getPoints() + " puntos" :
+                    "No lo has conseguido, el tiempo se ha acabado";
+
+            JOptionPane.showMessageDialog(GamePanel.getInstance(), message);
         };
     }
 
