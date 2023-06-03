@@ -3,7 +3,6 @@ package es.brouse.game.objects.menu;
 import es.brouse.game.objects.Component;
 
 import javax.swing.*;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,31 +12,16 @@ import java.util.Set;
  */
 public class MenuObject implements Component {
     /*---------- PRIVATE ----------*/
-    private final Set<MenuHeaderObject> headers;
+    private final Set<MenuHeaderObject> headers = new HashSet<>();
 
     /**
-     * Main class constructor able to create new {@link MenuObject}
-     * instance without having to instance the headers.
-     */
-    public MenuObject() {
-        this.headers = new HashSet<>();
-    }
-
-    /**
-     * Main class constructor able to create new {@link MenuObject}
-     * instances forcing to instance the headers.
-     */
-    public MenuObject(Set<MenuHeaderObject> headers) {
-        this.headers = headers;
-    }
-
-    /**
-     * Add a {@link MenuObject[]} to the stored headers.
+     * Class constructor used to create a menu with only one item.
      *
-     * @param headers headers to add
+     * @param name menu name
+     * @param items menu items
      */
-    public void addHeaders(MenuHeaderObject... headers) {
-        this.headers.addAll(Arrays.asList(headers));
+    public MenuObject(String name, MenuItemObject... items) {
+        this.headers.add(new MenuHeaderObject(name, items));
     }
 
     /**

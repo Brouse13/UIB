@@ -1,30 +1,32 @@
 package es.brouse.game.panels.iddle;
 
-import es.brouse.game.Game;
 import es.brouse.game.listeners.GameListeners;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.SplitPanelBuilder;
 import es.brouse.game.objects.builders.ToolBarBuilder;
-import es.brouse.game.objects.menu.MenuHeaderObject;
 import es.brouse.game.objects.menu.MenuItemObject;
 import es.brouse.game.objects.menu.MenuObject;
 import es.brouse.game.panels.Panel;
+import es.brouse.game.utils.ImageUtils;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.List;
-import java.util.logging.Level;
+import java.awt.image.BufferedImage;
 
 import static java.awt.BorderLayout.*;
 
+/**
+ * Class used to create and display the header content that will
+ * have a dropdown with some game options.
+ */
 public class HeaderPanel extends JPanel implements Panel {
     private static final GameListeners listeners = new GameListeners();
 
+    /**
+     * Main class constructor used to create new {@link HeaderPanel}
+     * instances.
+     */
     public HeaderPanel() {
         setUp();
         initComponents();
@@ -38,17 +40,18 @@ public class HeaderPanel extends JPanel implements Panel {
 
     @Override
     public void initComponents() {
-        add(mainMenu().getComponent(), NORTH);
-
         ToolBarBuilder toolBar = new ToolBarBuilder(ToolBarBuilder.HORIZONTAL).setBackground(Color.BLACK);
-        toolBar.add(getButton("/assets/gui/game/newGame.jpg", listeners.newGame()).getComponent());
-        toolBar.add(getButton("/assets/gui/game/selectedHistory.jpg", listeners.score()).getComponent());
-        toolBar.add(getButton("/assets/gui/game/history.jpg", listeners.score()).getComponent());
-        toolBar.add(getButton("/assets/gui/game/changeDir.jpg", listeners.changeDir(this)).getComponent());
-        toolBar.add(getButton("/assets/gui/game/exit.jpg", listeners.exit()).getComponent());
+        SplitPanelBuilder splitPane = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
 
+        toolBar.add(getButton("newGame.jpg", listeners.newGame()).getComponent());
+        toolBar.add(getButton("selectedHistory.jpg", listeners.score()).getComponent());
+        toolBar.add(getButton("history.jpg", listeners.score()).getComponent());
+        toolBar.add(getButton("changeDir.jpg", listeners.changeDir(this)).getComponent());
+        toolBar.add(getButton("exit.jpg", listeners.exit()).getComponent());
+
+        add(mainMenu().getComponent(), NORTH);
         add(toolBar.getComponent(), CENTER);
-        add(new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT).getComponent(), SOUTH);
+        add(splitPane.getComponent(), SOUTH);
     }
 
     @Override
@@ -58,32 +61,26 @@ public class HeaderPanel extends JPanel implements Panel {
 
     private MenuObject mainMenu() {
         final GameListeners listeners = new GameListeners();
-        MenuHeaderObject header = new MenuHeaderObject("Menu");
 
-        header.addItems(
+        return new MenuObject(
+                "Menu",
                 new MenuItemObject("Nueva Partida", listeners.newGame()),
                 new MenuItemObject("Clasificatoria General", listeners.generalScore()),
                 new MenuItemObject("Historial", listeners.score()),
                 new MenuItemObject("Cambiar directorio", listeners.changeDir(this)),
-                new MenuItemObject("Salir", listeners.exit()));
-
-        return new MenuObject(new HashSet<>(List.of(header)));
+                new MenuItemObject("Salir", listeners.exit())
+        );
     }
 
     private ButtonBuilder getButton(String name, ActionListener listener) {
-        try {
-            //Try to load the resource
-            URL resource = getClass().getResource(name);
-            if (resource == null) throw new NullPointerException();
+        //Create the path of the file
+        String path = "/assets/gui/game/" + name;
 
-            //Create the button in fullImage mode
-            return new ButtonBuilder(null, new ImageIcon(ImageIO.read(resource)), listener)
-                    .setBackgroundColor(Color.BLACK)
-                    .fullImage();
-        } catch (IOException | NullPointerException e) {
-            //Default button and error handler
-            Game.logger.log(Level.WARNING, "Unable to load resource");
-            return new ButtonBuilder("").fullImage().setBackgroundColor(Color.BLACK);
-        }
+        //Load the image from resources
+        final BufferedImage bufferedImage = new ImageUtils().completeLoadImage(path);
+        final ImageIcon icon = new ImageIcon(bufferedImage);
+
+        //Return the button
+        return new ButtonBuilder(null, icon, listener).setBackgroundColor(Color.BLACK).fullImage();
     }
 }

@@ -19,18 +19,11 @@ public class MenuHeaderObject implements Component {
      * instance.
      *
      * @param name header name
+     * @param items items of the menu
      */
-    public MenuHeaderObject(String name) {
+    public MenuHeaderObject(String name, MenuItemObject... items) {
         this.menu = new JMenu(name);
-    }
-
-    /**
-     * Add a {@link MenuItemObject[]} to the stored items.
-     *
-     * @param items headers to add
-     */
-    public void addItems(MenuItemObject... items) {
-        this.items.addAll(Arrays.asList(items));
+        this.items.addAll(List.of(items));
     }
 
     /**

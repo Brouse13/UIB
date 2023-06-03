@@ -8,9 +8,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Class used to display the right buttons that act as a sidebar
+ * on the main game.
+ */
 public class SidebarPanel extends JPanel implements Panel {
     private final GameListeners listeners = new GameListeners();
 
+    /**
+     * Main class constructor used to crete new {@link SidebarPanel}
+     * instances.
+     */
     public SidebarPanel() {
         setUp();
         initComponents();

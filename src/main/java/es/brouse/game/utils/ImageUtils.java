@@ -1,5 +1,6 @@
 package es.brouse.game.utils;
 
+import es.brouse.game.Game;
 import es.brouse.game.objects.SplitImage;
 
 import javax.imageio.ImageIO;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
 
 public class ImageUtils {
     public Set<SplitImage> split(BufferedImage originalImage, int rows, int cols) {
@@ -47,6 +49,15 @@ public class ImageUtils {
         if (resource == null) throw new IOException("Image " + path + " not found");
 
         return ImageIO.read(resource);
+    }
+
+    public BufferedImage completeLoadImage(String path) {
+        try {
+            return loadImage(path);
+        }catch (IOException exception) {
+            Game.logger.log(Level.WARNING, "Unable to load image " + path);
+            return new BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB);
+        }
     }
 
     public BufferedImage rescaleImage(BufferedImage image, int newWidth, int newLength) {
