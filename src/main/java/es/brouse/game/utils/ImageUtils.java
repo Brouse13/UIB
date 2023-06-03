@@ -51,11 +51,11 @@ public class ImageUtils {
         return ImageIO.read(resource);
     }
 
-    public BufferedImage completeLoadImage(String path) {
+    public BufferedImage loadResource(String name) {
         try {
-            return loadImage(path);
+            return loadImage( "/assets/gui/" + name);
         }catch (IOException exception) {
-            Game.logger.log(Level.WARNING, "Unable to load image " + path);
+            Game.logger.log(Level.WARNING, "Unable to load resource " + name);
             return new BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB);
         }
     }

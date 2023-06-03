@@ -74,10 +74,10 @@ public class HeaderPanel extends JPanel implements Panel {
 
     private ButtonBuilder getButton(String name, ActionListener listener) {
         //Create the path of the file
-        String path = "/assets/gui/game/" + name;
+        String path = "game/" + name;
 
         //Load the image from resources
-        final BufferedImage bufferedImage = new ImageUtils().completeLoadImage(path);
+        final BufferedImage bufferedImage = new ImageUtils().loadResource(path);
         final ImageIcon icon = new ImageIcon(bufferedImage);
 
         //Return the button

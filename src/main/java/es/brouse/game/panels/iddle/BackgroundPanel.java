@@ -1,14 +1,12 @@
 package es.brouse.game.panels.iddle;
 
-import es.brouse.game.Game;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.panels.Panel;
 import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.logging.Level;
+import java.awt.image.BufferedImage;
 
 public class BackgroundPanel extends JPanel implements Panel {
 
@@ -31,12 +29,10 @@ public class BackgroundPanel extends JPanel implements Panel {
                 ((int) (size.getHeight() - 100))
         );
 
-        try {
-            add(new ImageBuilder(new ImageUtils().loadImage("/assets/gui/background.jpg"))
-                    .setDimensions(frame).getComponent());
-        }catch (IOException e) {
-            Game.logger.log(Level.WARNING, "Unable to load background image");
-        }
+        final BufferedImage image = new ImageUtils().loadResource("background.jpg");
+        final ImageBuilder imageBuilder = new ImageBuilder(image).setDimensions(frame);
+
+        add(imageBuilder.getComponent());
     }
 
     @Override
