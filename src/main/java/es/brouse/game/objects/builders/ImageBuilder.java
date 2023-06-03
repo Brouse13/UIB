@@ -24,6 +24,7 @@ public class ImageBuilder implements Component {
      */
     public ImageBuilder(BufferedImage image) {
         this.label = new JLabel();
+        this.label.setSize(new Dimension(-1, -1));
         this.image = image;
     }
 
