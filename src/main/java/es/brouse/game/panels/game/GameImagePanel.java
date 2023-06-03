@@ -83,7 +83,6 @@ public class GameImagePanel extends JPanel implements Panel {
                 Screen.refresh(GameScreen.getInstance());
 
                 new StatsUtils().writeStats(stats);
-                System.out.println("WIN GAME");
             }
         };
     }
