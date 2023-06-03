@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class MenuHeaderObject implements Component {
     /*---------- PRIVATE ----------*/
-    private final String name;
+    private final JMenu menu;
     private final Set<MenuItemObject> items = new LinkedHashSet<>();
 
     /**
@@ -21,7 +21,7 @@ public class MenuHeaderObject implements Component {
      * @param name header name
      */
     public MenuHeaderObject(String name) {
-        this.name = name;
+        this.menu = new JMenu(name);
     }
 
     /**
@@ -39,8 +39,6 @@ public class MenuHeaderObject implements Component {
      */
     @Override
     public JComponent getComponent() {
-        JMenu menu = new JMenu(name);
-
         //Add all the items to the menu
         for (MenuItemObject item : items) menu.add(item.getComponent());
 
