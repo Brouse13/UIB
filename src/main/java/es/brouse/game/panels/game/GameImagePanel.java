@@ -7,7 +7,6 @@ import es.brouse.game.panels.Panel;
 import es.brouse.game.panels.iddle.IdlePanel;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
-import es.brouse.game.utils.StatsUtils;
 import es.brouse.game.utils.Ticker;
 
 import javax.swing.*;
@@ -16,33 +15,30 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
-public class GameImagePanel extends JPanel implements Panel {
+public class GameImagePanel extends JPanel implements Panel, GameController.View {
     private final Dimension size;
-    private final BufferedImage originalImage;
     private final List<SplitImage> subImages;
-    private final String username;
-
     private final GameImageListener listener;
+    private final GameController controller;
 
     /**
      * Main class constructor used to create new {@link GameImagePanel}
      * instances.
      *
      * @param image image to render
-     * @param rowsVals rows of the split
-     * @param colsVal cols of the split
-     * @param usernameVal name of the username
+     * @param rows rows of the split
+     * @param cols cols of the split
      */
-    public GameImagePanel(Ticker ticker, BufferedImage image, int rowsVals, int colsVal, String usernameVal) {
-        this.size = new Dimension(rowsVals, colsVal);
-        this.originalImage = rescaleImage(image);
-        this.subImages = shuffleImages(originalImage, rowsVals, colsVal);
+    public GameImagePanel(Ticker ticker, BufferedImage image, int rows, int cols) {
+        this.controller = new GameController(this, ticker, rows * cols);
 
-        this.username = usernameVal;
+        this.size = new Dimension(rows, cols);
+        BufferedImage originalImage = rescaleImage(image);
+        this.subImages = shuffleImages(originalImage, rows, cols);
 
-        listener = new GameImageListener(ticker, subImages, gameEnd());
+
+        listener = new GameImageListener(controller, subImages);
 
         setUp();
         initComponents();
@@ -70,35 +66,8 @@ public class GameImagePanel extends JPanel implements Panel {
         return this;
     }
 
-    /**
-     * Function called when the ticker has end.
-     *
-     * @return the ticker end function
-     */
-    public Consumer<Boolean> endTicker() {
-        return bool -> {
-            if (bool) listener.forceEnd();
-        };
-    }
-
-    /**
-     * Get the action performed on a game is ended.
-     *
-     * @return the action performed on a game is won
-     */
-    private Consumer<GameStats> gameEnd() {
-        return stats -> {
-            stats.setUsername(username);
-            new StatsUtils().writeStats(stats);
-
-            IdlePanel.getInstance().getController().renderSolution(originalImage);
-
-            String message = stats.isWin() ?
-                    "Enhorabuena, has conseguido solucionar el panel y ahs conseguido " + stats.getPoints() + " puntos" :
-                    "No lo has conseguido, el tiempo se ha acabado";
-
-            JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
-        };
+    public GameController getController() {
+        return controller;
     }
 
     /**
@@ -128,5 +97,30 @@ public class GameImagePanel extends JPanel implements Panel {
         List<SplitImage> images = new ArrayList<>(new ImageUtils().split(image, rows, cols));
         Collections.shuffle(images);
         return images;
+    }
+
+    @Override
+    public void start(List<SplitImage> images) {
+
+    }
+
+    @Override
+    public void requestClick(int position, boolean paint) {
+
+    }
+
+    @Override
+    public void renderEndGame(GameStats stats) {
+        String message = stats.isWin() ?
+                "Enhorabuena, has conseguido solucionar el panel y ahs conseguido " + stats.getPoints() + " puntos" :
+                "No lo has conseguido, el tiempo se ha acabado";
+
+        JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
+        IdlePanel.getInstance().getController().idle();
+    }
+
+    @Override
+    public void renderSwitchPuzzle(int from, int to) {
+
     }
 }

@@ -1,26 +1,22 @@
-package es.brouse.game.listeners;
+package es.brouse.game.panels.game;
 
 import es.brouse.game.objects.SplitImage;
-import es.brouse.game.panels.game.GameController;
 import es.brouse.game.screen.GameScreen;
 import es.brouse.game.screen.Screen;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class GameImageListener extends MouseAdapter {
+public class GameImageSwitcher extends MouseAdapter {
+    private final GameController controller;
+    private JLabel lastClick;
     private final List<SplitImage> images;
 
-    private static JLabel lastClick;
-
-    private final GameController controller;
-
-    public GameImageListener(GameController controller, List<SplitImage> images) {
-        this.controller = controller;
+    public GameImageSwitcher(List<SplitImage> images, GameController controller) {
         this.images = images;
+        this.controller = controller;
     }
 
     @Override
@@ -29,15 +25,16 @@ public class GameImageListener extends MouseAdapter {
 
         //If is the first click, we mark the component with a red border
         if (lastClick == null) {
-            label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+            final int index = Integer.parseInt(label.getName());
             lastClick = label;
+
+            controller.requestClick(index, true);
             return;
         }
 
         //If not, we swipe the components
         int last_id = Integer.parseInt(lastClick.getName());
         int current_id = Integer.parseInt(label.getName());
-
 
         SplitImage tmp = images.get(last_id);
         Icon icon = lastClick.getIcon();
@@ -50,14 +47,27 @@ public class GameImageListener extends MouseAdapter {
         //We refresh the screen
         Screen.refresh(GameScreen.getInstance());
 
+        if (validate()) {
+            controller.endGame();
+        }
+
         //Reset variables
         lastClick.setBorder(BorderFactory.createEmptyBorder());
         lastClick = null;
 
+        /*
+        //Request to swipe the elements
+        controller.swipeRequest(from, to);
 
-        //Check the end of the game and end listener
-        if (validate()) controller.endGame();
+        //Reset elements
+        controller.requestClick(to, false);
+        lastClick = null;
 
+        //Permute
+        final SplitImage image = images.get(from);
+        images.set(from, images.get(to));
+        images.set(to, image);
+         */
     }
 
     /**
