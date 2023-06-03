@@ -32,13 +32,11 @@ public class GamePanel extends JPanel implements Panel {
         add(new HeaderPanel(), NORTH);
 
         //Create the middle content
-        splitPanel = new JSplitPane(
-                JSplitPane.HORIZONTAL_SPLIT,
-                new SidebarPanel(),
-                backgroundImage
-        );
+        splitPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, backgroundImage, null);
 
-        add(splitPanel, CENTER);
+        JSplitPane panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new SidebarPanel() , splitPanel);
+
+        add(panel, CENTER);
     }
 
     @Override
@@ -46,12 +44,31 @@ public class GamePanel extends JPanel implements Panel {
         return this;
     }
 
+    /**
+     * Set the content of the main panel to the specified by the
+     * arguments.
+     *
+     * @param component component to set
+     */
     public void setGamePanel(JComponent component) {
-        splitPanel.setRightComponent(component);
-        add(splitPanel, CENTER);
+        splitPanel.setLeftComponent(component);
     }
 
+    /**
+     * Set the footer of the main panel to the specified by the
+     * arguments.
+     *
+     * @param component component to set
+     */
+    public void setFooterPanel(JComponent component) {
+        splitPanel.setRightComponent(component);
+    }
+
+    /**
+     * Reset the content of the main panel
+     */
     public void reset() {
-        splitPanel.setRightComponent(backgroundImage);
+        splitPanel.setLeftComponent(backgroundImage);
+        splitPanel.setRightComponent(null);
     }
 }
