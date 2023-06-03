@@ -41,6 +41,7 @@ public class StatsWriter implements Closeable {
      */
     public void write(GameStats... stats) {
         try {
+            if (buffer == null) return;
             buffer.seek(buffer.length());
 
             for (GameStats stat : stats) {
