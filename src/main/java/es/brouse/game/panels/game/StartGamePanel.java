@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class StartGamePanel extends JPanel implements Panel, ActionListener {
@@ -92,10 +93,11 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         }
 
         try {
-            GameImagePanel panel = new GameImagePanel(new ImagePicker().randomPick(),
-                    rowsVals, colsVal, usernameVal);
+            final BufferedImage image = new ImagePicker().randomPick();
+            final GameImagePanel gamePanel = new GameImagePanel(image, rowsVals, colsVal, usernameVal);
 
-            GamePanel.getInstance().setGamePanel(panel);
+            GamePanel.getInstance().setGamePanel(gamePanel);
+            GamePanel.getInstance().setFooterPanel(new CountDownPanel(gamePanel.endTicker()));
 
             //Close and reset the screen
             Panel.close(this);

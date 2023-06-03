@@ -21,7 +21,7 @@ public class GameImageListener extends MouseAdapter {
 
     private int moves = 0;
     private final long startTime = System.currentTimeMillis();
-    private boolean win = false;
+    private boolean end = false;
     private final int minOperations;
 
     public GameImageListener(List<SplitImage> images, Consumer<GameStats> gameSolved) {
@@ -40,7 +40,7 @@ public class GameImageListener extends MouseAdapter {
         JLabel label = (JLabel) event.getComponent();
 
         //If we win, the listener will be canceled
-        if (win) return;
+        if (end) return;
 
         //If is the first click, we mark the component with a red border
         if (lastClick == null) {
@@ -74,8 +74,16 @@ public class GameImageListener extends MouseAdapter {
         //Check the end of the game and end listener
         if (validate()) {
             gameSolve.accept(new GameStats(moves, minOperations, startTime, true, images.size()));
-            win = true;
+            end = true;
         }
+    }
+
+    /**
+     * Function called to force end the game.
+     */
+    public void forceEnd() {
+        end = true;
+        gameSolve.accept(new GameStats(moves, minOperations, startTime, false, images.size()));
     }
 
     /**

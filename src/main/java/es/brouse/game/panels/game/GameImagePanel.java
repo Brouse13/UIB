@@ -22,6 +22,8 @@ public class GameImagePanel extends JPanel implements Panel {
     private final List<SplitImage> subImages;
     private final String username;
 
+    private final GameImageListener listener;
+
     /**
      * Main class constructor used to create new {@link GameImagePanel}
      * instances.
@@ -38,6 +40,8 @@ public class GameImagePanel extends JPanel implements Panel {
 
         this.username = usernameVal;
 
+        listener = new GameImageListener(subImages, gameEnd());
+
         setUp();
         initComponents();
     }
@@ -49,8 +53,6 @@ public class GameImagePanel extends JPanel implements Panel {
 
     @Override
     public void initComponents() {
-        GameImageListener listener = new GameImageListener(subImages, actionPerform());
-
         for (SplitImage subImage : subImages) {
             ImageBuilder imageBuilder = new ImageBuilder(subImage.getImage())
                     .setDimensions(new Dimension(-1, -1))
@@ -67,18 +69,28 @@ public class GameImagePanel extends JPanel implements Panel {
     }
 
     /**
+     * Function called when the ticker has end.
+     *
+     * @return the ticker end function
+     */
+    public Consumer<Boolean> endTicker() {
+        return bool -> {
+            if (bool) listener.forceEnd();
+        };
+    }
+
+    /**
      * Get the action performed on a game is ended.
      *
      * @return the action performed on a game is won
      */
-    private Consumer<GameStats> actionPerform() {
+    private Consumer<GameStats> gameEnd() {
         return stats -> {
             stats.setUsername(username);
+            new StatsUtils().writeStats(stats);
+            new SolutionPanel(originalImage).render();
 
-            if (stats.isWin()) {
-                new SolutionPanel(originalImage).render();
-                new StatsUtils().writeStats(stats);
-            }
+            System.out.println(stats.isWin());
         };
     }
 
