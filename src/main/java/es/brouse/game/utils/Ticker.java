@@ -5,13 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Consumer;
 
-public class CountDown implements ActionListener {
+public class Ticker implements ActionListener {
     private final Timer timer;
-    private final Consumer<Integer> execute;
+    private Consumer<Integer> ticker = i -> {};
     private int ticks;
 
-    public CountDown(Consumer<Integer> execute) {
-        this.execute = execute;
+    public Ticker() {
         this.ticks = 0;
         this.timer = new Timer(1000, this);
     }
@@ -24,8 +23,12 @@ public class CountDown implements ActionListener {
         timer.stop();
     }
 
+    public void setTicker(Consumer<Integer> ticker) {
+        this.ticker = ticker;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        execute.accept(ticks++);
+        ticker.accept(ticks++);
     }
 }

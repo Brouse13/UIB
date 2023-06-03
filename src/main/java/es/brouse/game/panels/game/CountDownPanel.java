@@ -1,7 +1,7 @@
 package es.brouse.game.panels.game;
 
 import es.brouse.game.panels.Panel;
-import es.brouse.game.utils.CountDown;
+import es.brouse.game.utils.Ticker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,10 +9,12 @@ import java.util.function.Consumer;
 
 public class CountDownPanel extends JPanel implements Panel {
     private final JProgressBar progressBar = new JProgressBar();
-    private final CountDown ticker = new CountDown(tickRate());
+    private final Ticker ticker = new Ticker();
     private final GameImagePanel gamePanel;
     public CountDownPanel(GameImagePanel gamePanel) {
         this.gamePanel = gamePanel;
+
+        ticker.setTicker(tick());
 
         setUp();
         initComponents();
@@ -36,7 +38,7 @@ public class CountDownPanel extends JPanel implements Panel {
         return this;
     }
 
-    private Consumer<Integer> tickRate() {
+    private Consumer<Integer> tick() {
         return tick -> {
             if (tick == 10) {
                 ticker.stop();
