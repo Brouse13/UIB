@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class StartGamePanel extends JPanel implements es.brouse.game.panels.Panel, ActionListener {
+public class StartGamePanel extends JPanel implements Panel, ActionListener {
     private TextFieldBuilder[] builders;
 
     public StartGamePanel() {
