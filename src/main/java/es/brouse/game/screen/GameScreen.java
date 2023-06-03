@@ -1,11 +1,9 @@
 package es.brouse.game.screen;
 
-import es.brouse.game.Game;
 import es.brouse.game.panels.iddle.GamePanel;
 
 import javax.swing.*;
 import java.util.Locale;
-import java.util.logging.Level;
 
 public class GameScreen extends JFrame implements Screen {
     private static GameScreen instance;
@@ -28,11 +26,6 @@ public class GameScreen extends JFrame implements Screen {
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            Game.logger.log(Level.WARNING, "Couldn't assign system LookAndFeel");
-        }
         setLocale(Locale.ROOT);
     }
 
