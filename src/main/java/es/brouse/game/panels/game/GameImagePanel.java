@@ -21,6 +21,7 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
     private final List<SplitImage> subImages;
     private final GameImageListener listener;
     private final GameController controller;
+    private final BufferedImage finalimage;
 
     /**
      * Main class constructor used to create new {@link GameImagePanel}
@@ -34,9 +35,8 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
         this.controller = new GameController(this, ticker, rows * cols);
 
         this.size = new Dimension(rows, cols);
-        BufferedImage originalImage = rescaleImage(image);
-        this.subImages = shuffleImages(originalImage, rows, cols);
-
+        this.finalimage = rescaleImage(image);
+        this.subImages = shuffleImages(finalimage, rows, cols);
 
         listener = new GameImageListener(controller, subImages);
 
@@ -105,8 +105,18 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
     }
 
     @Override
-    public void requestClick(int position, boolean paint) {
+    public void requestClick(JLabel label, boolean paint) {
+        if (paint)
+            label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+        else
+            label.setBorder(BorderFactory.createEmptyBorder());
+    }
 
+    @Override
+    public void renderSwitchPuzzle(JLabel from, JLabel to) {
+        final Icon icon = from.getIcon();
+        from.setIcon(to.getIcon());
+        to.setIcon(icon);
     }
 
     @Override
@@ -116,11 +126,6 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
                 "No lo has conseguido, el tiempo se ha acabado";
 
         JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
-        IdlePanel.getInstance().getController().idle();
-    }
-
-    @Override
-    public void renderSwitchPuzzle(int from, int to) {
-
+        IdlePanel.getInstance().getController().renderSolution(finalimage);
     }
 }

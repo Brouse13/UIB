@@ -5,6 +5,7 @@ import es.brouse.game.utils.Ticker;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class GameController {
         view.start(images);
     }
 
-    public void swipeRequest(int from, int to) {
+    public void swipeRequest(JLabel from, JLabel to) {
         //Permute solution
         view.renderSwitchPuzzle(from, to);
         moves++;
@@ -56,9 +57,8 @@ public class GameController {
         view.renderEndGame(stats);
     }
 
-    public void requestClick(int index, boolean paint) {
-        System.out.println("Request click " + index + " (" + paint + ")");
-        view.requestClick(index, paint);
+    public void requestClick(JLabel label, boolean paint) {
+        view.requestClick(label, paint);
     }
 
     public void endGame() {
@@ -125,9 +125,9 @@ public class GameController {
 
     public interface View {
         void start(List<SplitImage> images);
-        void requestClick(int position, boolean paint);
+        void requestClick(JLabel label, boolean paint);
         void renderEndGame(GameStats stats);
-        void renderSwitchPuzzle(int from, int to);
+        void renderSwitchPuzzle(JLabel from, JLabel to);
     }
 }
 

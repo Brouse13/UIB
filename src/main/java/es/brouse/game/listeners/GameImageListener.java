@@ -2,8 +2,6 @@ package es.brouse.game.listeners;
 
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.panels.game.GameController;
-import es.brouse.game.screen.GameScreen;
-import es.brouse.game.screen.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,30 +28,24 @@ public class GameImageListener extends MouseAdapter {
         //If is the first click, we mark the component with a red border
         if (lastClick == null) {
             label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+            controller.requestClick(label, true);
             lastClick = label;
             return;
         }
 
         //If not, we swipe the components
-        int last_id = Integer.parseInt(lastClick.getName());
-        int current_id = Integer.parseInt(label.getName());
+        int from = Integer.parseInt(label.getName());
+        int to = Integer.parseInt(lastClick.getName());
 
-
-        SplitImage tmp = images.get(last_id);
-        Icon icon = lastClick.getIcon();
-
-        images.set(last_id, images.get(current_id));
-        lastClick.setIcon(label.getIcon());
-        images.set(current_id, tmp);
-        label.setIcon(icon);
-
-        //We refresh the screen
-        Screen.refresh(GameScreen.getInstance());
+        //Swipe the images
+        SplitImage tmp = images.get(to);
+        images.set(to, images.get(from));
+        images.set(from, tmp);
+        controller.swipeRequest(label, lastClick);
 
         //Reset variables
-        lastClick.setBorder(BorderFactory.createEmptyBorder());
+        controller.requestClick(lastClick, false);
         lastClick = null;
-
 
         //Check the end of the game and end listener
         if (validate()) controller.endGame();
