@@ -6,6 +6,7 @@ import es.brouse.game.panels.game.CountDownPanel;
 import es.brouse.game.panels.game.GameImagePanel;
 import es.brouse.game.panels.game.SolutionPanel;
 import es.brouse.game.panels.stats.StatsPanel;
+import es.brouse.game.utils.Ticker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,10 +77,11 @@ public class IdlePanel extends JPanel implements Panel, IdleController.View {
 
     @Override
     public void renderGame(BufferedImage image, int rows, int cols, String username) {
-        final GameImagePanel gameImage = new GameImagePanel(image, rows, cols, username);
+        final Ticker ticker = new Ticker();
+        final GameImagePanel gameImage = new GameImagePanel(ticker, image, rows, cols, username);
 
         splitPanel.setLeftComponent(gameImage);
-        splitPanel.setRightComponent(new CountDownPanel(gameImage));
+        splitPanel.setRightComponent(new CountDownPanel(ticker, gameImage));
     }
 
     @Override

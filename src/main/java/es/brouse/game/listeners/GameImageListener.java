@@ -4,6 +4,7 @@ import es.brouse.game.objects.SplitImage;
 import es.brouse.game.screen.GameScreen;
 import es.brouse.game.screen.Screen;
 import es.brouse.game.utils.GameStats;
+import es.brouse.game.utils.Ticker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ import java.util.function.Consumer;
 public class GameImageListener extends MouseAdapter {
     private final List<SplitImage> images;
     private final Consumer<GameStats> gameSolve;
+    private final Ticker tiker;
 
     private static JLabel lastClick;
 
@@ -24,9 +26,10 @@ public class GameImageListener extends MouseAdapter {
     private boolean end = false;
     private final int minOperations;
 
-    public GameImageListener(List<SplitImage> images, Consumer<GameStats> gameSolved) {
+    public GameImageListener(Ticker ticker, List<SplitImage> images, Consumer<GameStats> gameSolved) {
         this.images = images;
         this.gameSolve = gameSolved;
+        this.tiker = ticker;
 
         //Calculate minOperations
         Integer[] array = images.stream().map(SplitImage::getIndex).toArray(Integer[]::new);
@@ -73,8 +76,9 @@ public class GameImageListener extends MouseAdapter {
 
         //Check the end of the game and end listener
         if (validate()) {
-            gameSolve.accept(new GameStats(moves, minOperations, startTime, true, images.size()));
             end = true;
+            gameSolve.accept(new GameStats(moves, minOperations, startTime, true, images.size()));
+            tiker.stop();
         }
     }
 
@@ -84,6 +88,7 @@ public class GameImageListener extends MouseAdapter {
     public void forceEnd() {
         end = true;
         gameSolve.accept(new GameStats(moves, minOperations, startTime, false, images.size()));
+        tiker.stop();
     }
 
     /**

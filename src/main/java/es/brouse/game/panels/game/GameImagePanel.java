@@ -8,6 +8,7 @@ import es.brouse.game.panels.iddle.IdlePanel;
 import es.brouse.game.utils.GameStats;
 import es.brouse.game.utils.ImageUtils;
 import es.brouse.game.utils.StatsUtils;
+import es.brouse.game.utils.Ticker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,14 +35,14 @@ public class GameImagePanel extends JPanel implements Panel {
      * @param colsVal cols of the split
      * @param usernameVal name of the username
      */
-    public GameImagePanel(BufferedImage image, int rowsVals, int colsVal, String usernameVal) {
+    public GameImagePanel(Ticker ticker, BufferedImage image, int rowsVals, int colsVal, String usernameVal) {
         this.size = new Dimension(rowsVals, colsVal);
         this.originalImage = rescaleImage(image);
         this.subImages = shuffleImages(originalImage, rowsVals, colsVal);
 
         this.username = usernameVal;
 
-        listener = new GameImageListener(subImages, gameEnd());
+        listener = new GameImageListener(ticker, subImages, gameEnd());
 
         setUp();
         initComponents();

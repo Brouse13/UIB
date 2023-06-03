@@ -9,9 +9,10 @@ import java.util.function.Consumer;
 
 public class CountDownPanel extends JPanel implements Panel {
     private final JProgressBar progressBar = new JProgressBar();
-    private final Ticker ticker = new Ticker();
+    private final Ticker ticker;
     private final GameImagePanel gamePanel;
-    public CountDownPanel(GameImagePanel gamePanel) {
+    public CountDownPanel(Ticker ticker, GameImagePanel gamePanel) {
+        this.ticker = ticker;
         this.gamePanel = gamePanel;
 
         ticker.setTicker(tick());
