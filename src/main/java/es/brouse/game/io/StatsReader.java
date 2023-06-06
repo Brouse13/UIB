@@ -46,9 +46,6 @@ public class StatsReader implements Closeable {
 
             //Read the next object
             nextObject = new GameStats(
-                    buffer.readInt(),
-                    buffer.readInt(),
-                    buffer.readLong(),
                     buffer.readLong(),
                     buffer.readBoolean(),
                     buffer.readInt(),
@@ -65,7 +62,7 @@ public class StatsReader implements Closeable {
     /**
      * Return the last read object by the {@link Reader}. Depending on
      * the implementation, this object can represent another class.
-     *
+     * <br/>
      * In case of using this method without using {@link StatsReader#next()} before,
      * it will return a null object.
      *

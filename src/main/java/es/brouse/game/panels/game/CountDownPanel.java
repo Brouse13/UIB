@@ -41,9 +41,7 @@ public class CountDownPanel extends JPanel implements Panel {
 
     private Consumer<Integer> tick() {
         return tick -> {
-            if (tick == 10) {
-                controller.forceEnd();
-            }
+            if (tick == 10) controller.endGame(false);
 
             progressBar.setValue(progressBar.getValue() - 10);
         };

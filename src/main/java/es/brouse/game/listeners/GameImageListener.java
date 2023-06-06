@@ -48,7 +48,7 @@ public class GameImageListener extends MouseAdapter {
         lastClick = null;
 
         //Check the end of the game and end listener
-        if (validate()) controller.endGame();
+        if (validate()) controller.endGame(true);
 
     }
 

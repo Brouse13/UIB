@@ -1,41 +1,23 @@
 package es.brouse.game.utils;
 
 public class GameStats {
-    public static final int LENGTH = 61;
-    private final int moves, minMoves, points;
-    private final long startTime, time;
+    public static final int LENGTH = 72;
+    private final int points;
+    private final long time;
     private final boolean win;
     private String username = "UNKNOWN";
 
-    public GameStats(int moves, int minMoves, long startTime, boolean win, int points) {
-        this.moves = moves;
-        this.startTime = startTime;
-        this.minMoves = minMoves;
-        this.time = System.currentTimeMillis() - startTime;
+    public GameStats(boolean win, int points) {
+        this.time = System.currentTimeMillis();
         this.win = win;
         this.points = points;
     }
 
-    public GameStats(int moves, int minMoves, long startTime, long time, boolean win, int points, String username) {
-        this.moves = moves;
-        this.minMoves = minMoves;
-        this.startTime = startTime;
+    public GameStats(long time, boolean win, int points, String username) {
         this.time = time;
         this.win = win;
         this.points = points;
         this.username = normalize(username);
-    }
-
-    public int getMoves() {
-        return moves;
-    }
-
-    public int getMinMoves() {
-        return minMoves;
-    }
-
-    public long getStartTime() {
-        return startTime;
     }
 
     public long getTime() {
@@ -70,12 +52,11 @@ public class GameStats {
     private String normalize(String str) {
         return str.split(String.valueOf(((char)0)))[0];
     }
+
     @Override
     public String toString() {
         return "GameStats{" +
-                "moves=" + moves +
-                ", minMoves=" + minMoves +
-                ", startTime=" + startTime +
+                "points=" + points +
                 ", time=" + time +
                 ", win=" + win +
                 ", username='" + username + '\'' +
