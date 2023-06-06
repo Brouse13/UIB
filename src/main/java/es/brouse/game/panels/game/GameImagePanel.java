@@ -25,8 +25,8 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
      * @param rows rows of the split
      * @param cols cols of the split
      */
-    public GameImagePanel(Ticker ticker, BufferedImage image, int rows, int cols) {
-        this.controller = new GameController(this, ticker, rows * cols);
+    public GameImagePanel(Ticker ticker, BufferedImage image, int rows, int cols, String username) {
+        this.controller = new GameController(this, ticker, rows * cols, username);
 
         this.size = new Dimension(rows, cols);
 

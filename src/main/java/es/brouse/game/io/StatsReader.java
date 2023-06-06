@@ -46,10 +46,10 @@ public class StatsReader implements Closeable {
 
             //Read the next object
             nextObject = new GameStats(
+                    buffer.readUTF(),
                     buffer.readLong(),
                     buffer.readBoolean(),
-                    buffer.readInt(),
-                    buffer.readUTF()
+                    buffer.readInt()
             );
 
         } catch (Exception e) {

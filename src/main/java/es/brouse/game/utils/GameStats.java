@@ -5,19 +5,20 @@ public class GameStats {
     private final int points;
     private final long time;
     private final boolean win;
-    private String username = "UNKNOWN";
+    private String username;
 
-    public GameStats(boolean win, int points) {
+    public GameStats(String username, boolean win, int points) {
+        this.username = username;
         this.time = System.currentTimeMillis();
         this.win = win;
         this.points = points;
     }
 
-    public GameStats(long time, boolean win, int points, String username) {
+    public GameStats(String username, long time, boolean win, int points) {
+        this.username = username;
         this.time = time;
         this.win = win;
         this.points = points;
-        this.username = normalize(username);
     }
 
     public long getTime() {
@@ -43,10 +44,6 @@ public class GameStats {
 
     public String getRawUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     private String normalize(String str) {

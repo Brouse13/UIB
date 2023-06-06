@@ -78,7 +78,7 @@ public class IdlePanel extends JPanel implements Panel, IdleController.View {
     @Override
     public void renderGame(BufferedImage image, int rows, int cols, String username) {
         final Ticker ticker = new Ticker();
-        final GameImagePanel gameImage = new GameImagePanel(ticker, image, rows, cols);
+        final GameImagePanel gameImage = new GameImagePanel(ticker, image, rows, cols, username);
         final CountDownPanel countDown = new CountDownPanel(gameImage.getController(), ticker);
 
         splitPanel.setLeftComponent(gameImage);

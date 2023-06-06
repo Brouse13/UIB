@@ -46,10 +46,10 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         //Add null content
         add(new JLabel());
 
-        JComponent component = new ButtonBuilder("INICIAR PARTIDA", null, this)
-                .getComponent();
-        component.setBorder(new EmptyBorder(0, 0, 5, 5));
-        add(component);
+        ButtonBuilder builder = new ButtonBuilder("INICIAR PARTIDA", null, this)
+                .setBorder(new EmptyBorder(0, 0, 5, 5));
+
+        add(builder.getComponent());
     }
 
     @Override

@@ -45,13 +45,10 @@ public class StatsWriter implements Closeable {
             buffer.seek(buffer.length());
 
             for (GameStats stat : stats) {
-                buffer.writeLong(stat.getTime());
-
-                buffer.writeBoolean(stat.isWin());
-
-                buffer.writeInt(stat.getPoints());
-
                 buffer.writeUTF(stat.getUsername());
+                buffer.writeLong(stat.getTime());
+                buffer.writeBoolean(stat.isWin());
+                buffer.writeInt(stat.getPoints());
             }
 
         } catch (IOException e) {

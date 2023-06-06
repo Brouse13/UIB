@@ -3,6 +3,7 @@ package es.brouse.game.objects.builders;
 import es.brouse.game.objects.Component;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -13,27 +14,6 @@ import java.awt.event.ActionListener;
 public class ButtonBuilder implements Component {
     /*---------- PRIVATE ----------*/
     private final JButton button;
-
-    /**
-     * Main class constructor able to create new {@link ButtonBuilder}
-     * instance only with its name
-     *
-     * @param name button name
-     */
-    public ButtonBuilder(String name) {
-        this.button = new JButton(name);
-    }
-
-    /**
-     * Main class constructor able to create new {@link ButtonBuilder}
-     * instance with its name and an icon.
-     *
-     * @param name button name
-     * @param icon button icon
-     */
-    public ButtonBuilder(String name, Icon icon) {
-        this.button = new JButton(name, icon);
-    }
 
     /**
      * Main class constructor able to create new {@link ButtonBuilder}
@@ -62,13 +42,13 @@ public class ButtonBuilder implements Component {
     }
 
     /**
-     * Set the size of the button to the specified by parameters.
+     * Set a new border to the button.
      *
-     * @param size size to set
+     * @param border new border
      * @return the builder instance
      */
-    public ButtonBuilder setSize(Dimension size) {
-        button.setSize(size);
+    public ButtonBuilder setBorder(Border border) {
+        button.setBorder(border);
         return this;
     }
 

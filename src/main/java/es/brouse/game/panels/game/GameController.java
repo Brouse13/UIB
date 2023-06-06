@@ -21,13 +21,16 @@ public class GameController {
 
     /*----------- GAME SETTINGS -----------*/
     private final int points;
+    private final String username;
     private BufferedImage finalImage;
 
-    public GameController(View view, Ticker ticker, int points) {
+    public GameController(View view, Ticker ticker, int points, String username) {
         this.view = view;
         this.ticker = ticker;
         this.points = points;
         this.statsUtils = new StatsUtils();
+
+        this.username = username;
     }
 
     public void startGame(BufferedImage image, int rows, int cols) {
@@ -49,7 +52,7 @@ public class GameController {
     }
 
     public void endGame(boolean win) {
-        GameStats stats = new GameStats(win, win ? points : 0);
+        GameStats stats = new GameStats(username, win, win ? points : 0);
 
         //Stop the game and call the view
         ticker.stop();
