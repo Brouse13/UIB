@@ -4,6 +4,7 @@ import es.brouse.game.objects.Component;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 
 /**
  * Class in charge of the creation of the {@link JTextArea} that will
@@ -31,6 +32,20 @@ public class TextAreaBuilder implements Component {
      */
     public TextAreaBuilder addLine(String line) {
         textArea.append(line + "\n");
+        return this;
+    }
+
+
+    /**
+     * Set the font of the text area to the specified by the params.
+     *
+     * @param font font family
+     * @param type font type
+     * @param size font size
+     * @return the builder instance
+     */
+    public TextAreaBuilder setFont(String font, int type, int size) {
+        textArea.setFont(new Font(font, type, size));
         return this;
     }
 

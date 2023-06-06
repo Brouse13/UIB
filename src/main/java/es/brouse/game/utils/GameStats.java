@@ -34,7 +34,7 @@ public class GameStats {
     }
 
     public String getUsername() {
-        if (username.length() > 30 ) return username.substring(0, 30);
+        if (username.length() > 32) return username.substring(0, 32);
 
         final String delimiter = String.valueOf(((char)0));
         StringBuilder builder = new StringBuilder(username);
@@ -45,7 +45,7 @@ public class GameStats {
     }
 
     public String getRawUsername() {
-        return username;
+        return normalize(username);
     }
 
     private String normalize(String str) {

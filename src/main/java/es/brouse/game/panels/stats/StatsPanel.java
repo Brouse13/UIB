@@ -8,6 +8,9 @@ import es.brouse.game.utils.GameStats;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import static java.awt.BorderLayout.NORTH;
 import static javax.swing.ScrollPaneConstants.*;
@@ -21,6 +24,7 @@ public class StatsPanel extends JPanel implements Panel {
     private static final String FORMAT = "JUGADOR: %s - FECHA: %s - PUNTOS %s";
     private final String name;
     private final boolean onlyUser;
+    private final DateFormat format = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
     /**
      * Main class constructor used to create new {@link StatsPanel}
@@ -45,7 +49,7 @@ public class StatsPanel extends JPanel implements Panel {
     public void initComponents() {
         boolean content = false;
 
-        TextAreaBuilder textArea = new TextAreaBuilder(false);
+        TextAreaBuilder textArea = new TextAreaBuilder(false).setFont("Arial", Font.PLAIN, 20);
 
         //If is user mode set, we add the player name
         LabelBuilder label = new LabelBuilder("Historial" + (onlyUser ? " de " + name : ""))
@@ -57,7 +61,9 @@ public class StatsPanel extends JPanel implements Panel {
 
                 //Add to the panel if the stats are displayed global or user matches
                 if (!onlyUser || read.getRawUsername().equalsIgnoreCase(name)) {
-                    textArea.addLine(String.format(FORMAT,read.getUsername(), read.getTime(), read.getPoints()));
+
+                    String date = format.format(read.getTime());
+                    textArea.addLine(String.format(FORMAT,normalize(read.getRawUsername()), date, read.getPoints()));
                     content = true;
                 }
             }
@@ -72,5 +78,16 @@ public class StatsPanel extends JPanel implements Panel {
     @Override
     public JComponent getComponent() {
         return this;
+    }
+
+    private String normalize(String str) {
+        if (str.length() >= 32) return str.substring(0, 32);
+
+        final String delimiter = String.valueOf((' '));
+        StringBuilder builder = new StringBuilder(str.toLowerCase(Locale.ROOT));
+
+        builder.append(delimiter.repeat(Math.max(0, 32 - builder.length())));
+
+        return builder.toString();
     }
 }
