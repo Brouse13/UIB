@@ -5,7 +5,7 @@ public class GameStats {
     private final int points;
     private final long time;
     private final boolean win;
-    private String username;
+    private final String username;
 
     public GameStats(String username, boolean win, int points) {
         this.username = username;
@@ -34,6 +34,8 @@ public class GameStats {
     }
 
     public String getUsername() {
+        if (username.length() > 30 ) return username.substring(0, 30);
+
         final String delimiter = String.valueOf(((char)0));
         StringBuilder builder = new StringBuilder(username);
 
