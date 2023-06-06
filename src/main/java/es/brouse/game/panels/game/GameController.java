@@ -23,6 +23,7 @@ public class GameController {
     private final long startTime = System.nanoTime();
     private int minMoves;
     private int moves = 0;
+    private BufferedImage finalImage;
 
     public GameController(View view, Ticker ticker, int points) {
         this.view = view;
@@ -31,7 +32,8 @@ public class GameController {
     }
 
     public void startGame(BufferedImage image, int rows, int cols) {
-        List<SplitImage> images = shuffleImages(rescaleImage(image), rows, cols);
+        this.finalImage = rescaleImage(image);
+        List<SplitImage> images = shuffleImages(finalImage, rows, cols);
 
         //Calculate minOperations
         Integer[] array = images.stream().map(SplitImage::getIndex).toArray(Integer[]::new);
@@ -54,7 +56,7 @@ public class GameController {
         GameStats stats = new GameStats(moves, minMoves, startTime, false, points);
 
         ticker.stop();
-        view.renderEndGame(stats);
+        view.renderEndGame(stats, finalImage);
     }
 
     public void requestClick(JLabel label, boolean paint) {
@@ -65,7 +67,7 @@ public class GameController {
         GameStats stats = new GameStats(moves, minMoves, startTime, true, 0);
 
         ticker.stop();
-        view.renderEndGame(stats);
+        view.renderEndGame(stats, finalImage);
     }
 
     /**
@@ -126,7 +128,7 @@ public class GameController {
     public interface View {
         void start(List<SplitImage> images);
         void requestClick(JLabel label, boolean paint);
-        void renderEndGame(GameStats stats);
+        void renderEndGame(GameStats stats, BufferedImage image);
         void renderSwitchPuzzle(JLabel from, JLabel to);
     }
 }

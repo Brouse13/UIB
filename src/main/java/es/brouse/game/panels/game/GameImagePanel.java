@@ -69,13 +69,6 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
     }
 
     @Override
-    public void renderSwitchPuzzle(JLabel from, JLabel to) {
-        final Icon icon = from.getIcon();
-        from.setIcon(to.getIcon());
-        to.setIcon(icon);
-    }
-
-    @Override
     public void renderEndGame(GameStats stats, BufferedImage image) {
         String message = stats.isWin() ?
                 "Enhorabuena, has conseguido solucionar el panel y ahs conseguido " + stats.getPoints() + " puntos" :
@@ -83,6 +76,13 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
 
         JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
         IdlePanel.getInstance().getController().renderSolution(image);
+    }
+
+    @Override
+    public void renderSwitchPuzzle(JLabel from, JLabel to) {
+        final Icon icon = from.getIcon();
+        from.setIcon(to.getIcon());
+        to.setIcon(icon);
     }
 
     @Override
