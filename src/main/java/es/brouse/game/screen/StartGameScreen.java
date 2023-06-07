@@ -24,7 +24,7 @@ public class StartGameScreen extends JFrame implements Screen {
         int y = (int) ((dimension.getHeight() - 200) / 2);
         setLocation(x, y);
 
-        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         setResizable(false);
         setLocale(Locale.ROOT);
