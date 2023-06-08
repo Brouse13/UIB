@@ -23,11 +23,16 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
     @Override
     public void setUp() {
         setLayout(new GridLayout(4, 2, 5, 5));
+        setBackground(Color.BLACK);
     }
 
     @Override
     public void initComponents() {
-        String[] names = {"USUARIO", "FILAS", "COLUMNAS"};
+        String[] names = {
+                "NOMBRE JUGADOR",
+                "NÚMERO DE SUBDIVISIONES HORIZONTALES",
+                "NÚMERO DE SUBDIVISIONES VERTICALES"
+        };
         builders = new TextFieldBuilder[3];
 
         int index = 0;
@@ -35,6 +40,8 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
             add(new LabelBuilder(name)
                     .setSize(new Dimension(50, 10))
                     .setBorder(new EmptyBorder(5, 5, 5, 5))
+                    .setBackground(Color.BLACK)
+                    .setFont("Arial", Font.BOLD, 12)
                     .getComponent());
 
             builders[index] = new TextFieldBuilder();
@@ -63,19 +70,12 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         JTextField rows = ((JTextField) builders[1].getComponent());
         JTextField cols = ((JTextField) builders[2].getComponent());
 
-        //Check cols error
+        //Check rows and columns error
         try {
             Integer.parseInt(cols.getText());
-        }catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(IdlePanel.getInstance(), "Número de columnas invalido");
-            return;
-        }
-
-        //Check rows cols
-        try {
             Integer.parseInt(rows.getText());
         }catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(IdlePanel.getInstance(), "Número de filas inválido");
+            error("Error, revisa los datos");
             return;
         }
 
@@ -85,7 +85,7 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
 
         //Check if the partitions are squared
         if (rowsVals != colsVal) {
-            JOptionPane.showMessageDialog(IdlePanel.getInstance(), "Las particiones han de ser cuadradas");
+            error("Las particiones han de ser cuadradas");
             return;
         }
 
@@ -101,6 +101,9 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         username.setText("");
         rows.setText("");
         cols.setText("");
+    }
 
+    private void error(String message) {
+        JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
     }
 }

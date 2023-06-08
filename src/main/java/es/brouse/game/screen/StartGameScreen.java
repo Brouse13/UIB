@@ -16,7 +16,7 @@ public class StartGameScreen extends JFrame implements Screen {
     @Override
     public void setUp() {
         setTitle(TITLE);
-        setSize(new Dimension(500, 200));
+        setSize(new Dimension(700, 200));
         setContentPane(new StartGamePanel().getComponent());
 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
