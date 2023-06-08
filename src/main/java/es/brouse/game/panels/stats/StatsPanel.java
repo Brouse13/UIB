@@ -55,7 +55,7 @@ public class StatsPanel extends JPanel implements Panel {
         LabelBuilder label = new LabelBuilder("Historial" + (onlyUser ? " de " + name : ""))
                 .setFont("Arial", Font.PLAIN, 25);
 
-        try(StatsReader reader = new StatsReader("data/stats.dat")) {
+        try(StatsReader reader = new StatsReader("data/resultats.dat")) {
             while (reader.next()) {
                 GameStats read = reader.read();
 

@@ -12,19 +12,19 @@ public class StatsUtils {
         //Assert the ile is created
         try {
             final File dir = new File("data");
-            final File file = new File("data/stats.dat");
+            final File file = new File("data/resultats.dat");
             if (!file.exists() && dir.mkdir()) {
                 if (file.createNewFile())
                     System.out.println("'stats/dat.dat' created");
                 else
-                    System.out.println("Error creating 'data/stats.dat'");
+                    System.out.println("Error creating 'data/resultats.dat'");
             }
         }catch (IOException e) {
-            Game.logger.log(Level.WARNING, "Unable to create file 'data/stats.dat'");
+            Game.logger.log(Level.WARNING, "Unable to create file 'data/resultats.dat'");
         }
 
         //Log the stats
-        try(StatsWriter writer = new StatsWriter("data/stats.dat")) {
+        try(StatsWriter writer = new StatsWriter("data/resultats.dat")) {
             for (GameStats stat : stats) writer.write(stat);
         }
     }
