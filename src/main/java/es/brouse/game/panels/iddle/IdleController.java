@@ -5,11 +5,8 @@ import es.brouse.game.utils.ImagePicker;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class IdleController {
-    private static final Logger logger = Logger.getLogger(IdleController.class.getName());
     private final View view;
 
     /**
@@ -30,7 +27,11 @@ public class IdleController {
         try {
             view.renderGame(new ImagePicker().randomPick(), rows, cols, username);
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Unable to pick an image");
+            JOptionPane.showInternalMessageDialog(IdlePanel.getInstance(),
+                    "Error al seleccionar la imagen");
+        }catch (IllegalArgumentException e) {
+            JOptionPane.showInternalMessageDialog(IdlePanel.getInstance(),
+                    "El directorio se encuentra vacío, selecciona uno válido antes");
         }
     }
 

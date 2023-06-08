@@ -10,7 +10,7 @@ import java.util.*;
 
 public class ImagePicker {
     private final Set<String> extensions = new HashSet<>(Arrays.asList("jpg", "png"));
-    public BufferedImage randomPick() throws IOException {
+    public BufferedImage randomPick() throws IOException, IllegalArgumentException {
         File file = new File(GameSettings.IMAGES_DIR);
 
         File[] files = file.listFiles((dir, name) -> {
@@ -22,7 +22,8 @@ public class ImagePicker {
         });
 
         //No files found
-        if (files == null) return null;
+        if (files == null || files.length == 0)
+            throw new IllegalArgumentException("No files to select");
 
         int random = new Random().nextInt(files.length);
         return ImageIO.read(files[random]);
