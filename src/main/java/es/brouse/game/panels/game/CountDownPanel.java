@@ -11,9 +11,11 @@ public class CountDownPanel extends JPanel implements Panel {
     private final JProgressBar progressBar = new JProgressBar();
     private final Ticker ticker;
     private final GameController controller;
-    public CountDownPanel(GameController controller, Ticker ticker) {
+    private final int maxTicks;
+    public CountDownPanel(GameController controller, Ticker ticker, int maxTicks) {
         this.controller = controller;
         this.ticker = ticker;
+        this.maxTicks = maxTicks;
 
         ticker.setTicker(tick());
 
@@ -29,7 +31,8 @@ public class CountDownPanel extends JPanel implements Panel {
     @Override
     public void initComponents() {
         add(progressBar);
-        progressBar.setValue(1000);
+        progressBar.setValue(maxTicks * 10);
+        progressBar.setStringPainted(true);
 
         ticker.start();
     }
@@ -41,7 +44,7 @@ public class CountDownPanel extends JPanel implements Panel {
 
     private Consumer<Integer> tick() {
         return tick -> {
-            if (tick == 10) controller.endGame(false);
+            if (tick == maxTicks) controller.endGame(false);
 
             progressBar.setValue(progressBar.getValue() - 10);
         };
