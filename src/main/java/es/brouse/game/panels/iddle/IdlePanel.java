@@ -1,6 +1,7 @@
 package es.brouse.game.panels.iddle;
 
 
+import es.brouse.game.GameSettings;
 import es.brouse.game.panels.Panel;
 import es.brouse.game.panels.game.CountDownPanel;
 import es.brouse.game.panels.game.GameImagePanel;
@@ -78,7 +79,7 @@ public class IdlePanel extends JPanel implements Panel, IdleController.View {
     @Override
     public void renderGame(BufferedImage image, int rows, int cols, String username) {
         final Ticker ticker = new Ticker();
-        final int maxTicks = rows * cols * 3;
+        final int maxTicks = rows * cols * GameSettings.GAME_DIFFICULTY;
 
         final GameImagePanel gameImage = new GameImagePanel(ticker, image, rows, cols, username);
         final CountDownPanel countDown = new CountDownPanel(gameImage.getController(), ticker, maxTicks);

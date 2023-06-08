@@ -1,5 +1,7 @@
 package es.brouse.game.utils;
 
+import es.brouse.game.GameSettings;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +14,7 @@ public class Ticker implements ActionListener {
 
     public Ticker() {
         this.ticks = 0;
-        this.timer = new Timer(1000, this);
+        this.timer = new Timer(GameSettings.TIMER_DELTA, this);
     }
 
     public void start() {
