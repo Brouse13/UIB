@@ -8,7 +8,7 @@ public class Game {
     public static boolean gameStarted = false;
     public static final Logger logger = Logger.getLogger(Game.class.getSimpleName());
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         GameScreen.getInstance().setVisible(true);
     }
 }
