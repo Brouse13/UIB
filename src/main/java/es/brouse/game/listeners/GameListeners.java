@@ -13,10 +13,7 @@ public final class GameListeners {
     private final StartGameScreen startGame = new StartGameScreen();
 
     public ActionListener newGame() {
-        return event -> {
-            startGame.start();
-            System.out.println("New Game Started");
-        };
+        return event -> startGame.start();
     }
 
     public ActionListener generalScore() {
