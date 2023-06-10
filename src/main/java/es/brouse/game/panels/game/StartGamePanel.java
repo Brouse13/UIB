@@ -66,43 +66,51 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JTextField username = ((JTextField) builders[0].getComponent());
-        JTextField rows = ((JTextField) builders[1].getComponent());
-        JTextField cols = ((JTextField) builders[2].getComponent());
+        JTextField usrText = ((JTextField) builders[0].getComponent());
+        JTextField rowsText = ((JTextField) builders[1].getComponent());
+        JTextField colsText = ((JTextField) builders[2].getComponent());
 
-        //Check rows and columns error
+        String username = usrText.getText();
+        int rows;
+        int cols;
+
+        //Check rowsText and columns error
         try {
-            Integer.parseInt(cols.getText());
-            Integer.parseInt(rows.getText());
+            cols = Integer.parseInt(colsText.getText());
+            rows = Integer.parseInt(rowsText.getText());
+
+            if (rows <= 1 || cols <= 1)
+                throw new IllegalArgumentException("Has de tener mínimo 2 particiones horizontales y verticales");
+
+            if (rows != cols)
+                throw new IllegalArgumentException("Las particiones han de ser cuadradas");
+
+            if (usrText.getText() == null || "".equals(username))
+                throw new IllegalArgumentException("El nombre no puede ser nulo");
         }catch (NumberFormatException exception) {
             error("Error, revisa los datos");
             return;
-        }
-
-        String usernameVal = username.getText();
-        int rowsVals = Integer.parseInt(rows.getText());
-        int colsVal = Integer.parseInt(cols.getText());
-
-        //Check if the partitions are squared
-        if (rowsVals != colsVal) {
-            error("Las particiones han de ser cuadradas");
+        }catch (IllegalArgumentException ex) {
+            error(ex.getMessage());
             return;
         }
 
         //Render the game instance
-        IdlePanel.getInstance().getController().game(
-                rowsVals,
-                colsVal,
-                usernameVal
-        );
+        IdlePanel.getInstance().getController().game(rows, cols, username);
 
         //Close and reset the screen
         Panel.close(this);
-        username.setText("");
-        rows.setText("");
-        cols.setText("");
+
+        //Reset the text fields
+        for (TextFieldBuilder component : builders)
+            ((JTextField) component.getComponent()).setText("");
     }
 
+    /**
+     * Display the error message on an optionPanel
+     *
+     * @param message error message
+     */
     private void error(String message) {
         JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
     }
