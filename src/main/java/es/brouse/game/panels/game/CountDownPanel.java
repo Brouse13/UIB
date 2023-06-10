@@ -15,7 +15,7 @@ public class CountDownPanel extends JPanel implements Panel {
     public CountDownPanel(GameController controller, Ticker ticker, int maxTicks) {
         this.controller = controller;
         this.ticker = ticker;
-            this.maxTicks = maxTicks;
+        this.maxTicks = maxTicks;
 
         ticker.setTicker(tick());
 
