@@ -70,7 +70,7 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         JTextField rowsText = ((JTextField) builders[1].getComponent());
         JTextField colsText = ((JTextField) builders[2].getComponent());
 
-        String username = usrText.getText();
+        String username = usrText.getText().toLowerCase();
         int rows;
         int cols;
 

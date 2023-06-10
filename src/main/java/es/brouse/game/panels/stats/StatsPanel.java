@@ -49,11 +49,11 @@ public class StatsPanel extends JPanel implements Panel {
     public void initComponents() {
         boolean content = false;
 
-        TextAreaBuilder textArea = new TextAreaBuilder(false).setFont("Arial", Font.PLAIN, 20);
+        TextAreaBuilder textArea = new TextAreaBuilder(false).setFont("Monospaced", Font.PLAIN, 20);
 
         //If is user mode set, we add the player name
         LabelBuilder label = new LabelBuilder("Historial" + (onlyUser ? " de " + name : ""))
-                .setFont("Arial", Font.PLAIN, 25);
+                .setFont("Monospaced", Font.PLAIN, 25);
 
         try(StatsReader reader = new StatsReader("data/resultats.dat")) {
             while (reader.next()) {
@@ -63,7 +63,9 @@ public class StatsPanel extends JPanel implements Panel {
                 if (!onlyUser || read.getRawUsername().equalsIgnoreCase(name)) {
 
                     String date = format.format(read.getTime());
-                    textArea.addLine(String.format(FORMAT,normalize(read.getRawUsername()), date, read.getPoints()));
+                    final String format1 = String.format(FORMAT, normalize(read.getRawUsername()), date, read.getPoints());
+                    System.out.println(format1);
+                    textArea.addLine(format1);
                     content = true;
                 }
             }
