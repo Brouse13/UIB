@@ -44,7 +44,6 @@ public class CountDownPanel extends JPanel implements Panel {
 
     private Consumer<Integer> tick() {
         return tick -> {
-            System.out.println(maxTicks + " " + progressBar.getValue());
             if (tick == maxTicks) controller.endGame(false);
 
             if (tick == 1) progressBar.setValue(progressBar.getValue() - (100 % maxTicks));

@@ -4,7 +4,6 @@ import es.brouse.game.objects.SplitImage;
 import es.brouse.game.panels.game.GameController;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class GameImageListener extends MouseAdapter {
     private final List<SplitImage> images;
 
-    private static JLabel lastClick;
+    private JLabel lastClick;
 
     private final GameController controller;
 
@@ -27,7 +26,6 @@ public class GameImageListener extends MouseAdapter {
 
         //If is the first click, we mark the component with a red border
         if (lastClick == null) {
-            label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
             controller.requestClick(label, true);
             lastClick = label;
             return;
