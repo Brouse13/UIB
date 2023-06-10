@@ -1,5 +1,6 @@
 package es.brouse.game.listeners;
 
+import es.brouse.game.Game;
 import es.brouse.game.GameSettings;
 import es.brouse.game.panels.Panel;
 import es.brouse.game.panels.iddle.IdlePanel;
@@ -13,19 +14,31 @@ public final class GameListeners {
     private final StartGameScreen startGame = new StartGameScreen();
 
     public ActionListener newGame() {
-        return event -> startGame.start();
+        return event -> {
+            if (Game.gameStarted) return;
+
+            startGame.start();
+        };
     }
 
     public ActionListener generalScore() {
-        return event -> IdlePanel.getInstance().getController().renderStats(false);
+        return event -> {
+            if (Game.gameStarted) return;
+            IdlePanel.getInstance().getController().renderStats(false);
+        };
     }
 
     public ActionListener score() {
-        return event -> IdlePanel.getInstance().getController().renderStats(true);
+        return event -> {
+            if (Game.gameStarted) return;
+            IdlePanel.getInstance().getController().renderStats(true);
+        };
     }
 
     public ActionListener changeDir(final Panel panel) {
         return event -> {
+            if (Game.gameStarted) return;
+
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             fileChooser.setDialogTitle("Directorio de las imágenes");

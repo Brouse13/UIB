@@ -1,5 +1,6 @@
 package es.brouse.game.panels.game;
 
+import es.brouse.game.Game;
 import es.brouse.game.objects.SplitImage;
 import es.brouse.game.utils.StatsUtils;
 import es.brouse.game.utils.Ticker;
@@ -62,6 +63,8 @@ public class GameController {
 
         //Save the stats on the file
         statsUtils.writeStats(stats);
+
+        Game.gameStarted = false;
     }
 
     /**
