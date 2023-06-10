@@ -40,6 +40,8 @@ public class GameController {
         //Start game
         ticker.start();
         view.start(images);
+
+        //test(image, rows, cols);
     }
 
     public void swipeRequest(JLabel from, JLabel to) {
@@ -88,7 +90,12 @@ public class GameController {
     private List<SplitImage> shuffleImages(BufferedImage image, int rows, int cols) {
         List<SplitImage> images = new ArrayList<>(new ImageUtils().split(image, rows, cols));
         Collections.shuffle(images);
-        return images;
+
+        //Check if not ordered
+        for (int i = 0; i < images.size(); i++)
+            if (images.get(i).getIndex() != i) return images;
+
+        return shuffleImages(image, rows, cols);
     }
 
     public interface View {
@@ -97,6 +104,30 @@ public class GameController {
         void renderEndGame(GameStats stats, BufferedImage image);
         void renderSwitchPuzzle(JLabel from, JLabel to);
     }
+
+    /*
+    TEST TO CHECK SUB IMAGES ARE SHUFFLED
+    private void test(BufferedImage image, int rows, int cols) {
+        boolean failed = false;
+        for (int i = 0; i < 200; i++) {
+            final List<SplitImage> splitImages = shuffleImages(image, rows, cols);
+
+            if (checkDone(splitImages)) {
+                failed = true;
+                System.out.println("Failed test");
+            }
+        }
+
+        if (!failed) System.out.println("El test no ha fallado");
+    }
+
+    private boolean checkDone(List<SplitImage> images) {
+        for (int i = 0; i < images.size(); i++)
+            //Avoid creating a game with all the images ordered
+            if (images.get(i).getIndex() != i) return false;
+        return true;
+    }
+     */
 }
 
 
