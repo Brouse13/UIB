@@ -82,6 +82,9 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
             if (rows <= 1 || cols <= 1)
                 throw new IllegalArgumentException("Has de tener mínimo 2 particiones horizontales y verticales");
 
+            if (rows != cols)
+                throw new IllegalArgumentException("Las particiones han de ser cuadradas");
+
             if (usrText.getText() == null || "".equals(username))
                 throw new IllegalArgumentException("El nombre no puede ser nulo");
         }catch (NumberFormatException exception) {
