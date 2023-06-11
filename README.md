@@ -2,7 +2,7 @@
 En las siguientes líneas de código se muestan los mapeos de las clases que se
 defienen el pdf _ESQUEMES I ESTRUCTURES INTERFÍCIES TALLER 2_ y en que clase 
 se encuentran del código.
-
+ 
 ## IDLE
 
 ### _IdlePanel_:
