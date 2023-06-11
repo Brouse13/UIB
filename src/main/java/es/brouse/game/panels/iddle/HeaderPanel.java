@@ -47,7 +47,7 @@ public class HeaderPanel extends JPanel implements Panel {
         toolBar.add(getButton("newGame.jpg", listeners.newGame()).getComponent());
         toolBar.add(getButton("selectedHistory.jpg", listeners.score()).getComponent());
         toolBar.add(getButton("history.jpg", listeners.score()).getComponent());
-        toolBar.add(getButton("changeDir.jpg", listeners.changeDir(this)).getComponent());
+        toolBar.add(getButton("changeDir.jpg", listeners.changeDir()).getComponent());
         toolBar.add(getButton("exit.jpg", listeners.exit()).getComponent());
 
         add(mainMenu().getComponent(), NORTH);
@@ -68,7 +68,7 @@ public class HeaderPanel extends JPanel implements Panel {
                 new MenuItemObject("Nueva Partida", listeners.newGame()),
                 new MenuItemObject("Clasificatoria General", listeners.generalScore()),
                 new MenuItemObject("Historial", listeners.score()),
-                new MenuItemObject("Cambiar directorio", listeners.changeDir(this)),
+                new MenuItemObject("Cambiar directorio", listeners.changeDir()),
                 new MenuItemObject("Salir", listeners.exit())
         );
     }
