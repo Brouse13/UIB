@@ -35,7 +35,6 @@ public class TextAreaBuilder implements Component {
         return this;
     }
 
-
     /**
      * Set the font of the text area to the specified by the params.
      *
@@ -46,17 +45,6 @@ public class TextAreaBuilder implements Component {
      */
     public TextAreaBuilder setFont(String font, int type, int size) {
         textArea.setFont(new Font(font, type, size));
-        return this;
-    }
-
-    /**
-     * Set a new border to the textArea.
-     *
-     * @param border new border
-     * @return the builder instance
-     */
-    public TextAreaBuilder setBorder(Border border) {
-        textArea.setBorder(border);
         return this;
     }
 

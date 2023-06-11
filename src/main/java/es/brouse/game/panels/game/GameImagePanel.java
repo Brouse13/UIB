@@ -13,6 +13,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+/**
+ * Class in charge of the creation of game image panel view
+ */
 public class GameImagePanel extends JPanel implements Panel, GameController.View {
     private final Dimension size;
     private final GameController controller;
@@ -27,12 +30,13 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
      */
     public GameImagePanel(Ticker ticker, BufferedImage image, int rows, int cols, String username) {
         this.controller = new GameController(this, ticker, rows * cols, username);
-
         this.size = new Dimension(rows, cols);
 
+        //Init the panel
         setUp();
         initComponents();
 
+        //Call the controller to start
         controller.startGame(image, rows, cols);
     }
 
@@ -90,6 +94,11 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
         return this;
     }
 
+    /**
+     * Get the class controller.
+     *
+     * @return the game controller
+     */
     public GameController getController() {
         return controller;
     }

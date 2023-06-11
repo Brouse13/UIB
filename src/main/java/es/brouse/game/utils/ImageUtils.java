@@ -12,7 +12,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 
+/**
+ * Utility class used to handle some image operations.
+ */
 public class ImageUtils {
+    /**
+     * Split the given image in multiple {@link SplitImage}.
+     *
+     * @param originalImage image to split
+     * @param rows rows to split
+     * @param cols cols to split
+     * @return a set with all the split images.
+     */
     public Set<SplitImage> split(BufferedImage originalImage, int rows, int cols) {
         //Storage of all the returned subImages
         Set<SplitImage> images = new HashSet<>(rows  * cols);
@@ -44,6 +55,13 @@ public class ImageUtils {
         return images;
     }
 
+    /**
+     * Load an image from a given external path.
+     *
+     * @param path image path
+     * @return the loaded image instance
+     * @throws IOException if the image couldn't be read
+     */
     public BufferedImage loadImage(String path) throws IOException {
         URL resource = getClass().getResource(path);
         if (resource == null) throw new IOException("Image " + path + " not found");
@@ -51,15 +69,29 @@ public class ImageUtils {
         return ImageIO.read(resource);
     }
 
-    public BufferedImage loadResource(String name) {
+    /**
+     * Load a new image from the resources folder 'resources/assets/gui/'.
+     *
+     * @param path relative path to the resources folder
+     * @return the load resource
+     */
+    public BufferedImage loadResource(String path) {
         try {
-            return loadImage( "/assets/gui/" + name);
+            return loadImage( "/assets/gui/" + path);
         }catch (IOException exception) {
-            Game.logger.log(Level.WARNING, "Unable to load resource " + name);
+            Game.logger.log(Level.WARNING, "Unable to load resource " + path);
             return new BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB);
         }
     }
 
+    /**
+     * Rescale the given image size.
+     *
+     * @param image image to rescale
+     * @param newWidth new image width
+     * @param newLength new image height
+     * @return the rescaled image instance
+     */
     public BufferedImage rescaleImage(BufferedImage image, int newWidth, int newLength) {
         Image scaled = image.getScaledInstance(newWidth, newLength, Image.SCALE_SMOOTH);
 

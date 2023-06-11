@@ -7,11 +7,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.function.Consumer;
 
+/**
+ * Panel in charge of the display of the timer of the game
+ */
 public class CountDownPanel extends JPanel implements Panel {
+    /*------------ PRIVATE --------------*/
     private final JProgressBar progressBar = new JProgressBar();
     private final Ticker ticker;
     private final GameController controller;
     private final int maxTicks;
+
+    /**
+     * Main class constructor used to create new {@link CountDownPanel}
+     * instances.
+     *
+     * @param controller game controller instance
+     * @param ticker game ticker instance
+     * @param maxTicks max ticks of the timer
+     */
     public CountDownPanel(GameController controller, Ticker ticker, int maxTicks) {
         this.controller = controller;
         this.ticker = ticker;
@@ -42,6 +55,12 @@ public class CountDownPanel extends JPanel implements Panel {
         return this;
     }
 
+    /**
+     * Function called in each time the ticker ticks. This time is
+     * referred on the {@link es.brouse.game.GameSettings#TIMER_DELTA}.
+     *
+     * @return the action performed on each tick
+     */
     private Consumer<Integer> tick() {
         return tick -> {
             if (tick == maxTicks) controller.endGame(false);

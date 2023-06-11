@@ -6,7 +6,11 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Idle controller in charge of managing of the idle status.
+ */
 public class IdleController {
+    /*----------- PRIVATE --------------*/
     private final View view;
 
     /**
@@ -19,10 +23,20 @@ public class IdleController {
         this.view = view;
     }
 
+    /**
+     * Render the idle view
+     */
     public void idle() {
         view.renderIdle();
     }
 
+    /**
+     * Render the game view.
+     *
+     * @param rows rows of the game
+     * @param cols cols of the game
+     * @param username player username
+     */
     public void game(int rows, int cols, String username) {
         try {
             view.renderGame(new ImagePicker().randomPick(), rows, cols, username);
@@ -35,6 +49,11 @@ public class IdleController {
         }
     }
 
+    /**
+     * Render the stats view.
+     *
+     * @param specific if the stats are general or specific
+     */
     public void renderStats(boolean specific) {
         if (!specific)  {
             view.renderStats(null);

@@ -39,6 +39,12 @@ public class ToolBarBuilder implements Component {
         return this;
     }
 
+    /**
+     * Set the background color of the toolBar.
+     *
+     * @param color new color
+     * @return the builder instance
+     */
     public ToolBarBuilder setBackground(Color color) {
         toolBar.setBackground(color);
         return this;

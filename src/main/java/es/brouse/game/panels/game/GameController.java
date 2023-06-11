@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class used as an interface between the controller and the view.
+ */
 public class GameController {
     /*----------- PRIVATE -----------*/
     private final View view;
@@ -24,6 +27,15 @@ public class GameController {
     private final String username;
     private BufferedImage finalImage;
 
+    /**
+     * Main class constructor used to create new {@link GameController}
+     * instances.
+     *
+     * @param view game view interface
+     * @param ticker game ticker
+     * @param points game points
+     * @param username player username
+     */
     public GameController(View view, Ticker ticker, int points, String username) {
         this.view = view;
         this.ticker = ticker;
@@ -33,6 +45,13 @@ public class GameController {
         this.username = username;
     }
 
+    /**
+     * Start a new game view instance.
+     *
+     * @param image game image
+     * @param rows game rows
+     * @param cols game cols
+     */
     public void startGame(BufferedImage image, int rows, int cols) {
         this.finalImage = rescaleImage(image);
         List<SplitImage> images = shuffleImages(finalImage, rows, cols);
@@ -44,15 +63,32 @@ public class GameController {
         //test(image, rows, cols);
     }
 
+    /**
+     * Request a new swipe from the controller to the view.
+     *
+     * @param from from label
+     * @param to to label
+     */
     public void swipeRequest(JLabel from, JLabel to) {
         //Permute solution
         view.renderSwitchPuzzle(from, to);
     }
 
+    /**
+     * Request a new click to pain or remove the border.
+     *
+     * @param label clicked label
+     * @param paint paint component
+     */
     public void requestClick(JLabel label, boolean paint) {
         view.requestClick(label, paint);
     }
 
+    /**
+     * Call the corresponding end game view.
+     *
+     * @param win game is won
+     */
     public void endGame(boolean win) {
         GameStats stats = new GameStats(username, win, win ? points : 0);
 
@@ -98,11 +134,40 @@ public class GameController {
         return shuffleImages(image, rows, cols);
     }
 
+    /**
+     * View interface used to act as controller with th view
+     */
     public interface View {
+        /**
+         * Render the start game view.
+         *
+         * @param images images to render at start
+         */
         void start(List<SplitImage> images);
+
+        /**
+         * Request a click on a specified label.
+         *
+         * @param label label clicked.
+         * @param paint paint component
+         */
         void requestClick(JLabel label, boolean paint);
-        void renderEndGame(GameStats stats, BufferedImage image);
+
+        /**
+         * Render the switch of a piece of the puzzle.
+         *
+         * @param from from label
+         * @param to to label
+         */
         void renderSwitchPuzzle(JLabel from, JLabel to);
+
+        /**
+         * Render the end game view.
+         *
+         * @param stats end game stats
+         * @param image image to render
+         */
+        void renderEndGame(GameStats stats, BufferedImage image);
     }
 
     /*

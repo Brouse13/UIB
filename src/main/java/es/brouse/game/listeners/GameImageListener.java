@@ -8,13 +8,24 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+/**
+ * Class used to create new image game listeners
+ */
 public class GameImageListener extends MouseAdapter {
+    /*---------- PRIVATE ----------*/
     private final List<SplitImage> images;
 
     private JLabel lastClick;
 
     private final GameController controller;
 
+    /**
+     * Main class constructor in charge of the creation of new
+     * {@link GameImageListener} instances.
+     *
+     * @param controller game controller
+     * @param images images to play with
+     */
     public GameImageListener(GameController controller, List<SplitImage> images) {
         this.controller = controller;
         this.images = images;
@@ -47,7 +58,6 @@ public class GameImageListener extends MouseAdapter {
 
         //Check the end of the game and end listener
         if (validate()) controller.endGame(true);
-
     }
 
     /**

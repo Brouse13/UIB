@@ -44,12 +44,14 @@ public class HeaderPanel extends JPanel implements Panel {
         ToolBarBuilder toolBar = new ToolBarBuilder(ToolBarBuilder.HORIZONTAL).setBackground(Color.BLACK);
         SplitPanelBuilder splitPane = new SplitPanelBuilder(SplitPanelBuilder.VERTICAL_SPLIT);
 
+        //Add the items to the toolbar
         toolBar.add(getButton("newGame.jpg", listeners.newGame()).getComponent());
         toolBar.add(getButton("selectedHistory.jpg", listeners.score()).getComponent());
         toolBar.add(getButton("history.jpg", listeners.score()).getComponent());
         toolBar.add(getButton("changeDir.jpg", listeners.changeDir()).getComponent());
         toolBar.add(getButton("exit.jpg", listeners.exit()).getComponent());
 
+        //Add toolbar to the panel
         add(mainMenu().getComponent(), NORTH);
         add(toolBar.getComponent(), CENTER);
         add(splitPane.getComponent(), SOUTH);
@@ -73,6 +75,13 @@ public class HeaderPanel extends JPanel implements Panel {
         );
     }
 
+    /**
+     * Get the built button.
+     *
+     * @param name button name
+     * @param listener button listener
+     * @return the built button
+     */
     private ButtonBuilder getButton(String name, ActionListener listener) {
         //Create the path of the file
         String path = "game/" + name;

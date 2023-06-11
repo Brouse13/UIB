@@ -16,6 +16,9 @@ import java.awt.image.BufferedImage;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.NORTH;
 
+/**
+ * Class in charge of the game idle panel status rendering.
+ */
 public class IdlePanel extends JPanel implements Panel, IdleController.View {
     /*---------- PRIVATE ----------*/
     private static IdlePanel instance;
@@ -32,6 +35,10 @@ public class IdlePanel extends JPanel implements Panel, IdleController.View {
         return instance;
     }
 
+    /**
+     * Main class constructor used to create new {@link IdlePanel}
+     * instances.
+     */
     private IdlePanel() {
         this.controller = new IdleController(this);
 

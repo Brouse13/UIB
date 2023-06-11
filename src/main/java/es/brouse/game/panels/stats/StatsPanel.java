@@ -70,8 +70,10 @@ public class StatsPanel extends JPanel implements Panel {
             }
         }
 
+        //Check data is present
         if (!content) textArea.addLine("NO HAY DATOS PARA MOSTRAR");
 
+        //Add components
         add(label.getComponent(), NORTH);
         add(new JScrollPane(textArea.getComponent(), VERTICAL_SCROLLBAR_ALWAYS, HORIZONTAL_SCROLLBAR_AS_NEEDED));
     }
@@ -81,6 +83,12 @@ public class StatsPanel extends JPanel implements Panel {
         return this;
     }
 
+    /**
+     * Normalize the string to make it have 32 chars length.
+     *
+     * @param str sting to normalize
+     * @return the normalized string
+     */
     private String normalize(String str) {
         if (str.length() >= 32) return str.substring(0, 32);
 

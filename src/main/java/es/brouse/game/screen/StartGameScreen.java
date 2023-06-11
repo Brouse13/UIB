@@ -7,16 +7,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Locale;
 
+/**
+ * Class in charge of the initialization of new game ask input instances.
+ */
 public class StartGameScreen extends JFrame implements Screen {
-    private static final String TITLE = "Iniciar partida";
-
     public StartGameScreen() {
         setUp();
     }
 
     @Override
     public void setUp() {
-        setTitle(TITLE);
+        setTitle("Iniciar partida");
         setSize(new Dimension(700, 200));
         setContentPane(new StartGamePanel().getComponent());
 

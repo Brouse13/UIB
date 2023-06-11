@@ -13,9 +13,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Class used to render the creating game settings view
+ */
 public class StartGamePanel extends JPanel implements Panel, ActionListener {
+    /*--------- PRIVATE -----------*/
     private TextFieldBuilder[] builders;
 
+    /**
+     * Main class constructor used to create new {@link StartGamePanel}
+     * instances.
+     */
     public StartGamePanel() {
         setUp();
         initComponents();
@@ -38,11 +46,9 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
 
         int index = 0;
         for (String name : names) {
-            add(new LabelBuilder(name)
-                    .setSize(new Dimension(50, 10))
+            add(new LabelBuilder(name).setSize(new Dimension(50, 10))
                     .setBorder(new EmptyBorder(5, 5, 5, 5))
-                    .setBackground(Color.BLACK)
-                    .setFont("Arial", Font.BOLD, 12)
+                    .setBackground(Color.BLACK).setFont("Arial", Font.BOLD, 12)
                     .getComponent());
 
             builders[index] = new TextFieldBuilder();
@@ -80,6 +86,7 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
             cols = Integer.parseInt(colsText.getText());
             rows = Integer.parseInt(rowsText.getText());
 
+            //Check general errors
             if (rows <= 1 || cols <= 1)
                 throw new IllegalArgumentException("Has de tener mínimo 2 particiones horizontales y verticales");
 

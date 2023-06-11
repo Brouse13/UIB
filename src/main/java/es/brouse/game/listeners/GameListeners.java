@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * Class to manage all the game listeners
+ */
 public final class GameListeners {
 
     /**

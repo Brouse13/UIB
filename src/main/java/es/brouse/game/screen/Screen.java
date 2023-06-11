@@ -17,15 +17,4 @@ public interface Screen {
      * the frame.
      */
     void start();
-
-    /**
-     * Refresh the given frame and its content
-     *
-     * @param frame frame content
-     */
-    static void refresh(JFrame frame) {
-        frame.revalidate();
-        frame.validate();
-        frame.repaint();
-    }
 }
