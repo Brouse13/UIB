@@ -11,13 +11,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public final class GameListeners {
-    private final StartGameScreen startGame = new StartGameScreen();
 
     public ActionListener newGame() {
         return event -> {
             if (Game.gameStarted) return;
 
-            startGame.start();
+            new StartGameScreen().start();
         };
     }
 

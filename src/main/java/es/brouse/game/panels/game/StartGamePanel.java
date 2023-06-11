@@ -1,5 +1,6 @@
 package es.brouse.game.panels.game;
 
+import es.brouse.game.Game;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.LabelBuilder;
 import es.brouse.game.objects.builders.TextFieldBuilder;
@@ -98,12 +99,9 @@ public class StartGamePanel extends JPanel implements Panel, ActionListener {
         //Render the game instance
         IdlePanel.getInstance().getController().game(rows, cols, username);
 
-        //Close and reset the screen
+        //Close and reset the screen and start the game
         Panel.close(this);
-
-        //Reset the text fields
-        for (TextFieldBuilder component : builders)
-            ((JTextField) component.getComponent()).setText("");
+        Game.gameStarted = true;
     }
 
     /**

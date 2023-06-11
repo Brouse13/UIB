@@ -1,6 +1,5 @@
 package es.brouse.game.screen;
 
-import es.brouse.game.Game;
 import es.brouse.game.panels.game.StartGamePanel;
 
 import javax.swing.*;
@@ -34,7 +33,5 @@ public class StartGameScreen extends JFrame implements Screen {
     @Override
     public void start() {
         setVisible(true);
-
-        Game.gameStarted = true;
     }
 }
