@@ -71,7 +71,7 @@ public class GameImagePanel extends JPanel implements Panel, GameController.View
     @Override
     public void renderEndGame(GameStats stats, BufferedImage image) {
         String message = stats.isWin() ?
-                "Enhorabuena, has conseguido solucionar el panel y ahs conseguido " + stats.getPoints() + " puntos" :
+                "Enhorabuena, has conseguido solucionar el panel y has conseguido " + stats.getPoints() + " puntos" :
                 "No lo has conseguido, el tiempo se ha acabado";
 
         JOptionPane.showMessageDialog(IdlePanel.getInstance(), message);
