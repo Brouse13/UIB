@@ -64,7 +64,6 @@ public class StatsPanel extends JPanel implements Panel {
 
                     String date = format.format(read.getTime());
                     final String format1 = String.format(FORMAT, normalize(read.getRawUsername()), date, read.getPoints());
-                    System.out.println(format1);
                     textArea.addLine(format1);
                     content = true;
                 }
