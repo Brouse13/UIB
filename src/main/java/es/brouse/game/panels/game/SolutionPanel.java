@@ -1,5 +1,6 @@
 package es.brouse.game.panels.game;
 
+import es.brouse.game.Game;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.ImageBuilder;
 import es.brouse.game.panels.Panel;
@@ -39,7 +40,10 @@ public class SolutionPanel {
          * @return the perform action
          */
         private ActionListener event() {
-            return event -> IdlePanel.getInstance().getController().idle();
+            return event -> {
+                IdlePanel.getInstance().getController().idle();
+                Game.gameStarted = false;
+            };
         }
     }
 

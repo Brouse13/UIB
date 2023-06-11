@@ -44,7 +44,7 @@ public class IdleController {
         String message = "Introduce el nombre del usuario:";
         String input = JOptionPane.showInputDialog(IdlePanel.getInstance(), message);
 
-        view.renderStats(input);
+        if (input != null) view.renderStats(input);
     }
 
     public void renderSolution(BufferedImage image) {
