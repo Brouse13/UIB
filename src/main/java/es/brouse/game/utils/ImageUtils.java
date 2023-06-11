@@ -18,8 +18,8 @@ public class ImageUtils {
         Set<SplitImage> images = new HashSet<>(rows  * cols);
 
         //With and height of each section
-        int width = originalImage.getWidth() / cols;
-        int height = originalImage.getHeight() / rows;
+        int width = originalImage.getWidth() / rows;
+        int height = originalImage.getHeight() / cols;
 
         int index = 0;
 
