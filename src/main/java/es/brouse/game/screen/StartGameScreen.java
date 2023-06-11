@@ -1,6 +1,7 @@
 package es.brouse.game.screen;
 
 import es.brouse.game.panels.game.StartGamePanel;
+import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,8 @@ public class StartGameScreen extends JFrame implements Screen {
         setTitle(TITLE);
         setSize(new Dimension(700, 200));
         setContentPane(new StartGamePanel().getComponent());
+
+        setIconImage(new ImageIcon(new ImageUtils().loadResource("/icon.jpg")).getImage());
 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - 500) / 2);

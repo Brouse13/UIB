@@ -1,6 +1,7 @@
 package es.brouse.game.screen;
 
 import es.brouse.game.panels.iddle.IdlePanel;
+import es.brouse.game.utils.ImageUtils;
 
 import javax.swing.*;
 import java.util.Locale;
@@ -22,6 +23,8 @@ public class GameScreen extends JFrame implements Screen {
         setTitle(TITLE);
         setContentPane(IdlePanel.getInstance().getComponent());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setIconImage(new ImageIcon(new ImageUtils().loadResource("/icon.jpg")).getImage());
 
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);

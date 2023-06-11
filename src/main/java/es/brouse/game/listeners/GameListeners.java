@@ -66,18 +66,17 @@ public final class GameListeners {
 
             int result = fileChooser.showOpenDialog(IdlePanel.getInstance());
 
-            if (result != JFileChooser.CANCEL_OPTION) {
+            if (result == JFileChooser.CANCEL_OPTION) return;
 
-                File fileName = fileChooser.getSelectedFile();
+            File fileName = fileChooser.getSelectedFile();
 
-                if ((fileName == null) || (fileName.getName().equals(""))) {
-                    JOptionPane.showMessageDialog(null,
-                            "Error, no se ha podido cambiar el directorio");
-                } else {
-                    GameSettings.IMAGES_DIR = fileName.getPath();
-                    JOptionPane.showMessageDialog(null,
-                            "Directorio cambiado con éxito");
-                }
+            if ((fileName == null) || (fileName.getName().equals(""))) {
+                JOptionPane.showMessageDialog(null,
+                        "Error, no se ha podido cambiar el directorio");
+            } else {
+                GameSettings.IMAGES_DIR = fileName.getPath();
+                JOptionPane.showMessageDialog(null,
+                        "Directorio cambiado con éxito");
             }
         };
     }
