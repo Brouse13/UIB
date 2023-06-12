@@ -4,8 +4,6 @@ import es.brouse.game.listeners.GameListeners;
 import es.brouse.game.objects.builders.ButtonBuilder;
 import es.brouse.game.objects.builders.SplitPanelBuilder;
 import es.brouse.game.objects.builders.ToolBarBuilder;
-import es.brouse.game.objects.menu.MenuItemObject;
-import es.brouse.game.objects.menu.MenuObject;
 import es.brouse.game.panels.Panel;
 import es.brouse.game.utils.ImageUtils;
 
@@ -52,7 +50,6 @@ public class HeaderPanel extends JPanel implements Panel {
         toolBar.add(getButton("exit.jpg", listeners.exit()).getComponent());
 
         //Add toolbar to the panel
-        add(mainMenu().getComponent(), NORTH);
         add(toolBar.getComponent(), CENTER);
         add(splitPane.getComponent(), SOUTH);
     }
@@ -62,18 +59,6 @@ public class HeaderPanel extends JPanel implements Panel {
         return this;
     }
 
-    private MenuObject mainMenu() {
-        final GameListeners listeners = new GameListeners();
-
-        return new MenuObject(
-                "Menu",
-                new MenuItemObject("Nueva Partida", listeners.newGame()),
-                new MenuItemObject("Clasificatoria General", listeners.generalScore()),
-                new MenuItemObject("Historial", listeners.score()),
-                new MenuItemObject("Cambiar directorio", listeners.changeDir()),
-                new MenuItemObject("Salir", listeners.exit())
-        );
-    }
 
     /**
      * Get the built button.

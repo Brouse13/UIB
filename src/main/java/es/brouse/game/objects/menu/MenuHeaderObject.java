@@ -3,7 +3,9 @@ package es.brouse.game.objects.menu;
 import es.brouse.game.objects.Component;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Class in charge of the creation of the {@link JMenu} that will
@@ -34,6 +36,8 @@ public class MenuHeaderObject implements Component {
     public JComponent getComponent() {
         //Add all the items to the menu
         for (MenuItemObject item : items) menu.add(item.getComponent());
+
+        menu.setForeground(Color.WHITE);
 
         return menu;
     }

@@ -1,5 +1,8 @@
 package es.brouse.game.screen;
 
+import es.brouse.game.listeners.GameListeners;
+import es.brouse.game.objects.menu.MenuItemObject;
+import es.brouse.game.objects.menu.MenuObject;
 import es.brouse.game.panels.iddle.IdlePanel;
 import es.brouse.game.utils.ImageUtils;
 
@@ -40,12 +43,27 @@ public class GameScreen extends JFrame implements Screen {
 
         setIconImage(new ImageIcon(new ImageUtils().loadResource("/icon.jpg")).getImage());
 
+        setJMenuBar(((JMenuBar) mainMenu().getComponent()));
+
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         setLocale(Locale.ROOT);
     }
 
+    private MenuObject mainMenu() {
+        final GameListeners listeners = new GameListeners();
+
+        return new MenuObject(
+                "Menu",
+                new MenuItemObject("Nueva Partida", listeners.newGame()),
+                new MenuItemObject("Clasificatoria General", listeners.generalScore()),
+                new MenuItemObject("Historial", listeners.score()),
+                new MenuItemObject("Cambiar directorio", listeners.changeDir()),
+                new MenuItemObject("Salir", listeners.exit())
+        );
+    }
+    
     @Override
     public void start() {
         setVisible(true);

@@ -62,17 +62,6 @@ public class LabelBuilder implements Component {
     }
 
     /**
-     * Set the new alignment to the label.
-     *
-     * @param align new alignment
-     * @return the new builder
-     */
-    public LabelBuilder align(int align) {
-        label.setHorizontalAlignment(align);
-        return this;
-    }
-
-    /**
      * Set the border to the label.
      *
      * @param border new border

@@ -3,6 +3,7 @@ package es.brouse.game.objects.menu;
 import es.brouse.game.objects.Component;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,8 +33,13 @@ public class MenuObject implements Component {
     public JComponent getComponent() {
         JMenuBar menuBar = new JMenuBar();
 
+        menuBar.setBackground(Color.BLACK);
+        menuBar.setOpaque(true);
+
         //Add all the components
-        for (MenuHeaderObject header : headers) menuBar.add(header.getComponent());
+        for (MenuHeaderObject header : headers) {
+            menuBar.add(header.getComponent());
+        }
 
         return menuBar;
     }
