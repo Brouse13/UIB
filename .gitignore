@@ -1,0 +1,20 @@
+
+
+### IntelliJ IDEA ###
+*/.idea/*
+/.idea/*
+*/target/*
+*/build/*
+*/lib/*
+*.iml
+*.mf
+
+### NetBeans ###
+*/nbproject/*
+*/nbbuild/*
+*/dist/*
+*/nbdist/*
+*/.nb-gradle/*
+
+
+
