@@ -15,18 +15,6 @@ public abstract class Shape {
     private final Comparator<Shape> AREA = Comparator.comparingDouble(o -> o.area);
 
     /**
-     * Default class constructor used to create new {@link Shape}
-     * instances.
-     *
-     * @apiNote This constructor will set the perimeter and area with
-     * the {@link Shape#calculateArea()} and {@link Shape#calculatePerimeter()}
-     */
-    public Shape() {
-        this.perimeter = calculatePerimeter();
-        this.area = calculateArea();
-    }
-
-    /**
      * Get the perimeter of the shape.
      *
      * @return the shape perimeter
