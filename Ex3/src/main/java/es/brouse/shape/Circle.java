@@ -23,7 +23,7 @@ public class Circle extends Shape {
         final Random random = new Random();
 
         return new Circle(
-                random.nextInt(bounds)
+                random.nextInt(bounds) + 1
         );
     }
 }

@@ -27,9 +27,9 @@ public class Triangle extends Shape {
         final Random random = new Random();
 
         return new Triangle(
-                random.nextInt(bounds),
-                random.nextInt(bounds),
-                random.nextInt(bounds)
+                random.nextInt(bounds) + 1,
+                random.nextInt(bounds) + 1,
+                random.nextInt(bounds) + 1
         );
     }
 }

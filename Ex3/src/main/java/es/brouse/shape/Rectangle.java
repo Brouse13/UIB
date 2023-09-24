@@ -24,8 +24,8 @@ public class Rectangle extends Shape {
         final Random random = new Random();
 
         return new Rectangle(
-                random.nextInt(bounds),
-                random.nextInt(bounds)
+                random.nextInt(bounds) + 1,
+                random.nextInt(bounds) + 1
         );
     }
 }
