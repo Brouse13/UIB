@@ -1,7 +1,5 @@
 package es.brouse.shape;
 
-import java.util.Comparator;
-
 /**
  * Class used to create new Shapes and provides methods to get
  * their perimeter and area.
@@ -10,9 +8,6 @@ public abstract class Shape {
     /* ----- PRIVATE FIELDS -----*/
     private double area = -1;
     private double perimeter = -1;
-
-    private final Comparator<Shape> PERIMETER = Comparator.comparingDouble(o -> o.perimeter);
-    private final Comparator<Shape> AREA = Comparator.comparingDouble(o -> o.area);
 
     /**
      * Get the perimeter of the shape.
@@ -34,17 +29,6 @@ public abstract class Shape {
         return area;
     }
 
-    /*
-    public int comparePerimeter() {
-
-    }
-    public int compareArea() {
-
-    }
-     */
-
-    //Comparable<Shape> usar Comparator<Shape>
-
     /**
      * Calculate the perimeter of the given shape.
      *
@@ -58,4 +42,10 @@ public abstract class Shape {
      * @return the calculated area
      */
     protected abstract double calculateArea();
+
+    @Override
+    public String toString() {
+        return String.format("%s{area=%,.2f, perimeter=%,.2f}",
+                getClass().getSimpleName(), area, perimeter);
+    }
 }
