@@ -1,4 +1,4 @@
-package es.brouse.shape;
+package es.uib.shape;
 
 import java.util.Random;
 

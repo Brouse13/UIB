@@ -1,4 +1,4 @@
-package es.brouse.shape;
+package es.uib.shape;
 
 /**
  * Class used to create new Shapes and provides methods to get

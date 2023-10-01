@@ -1,10 +1,22 @@
-package es.brouse;
+package es.uib;
 
-import es.brouse.shape.*;
-import es.brouse.utils.ShapeUtils;
+import es.uib.shape.*;
+import es.uib.utils.ShapeUtils;
 
 import java.util.*;
 
+/**
+ * Volem representar diferents 4 tipus de Figura (Cercle,Triangle, Rectangle i Quadrat). Totes les Figures tenen una àrea i un perímetre.
+ * - Heu de generar de manera aleatòria 10000 figures i emmagatzemar-les en una Collection
+ * - Heu de calcular la suma de les àrees i perímetres de totes les figures
+ * - Heu de calcular la suma de les àrees i perímetres de cada tipus de figura
+ * - Heu de calcular l’àrea màxima i mínima de totes les figures i per a cada tipus de figures.
+ * - Heu de poder ordenar les figures per àrees i per perímetre i mostrar les 10 primeres.
+ * - Heu de documentar el codi amb JavaDoc
+ *
+ * @version 1.0
+ * @author Brouse, Carlos
+ */
 public class Main {
     private final ShapeUtils shapeUtils = new ShapeUtils(shapes);
     private static final List<Class<? extends Shape>> shapes = Arrays.asList(
@@ -44,7 +56,7 @@ public class Main {
      * @param shapes shapes to print
      */
     private void maxArea(final List<Shape> shapes) {
-        System.out.printf("Sum area: %,.2fm\n",
+        System.out.printf("Sum area: %,.2f\n",
                 shapes.stream().mapToDouble(Shape::getArea).sum());
     }
 
@@ -54,7 +66,7 @@ public class Main {
      * @param shapes shapes to print
      */
     private void maxPerimeter(final List<Shape> shapes) {
-        System.out.printf("Sum perimeter: %,.2fm\n",
+        System.out.printf("Sum perimeter: %,.2f\n",
                 shapes.stream().mapToDouble(Shape::getPerimeter).sum());
     }
 
@@ -91,7 +103,9 @@ public class Main {
     private void printTop10(List<Shape> shapes, Comparator<Shape> comparator) {
         shapes.sort(comparator);
 
-        List<Shape> subList = shapes.subList(0, Math.max(shapes.size(), 10));
+        final int min = Math.min(shapes.size(), 10);
+
+        List<Shape> subList = shapes.subList(shapes.size() - min, shapes.size());
 
         for (Shape shape : subList)
             System.out.println("\t" + shape.toString());

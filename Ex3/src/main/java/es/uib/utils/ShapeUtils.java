@@ -1,6 +1,6 @@
-package es.brouse.utils;
+package es.uib.utils;
 
-import es.brouse.shape.*;
+import es.uib.shape.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
